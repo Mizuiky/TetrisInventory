@@ -23,12 +23,7 @@ public class InventoryBuilder : MonoBehaviour
     private float _x;
     private float _y;
 
-    public void Start()
-    {
-        Init();
-    }
-
-    private void Init()
+    public void Init()
     {
         _x = _startX;
         _y = _startY;
