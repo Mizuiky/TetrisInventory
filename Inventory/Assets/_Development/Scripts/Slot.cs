@@ -12,6 +12,8 @@ public class Slot : MonoBehaviour
 
     public int itemQtd { get { return _itemQtd; } }
     public Vector2 Position { get { return _position; } }
+    public Vector2 Index { get { return _index; } }
+
 
     public void Start()
     {
@@ -42,4 +44,6 @@ public class Slot : MonoBehaviour
     {
         _item = item;
     }
+
+
 }

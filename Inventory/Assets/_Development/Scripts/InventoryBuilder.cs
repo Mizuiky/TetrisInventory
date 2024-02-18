@@ -45,7 +45,7 @@ public class InventoryBuilder : MonoBehaviour
                 if (j == 0 && i != 0)
                 {
                     _x = _startX * i;
-                    _y += _slotWidth;
+                    _y -= _slotWidth;
                 }
 
                 BuildSlot(_x, _y, i, j);
