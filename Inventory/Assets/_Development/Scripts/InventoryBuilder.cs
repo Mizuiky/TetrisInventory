@@ -4,7 +4,9 @@ public class InventoryBuilder : MonoBehaviour
 {
     [SerializeField] private GameObject _slotPrefab;
     [SerializeField] private Transform _parent;
-    [SerializeField] private Sprite _slotSprite;
+
+    [SerializeField] private Sprite _normalSlot;
+    [SerializeField] private Sprite _highLightedSlot;
 
     [SerializeField] private float _startX;
     [SerializeField] private float _startY;
@@ -67,7 +69,7 @@ public class InventoryBuilder : MonoBehaviour
         {
             var slot = _square.GetComponent<Slot>();
             if (slot != null)
-                slot.Init(_slotSprite, _position, _index);
+                slot.Init(_normalSlot, _highLightedSlot, _position, _index);
         }
     }
 

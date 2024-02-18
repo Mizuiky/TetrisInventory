@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    [SerializeField] private Image _image;
+    [SerializeField] private Image _slot;
+
     private Item _item;
     private int _itemQtd;
 
@@ -14,17 +15,23 @@ public class Slot : MonoBehaviour
     public Vector2 Position { get { return _position; } }
     public Vector2 Index { get { return _index; } }
 
+    private Sprite _highlight;
+    private Sprite _normal;
 
     public void Start()
     {
-        if (_image == null)
-            _image = GetComponent<Image>();
+        if (_slot == null)
+            _slot = GetComponent<Image>();
     }
 
-    public void Init(Sprite slotImage, Vector2 position, Vector2 index)
+    public void Init(Sprite normal, Sprite highLighted, Vector2 position, Vector2 index)
     {
-        _image.sprite = slotImage;
-        _image.type = Image.Type.Simple;
+        _slot.sprite = normal;
+
+        _normal = normal;
+        _highlight = highLighted;
+
+        _slot.type = Image.Type.Simple;
         _position = position;
         _index = index;
     }
@@ -45,5 +52,11 @@ public class Slot : MonoBehaviour
         _item = item;
     }
 
-
+    public void HighLight(bool canHighLight)
+    {
+        if (canHighLight)
+            _slot.sprite = _highlight;
+        else
+            _slot.sprite = _normal;
+    }
 }
