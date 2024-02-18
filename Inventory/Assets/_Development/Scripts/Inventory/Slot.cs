@@ -5,7 +5,7 @@ public class Slot : MonoBehaviour
 {
     [SerializeField] private Image _slot;
 
-    private Item _item;
+    private ItemData _item;
     private int _itemQtd;
 
     private Vector2 _position;
@@ -47,7 +47,7 @@ public class Slot : MonoBehaviour
         _itemQtd += value;
     }
 
-    public void AddItem(Item item)
+    public void AddItem(ItemData item)
     {
         _item = item;
     }
