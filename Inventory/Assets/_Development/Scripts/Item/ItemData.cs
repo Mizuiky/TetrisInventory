@@ -1,18 +1,12 @@
-using UnityEngine;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class ItemData
 {
     public string itemName;
-    public ItemType type;
-    public int qtd;
-    public int slotNumber;
-    public Sprite[] sprites;
+    public int id;
+    public int type;
+    public int[] inventoryIndex;
+    public string spriteName;
     public string itemDescription;
-
-    public void SetSprites(Sprite[] spriteList)
-    {
-        sprites = new Sprite[spriteList.Length];
-        sprites = spriteList;
-    }
 }
