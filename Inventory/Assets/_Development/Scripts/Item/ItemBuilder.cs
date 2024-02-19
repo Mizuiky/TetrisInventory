@@ -1,17 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
 
-public class ItemBuilder
+public class ItemBuilder : MonoBehaviour
 {
     private string _itemDataDirectory = "GameData";
-    private string _itemDataFile = "ItemData.txt";
+    private string _itemDataFile = "ItemsData.json";
     private string _directoryPath;
+    private string _itemFolderPath = "Assets/_Development/Prefabs/Items/";
+    private string _itemPath;
 
-    private List<ItemData> _itemData;
-    private List<Item> _items;
+    [SerializeField] List<ItemData> _itemData;
+    List<Item> _items;
+    private bool _hasItem = false;
 
     public void Init()
     {
@@ -31,25 +35,29 @@ public class ItemBuilder
 
     public void AddItem(string name, int id, ItemType type, Sprite sprite, string itemDescription)
     {
-        var data = new ItemData()
+        if(_itemData.Count > 0)
+            _hasItem = _itemData.Any(x => x.id == id);
+        
+        if(!_hasItem)
         {
-            itemName = name,
-            id = id,
-            type = (int)type,
-            spriteName = sprite.name,
-            itemDescription = itemDescription
-        };
+            ItemData data = new ItemData()
+            {
+                itemName = name,
+                id = id,
+                type = (int)type,
+                spriteName = sprite.name,
+                itemDescription = itemDescription
+            };
 
-        _itemData.Add(data);
+            _itemData.Add(data);
 
-        var item = new Item();
-        item.Init(data);
-        item.SetSprite(sprite);
+            CreatePrefab(data, name, sprite);
 
-        _items.Add(item);
-
-        SaveList();
+            SaveList();
+        }
     }
+
+    #region Read and Save
 
     private void ReadList()
     {
@@ -71,7 +79,7 @@ public class ItemBuilder
 
                     if (jsonData != null)
                     {
-                        //_itemData = JsonHelper.Deserialize<List<ItemData>>(jsonData);
+                        _itemData = JsonHelper.Deserialize<List<ItemData>>(jsonData);
                         Debug.Log("File sucessfull read");
                     }
                 }
@@ -99,6 +107,29 @@ public class ItemBuilder
                 Debug.LogWarning("Exception catch when writing list: " + e);
             }    
         }
+    }
+
+    #endregion
+
+    private void CreatePrefab(ItemData data, string itemName, Sprite sprite)
+    {
+        GameObject itemObj = new GameObject(itemName);
+
+        itemObj.AddComponent<SpriteRenderer>();
+        itemObj.AddComponent<BoxCollider>();
+
+        Item currentItem = itemObj.AddComponent<Item>();
+
+        if(currentItem != null) 
+        {
+            currentItem.Init(data);
+            currentItem.SetSprite(sprite);
+
+            _items.Add(currentItem);
+
+            _itemPath = Path.Combine(_itemFolderPath, itemName + ".prefab");
+            PrefabUtility.SaveAsPrefabAsset(currentItem.gameObject, _itemPath);
+        }       
     }
 
     //private Sprite[] GetSprite()

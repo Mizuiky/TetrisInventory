@@ -11,7 +11,8 @@ public enum ItemType
 
 public class Item : MonoBehaviour
 {
-    private ItemData _data;
+    [SerializeField] private ItemData _data;
+    private SpriteRenderer _spriteRenderer;
     private Sprite _sprite;
     private int _qtd;
 
@@ -23,6 +24,8 @@ public class Item : MonoBehaviour
 
     public void SetSprite(Sprite sprite)
     {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.sprite = sprite;
         _sprite = sprite;
     }
 
@@ -30,5 +33,10 @@ public class Item : MonoBehaviour
     {
         _data.inventoryIndex[0] = line;
         _data.inventoryIndex[1] = column;
+    }
+
+    private void UpdateBoxCollider()
+    {
+
     }
 }

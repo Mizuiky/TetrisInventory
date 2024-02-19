@@ -1,9 +1,5 @@
-﻿using System.IO.Ports;
-using System.Security.Cryptography;
-using UnityEditor;
-using UnityEditorInternal;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class CustomItemWindow : EditorWindow
 {
@@ -13,7 +9,6 @@ public class CustomItemWindow : EditorWindow
     public Sprite _sprites;
     private string _itemDescription;
     private string _helpBoxMessage = "There are still fields to be filled";
-    private bool _showWarning = false;
 
     [MenuItem("Tools/Item Creator Window")]
     public static void ShowWindow()
