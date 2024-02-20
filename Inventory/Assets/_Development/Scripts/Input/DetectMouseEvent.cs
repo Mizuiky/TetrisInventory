@@ -7,7 +7,7 @@ public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log($"mouse is over this slot{slot.Index}");
+        Debug.Log($"mouse is over this slot{slot.Index[0]},{slot.Index[1]}");
         slot.HighLight(true);
     }
 

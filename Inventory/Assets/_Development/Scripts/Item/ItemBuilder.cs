@@ -4,26 +4,28 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.U2D;
+using UnityEngine.UI;
 
 public class ItemBuilder : MonoBehaviour
 {
-    private string _itemDataDirectory = "GameData";
-    private string _itemDataFile = "ItemsData.json";
+    [SerializeField] List<ItemData> _itemData;
+
     private string _directoryPath;
+    private string _GameDataDirectory = "GameData";
+    private string _itemDataFile = "ItemDatas.json";    
     private string _itemFolderPath = "Assets/_Development/Prefabs/Items/";
+    private string _inventoryItemFolderPath = "Assets/_Development/Prefabs/UI/InventoryItems/";
     private string _itemPath;
 
-    [SerializeField] List<ItemData> _itemData;
-    List<Item> _items;
     private bool _hasItem = false;
 
     public void Init()
     {
-        _directoryPath = Path.Combine(Application.persistentDataPath, _itemDataDirectory);
+        _directoryPath = Path.Combine(Application.persistentDataPath, _GameDataDirectory);
         _itemDataFile = Path.Combine(_directoryPath, _itemDataFile);
 
         _itemData = new List<ItemData>();
-        _items = new List<Item>();
 
         ReadList();
     }
@@ -33,7 +35,7 @@ public class ItemBuilder : MonoBehaviour
        
     }
 
-    public void AddItem(string name, int id, ItemType type, Sprite sprite, string itemDescription)
+    public void AddItem(string name, int id, ItemType type, Sprite sprite, string itemDescription, Sprite inventoryImage)
     {
         if(_itemData.Count > 0)
             _hasItem = _itemData.Any(x => x.id == id);
@@ -45,13 +47,19 @@ public class ItemBuilder : MonoBehaviour
                 itemName = name,
                 id = id,
                 type = (int)type,
-                spriteName = sprite.name,
-                itemDescription = itemDescription
+                spriteName = sprite.name,       
+                inventoryItemData = new InventoryItemData()
+                {
+                    imageName = inventoryImage.name,
+                    name = name,
+                    id = id,
+                    description = itemDescription,
+                }        
             };
 
             _itemData.Add(data);
 
-            CreatePrefab(data, name, sprite);
+            CreateInventoryItemPrefab(data, inventoryImage, sprite);
 
             SaveList();
         }
@@ -64,7 +72,6 @@ public class ItemBuilder : MonoBehaviour
         if (!Directory.Exists(_directoryPath))
         {
             Directory.CreateDirectory(_directoryPath);
-            _itemData = new List<ItemData>();
 
             File.WriteAllText(_itemDataFile, "New Item Data File");
             Debug.Log("File and directory sucessfull created");
@@ -82,6 +89,11 @@ public class ItemBuilder : MonoBehaviour
                         _itemData = JsonHelper.Deserialize<List<ItemData>>(jsonData);
                         Debug.Log("File sucessfull read");
                     }
+                }
+                else
+                {
+                    File.WriteAllText(_itemDataFile, "New Item Data File");
+                    Debug.Log("File sucessfull created");
                 }
             }
             catch (Exception e)
@@ -111,29 +123,53 @@ public class ItemBuilder : MonoBehaviour
 
     #endregion
 
-    private void CreatePrefab(ItemData data, string itemName, Sprite sprite)
+    #region Create Item and Inventory Item Prefab
+    private void CreateItemPrefab(ItemData data, Sprite sprite, IInventoryItem inventoryItem)
     {
-        GameObject itemObj = new GameObject(itemName);
+        GameObject itemObj = new GameObject(data.itemName);
 
         itemObj.AddComponent<SpriteRenderer>();
         itemObj.AddComponent<BoxCollider>();
 
-        Item currentItem = itemObj.AddComponent<Item>();
+        ItemBase currentItem = itemObj.AddComponent<ItemBase>();
 
         if(currentItem != null) 
         {
-            currentItem.Init(data);
+            currentItem.Init(data, inventoryItem);
             currentItem.SetSprite(sprite);
 
-            _items.Add(currentItem);
-
-            _itemPath = Path.Combine(_itemFolderPath, itemName + ".prefab");
+            _itemPath = Path.Combine(_itemFolderPath, data.itemName + ".prefab");
             PrefabUtility.SaveAsPrefabAsset(currentItem.gameObject, _itemPath);
         }       
     }
 
-    //private Sprite[] GetSprite()
+    private void CreateInventoryItemPrefab(ItemData data, Sprite inventoryImage, Sprite sprite)
+    {
+        GameObject item = new GameObject(data.itemName);
+
+        item.AddComponent<Image>();
+        
+        InventoryItem currentItem = item.AddComponent<InventoryItem>();
+
+        if (currentItem != null)
+        {
+            currentItem.Init(data.inventoryItemData, inventoryImage);
+
+            _itemPath = Path.Combine(_inventoryItemFolderPath, data.inventoryItemData.name + ".prefab");
+            GameObject newInventoryItem = PrefabUtility.SaveAsPrefabAsset(currentItem.gameObject, _itemPath);
+
+            IInventoryItem invItem = newInventoryItem.GetComponent<IInventoryItem>();
+
+            if(invItem != null)
+                CreateItemPrefab(data, sprite, invItem);               
+        }
+    }
+
+    #endregion
+
+    //private Sprite[] LoadSprite()
     //{
     //   //based on sprite name get them from resources load
     //}
+    //
 }

@@ -6,7 +6,8 @@ public class CustomItemWindow : EditorWindow
     private string _itemName;
     private int _id;
     private ItemType _type;
-    public Sprite _sprites;
+    private Sprite _sprites;
+    private Sprite _inventorySprite;
     private string _itemDescription;
     private string _helpBoxMessage = "There are still fields to be filled";
 
@@ -15,8 +16,7 @@ public class CustomItemWindow : EditorWindow
     {
         var window = GetWindow<CustomItemWindow>();
         window.titleContent = new GUIContent("Item Creator");
-        window.minSize = new Vector2(400, 300);
-        window.maxSize = new Vector2(600, 500);
+        window.maxSize = new Vector2(400, 500);
         window.Show();
     }
 
@@ -37,12 +37,16 @@ public class CustomItemWindow : EditorWindow
         EditorGUILayout.Space();
 
         EditorGUILayout.LabelField("Description");
-        _itemDescription = EditorGUILayout.TextArea(_itemDescription, GUILayout.Height(60));         
+        _itemDescription = EditorGUILayout.TextArea(_itemDescription, GUILayout.Height(60));
+        EditorGUILayout.Space(10);
+
+        _inventorySprite = (Sprite)EditorGUILayout.ObjectField("Inventory image:", _inventorySprite, typeof(Sprite), false);
+        EditorGUILayout.Space();
 
         if (CheckAllFields())
         {
             if (GUILayout.Button("Create"))                              
-                GameManager.Instance.ItemBuilder.AddItem(_itemName, _id, _type, _sprites, _itemDescription);
+                GameManager.Instance.ItemBuilder.AddItem(_itemName, _id, _type, _sprites, _itemDescription, _inventorySprite);
         }                     
         else
         {
@@ -55,7 +59,7 @@ public class CustomItemWindow : EditorWindow
 
     private bool CheckAllFields()
     {
-        if (_itemName == "" || _type == ItemType.None || _sprites == null || _itemDescription == "")
+        if (_itemName == "" || _type == ItemType.None || _sprites == null || _itemDescription == "" || _inventorySprite == null)
             return false;
 
         return true;

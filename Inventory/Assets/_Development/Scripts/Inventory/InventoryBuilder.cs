@@ -64,7 +64,7 @@ public class InventoryBuilder : MonoBehaviour
         {
             var slot = _square.GetComponent<Slot>();
             if (slot != null)
-                slot.Init(_normalSlot, _highLightedSlot, _position, _index);
+                slot.Init(_normalSlot, _highLightedSlot, _position, i, j);
         }
     }
 
