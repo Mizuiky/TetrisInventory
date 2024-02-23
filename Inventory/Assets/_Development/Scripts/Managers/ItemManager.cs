@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class ItemManager
 {
@@ -79,6 +78,6 @@ public class ItemManager
     public void SaveItems()
     {
         var list = _items.Select(x => x.Data).ToList();
-        GameManager.Instance.ItemBuilder.SaveData(list);
+        GameManager.Instance.SaveManager.Save(list, FileType.ItemData);
     }
 }
