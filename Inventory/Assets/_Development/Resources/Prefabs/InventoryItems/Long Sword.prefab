@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3855336299465536619
+--- !u!1 &5536280874985230394
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 344512006112894417}
-  - component: {fileID: 1421590883705471952}
-  - component: {fileID: 5535108511137182275}
-  - component: {fileID: 1217247678374213087}
+  - component: {fileID: 2690732877591523688}
+  - component: {fileID: 2333082398167620450}
+  - component: {fileID: 7497376111869181505}
+  - component: {fileID: 8178557667957601220}
   m_Layer: 0
   m_Name: Long Sword
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &344512006112894417
+--- !u!224 &2690732877591523688
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3855336299465536619}
+  m_GameObject: {fileID: 5536280874985230394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -38,21 +38,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 190, y: 127}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1421590883705471952
+--- !u!222 &2333082398167620450
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3855336299465536619}
+  m_GameObject: {fileID: 5536280874985230394}
   m_CullTransparentMesh: 1
---- !u!114 &5535108511137182275
+--- !u!114 &7497376111869181505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3855336299465536619}
+  m_GameObject: {fileID: 5536280874985230394}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -76,13 +76,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1217247678374213087
+--- !u!114 &8178557667957601220
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3855336299465536619}
+  m_GameObject: {fileID: 5536280874985230394}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 002e06abfa4632846a50bb72d3234f83, type: 3}
@@ -93,7 +93,7 @@ MonoBehaviour:
     name: Long Sword
     id: 0
     qtd: 0
-    description: Long sword made of iron
+    description: Sword made of iron
     slotPosition:
     - line: 0
       column: 0
