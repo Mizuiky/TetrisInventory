@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
     private Vector3 _bottomRight;
 
     private InventoryItem _currentItem;
-    private Slot _currentSlot;
+    private Slot _currentAvailableSlot;
     private Slot _attachedSlot;
     private List<SlotPosition> _slotPositions;
 
@@ -42,8 +42,6 @@ public class Inventory : MonoBehaviour
         _inventoryItemsParent = itemParent;
         _slotWidth = slotWidth;
         _slotHeight = slotHeight;
-
-        SetInventoryCorners();
     }
 
     public void Open(bool canOpen)
@@ -60,8 +58,7 @@ public class Inventory : MonoBehaviour
         {
             for(int j = 0; j < _columns; j++)
             {
-                _currentSlot = _inventory[i, j];
-                availableSlot = HasItemOnSlot(id);
+                availableSlot = HasItemOnSlot(_inventory[i,j], id);
 
                 if (!availableSlot)
                 {
@@ -76,9 +73,9 @@ public class Inventory : MonoBehaviour
         }    
     }
 
-    private bool HasItemOnSlot(int id)
+    private bool HasItemOnSlot(Slot slot, int id)
     {
-        if (_currentSlot.HasItem)
+        if (slot.HasItem)
         {
             UpdateQtd(id);
             return true;
@@ -132,30 +129,34 @@ public class Inventory : MonoBehaviour
 
     private bool CanStoreItem(int[,] itemConfig, int line, int column)
     {
+        var auxLine = line;
+        var auxColumn = column; 
+
         for (int i = 0; i < itemConfig.GetLength(0); i++)
         {
             for (int j = 0; j < itemConfig.GetLength(1); j++)
             {
-                line += i;
-                column += j;
+                auxLine += i;
+                auxColumn += j;
 
-                if (itemConfig[i, j] == 1 && _inventory[line, column].HasItem)
+                if (itemConfig[i, j] == 1 && _inventory[auxLine, auxColumn].HasItem)
                 {
                     _slotPositions.Clear();
                     return false;
                 }
                   
-                _slotPositions.Add(new SlotPosition(line, column));
+                _slotPositions.Add(new SlotPosition(auxLine, auxColumn));
             }
         }
 
-        //_attachedSlot = 
+        _currentAvailableSlot = _inventory[line, column];
+
         return true;
     }
 
     private void Attach()
     {
-        //_currentItem.SetPosition(_inventoryItemsParent, _attachedSlot);
+        _currentItem.SetPosition(_inventoryItemsParent, _currentAvailableSlot, _slotWidth, _slotHeight);
 
         var slots = _slotPositions.ToArray();
 
@@ -165,40 +166,13 @@ public class Inventory : MonoBehaviour
             _currentItem.Data.slotPosition[i] = config;
             var slot = _inventory[config.line, config.column];
             slot.HasItem = true;
-            slot.AttachItem(_currentItem);
+            slot.AttachItem(_currentItem.Data.id);
         }
 
         _items.Add(_currentItem);
 
         GameManager.Instance.ItemManager.UpdateInventoryItemList(_currentItem.Data);
         GameManager.Instance.ItemManager.SaveItems();
-    }
-
-
-    private void SetInventoryCorners()
-    {
-        _topLeft = new Vector3(_inventory[0, 0].Position.x, _inventory[0, 0].Position.y, 0);
-        _topRight = new Vector3(_inventory[0, _columns - 1].Position.x, _inventory[0, _columns - 1].Position.y, 0);
-
-        _bottomLeft = new Vector3(_inventory[_lines - 1, 0].Position.x, _inventory[_lines - 1, 0].Position.y, 0);
-        _bottomRight = new Vector3(_inventory[_lines - 1, _columns - 1].Position.x, _inventory[_lines - 1, _columns - 1].Position.y, 0);
-
-        Debug.Log("Top Left:" + _topLeft);
-        Debug.Log("Bottom Left:" + _bottomLeft);
-        Debug.Log("Top Right:" + _topRight);
-        Debug.Log("Bottom Right:" + _bottomRight);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(_topLeft, 4f);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(_bottomLeft, 4f);
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(_topRight, 4f);
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(_bottomRight, 4f);
     }
 
     private void RemoveItem(int id)
