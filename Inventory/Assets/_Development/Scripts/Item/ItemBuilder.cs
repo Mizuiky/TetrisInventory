@@ -14,10 +14,7 @@ public class ItemBuilder : MonoBehaviour
     [SerializeField] List<ItemData> _itemData;
     List<ItemBase> _itemBaseList;
     List<InventoryItem> _inventoryItemList;
-
-    private string _directoryPath;
-    private string _GameDataDirectory = "GameData";
-    private string _itemDataFile = "ItemData.json";    
+ 
     private string _ResourceFolderItemPath = "Assets/_Development/Resources/Prefabs/Items";
     private string _inventoryItemFolderPath = "Assets/_Development/Resources/Prefabs/InventoryItems/";
     private string _itemPath;
@@ -26,16 +23,7 @@ public class ItemBuilder : MonoBehaviour
 
     public void Init()
     {
-        _directoryPath = Path.Combine(Application.persistentDataPath, _GameDataDirectory);
-        _itemDataFile = Path.Combine(_directoryPath, _itemDataFile);
-
-        _itemData = new List<ItemData>();
-        _itemBaseList = new List<ItemBase>();
-        _inventoryItemList = new List<InventoryItem>();
-
-        //Load items Data
-        LoadList();
-
+        LoadData();
         //Load all prefabs of type ItemBase and InventoryItem from Resource folder inside Assets and update them on Item Manager
         LoadPrefabs();
     }
@@ -43,6 +31,11 @@ public class ItemBuilder : MonoBehaviour
     public void Reset()
     {
        
+    }
+
+    private void LoadData()
+    {
+        _itemData = GameManager.Instance.SaveManager.ItemData;
     }
 
     public void AddItem(string name, int id, ItemType type, Sprite sprite, string itemDescription, Sprite inventoryImage, int[,] inventoryConfig, int _slotPositions)
@@ -74,62 +67,8 @@ public class ItemBuilder : MonoBehaviour
             _itemData.Add(data);
 
             CreateInventoryItemPrefab(data, inventoryImage, sprite);
-        }
-    }
 
-    #region Read, Save AND Load
-
-    private void LoadList()
-    {
-        if (!Directory.Exists(_directoryPath))
-        {
-            Directory.CreateDirectory(_directoryPath);
-
-            File.WriteAllText(_itemDataFile, "New Item Data File");
-            Debug.Log("File and directory sucessfull created");
-        }         
-        else
-        {
-            try
-            {
-                if (File.Exists(_itemDataFile))
-                {
-                    string jsonData = File.ReadAllText(_itemDataFile);
-
-                    if (jsonData != null)
-                    {
-                        _itemData = JsonHelper.Deserialize<List<ItemData>>(jsonData);
-                        Debug.Log("File sucessfull read");
-                    }
-                }
-                else
-                {
-                    File.WriteAllText(_itemDataFile, "New Item Data File");
-                    Debug.Log("File sucessfull created");
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning("Exception catch when reading list: "+ e);
-
-            }          
-        }
-    }
-
-    public void SaveData(List<ItemData> itemData)
-    {    
-        string jsonData = JsonHelper.Serialize(itemData);
-
-        if(jsonData != null)
-        {
-            try
-            {
-                File.WriteAllText(_itemDataFile, jsonData);
-            }
-            catch(Exception e)
-            {
-                Debug.LogWarning("Exception catch when writing list: " + e);
-            }    
+            GameManager.Instance.SaveManager.Save(_itemData, FileType.ItemData);
         }
     }
 
@@ -156,8 +95,6 @@ public class ItemBuilder : MonoBehaviour
             GameManager.Instance.ItemManager.FillItemList(_itemBaseList, _inventoryItemList);
         }        
     }
-
-    #endregion
 
     #region Create Item and Inventory Item Prefab
     private void CreateInventoryItemPrefab(ItemData data, Sprite inventoryImage, Sprite sprite)
