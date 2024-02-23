@@ -11,37 +11,24 @@ public enum ItemType
 
 public class ItemBase : MonoBehaviour, IItem
 {
-    private ItemData _data;
-    private ItemBase _item;
-    private IInventoryItem _inventoryItem;
+    [SerializeField] private ItemData _data;
+    private InventoryItemData _inventoryData;
     private SpriteRenderer _spriteRenderer;
     private Sprite _sprite;
 
-    public ItemData Data { get { return _data; } }
-    public ItemBase Item { get { return _item; } }
-    public IInventoryItem InventoryItem { get { return _inventoryItem; } }  
+    public ItemData Data { get { return _data; } set { _data = value; } }
+    public InventoryItemData InventoryData { get { return _inventoryData; } set { _inventoryData = value; } } 
     public int ID { get { return _data.id; } }
 
-    public void Init(ItemData data, IInventoryItem inventoryItem)
+    public void Init(ItemData data, Sprite sprite)
     {
         _data = data;
-        _inventoryItem = inventoryItem;
-        _item = this;
-    }
-
-    public void SetSprite(Sprite sprite)
-    {
+        _sprite = sprite;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = sprite;
-        _sprite = sprite;
     }
 
     public void UpdateBoxCollider()
-    {
-
-    }
-
-    public virtual void OnUse()
     {
 
     }
