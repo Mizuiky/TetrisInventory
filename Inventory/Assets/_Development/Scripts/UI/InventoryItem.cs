@@ -72,12 +72,14 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         _image.SetNativeSize();
     }
 
-    public void SetPosition(Transform parent, Slot slot)
+    public void SetPosition(Transform parent, Slot slot, float _slotWidth, float slotHeight)
     {
         transform.SetParent(parent);
         _rect.localPosition = Vector3.zero;
 
-        _rect.localPosition = slot.GetComponent<RectTransform>().localPosition;
+        Vector3 constant = new Vector3((_width / 2 - _slotWidth / 2), (-_height / 2 + slotHeight / 2));
+
+        _rect.localPosition = constant;
     }
 
     public void Rotate()
