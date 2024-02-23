@@ -15,6 +15,9 @@ public class GameManager : Singleton<GameManager>
     public UIController UIController { get { return _uiController; } }
     public Spawner Spawner { get {  return _spawner; } }
 
+    private SaveManager _saveManager;
+    public SaveManager SaveManager { get { return _saveManager; } }
+
     public void Start()
     {
         Init();
@@ -22,6 +25,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Init()
     {
+        _saveManager = new SaveManager();
+        _saveManager.Init();
+
         _itemManager = new ItemManager();
         _itemManager.Init();
 
