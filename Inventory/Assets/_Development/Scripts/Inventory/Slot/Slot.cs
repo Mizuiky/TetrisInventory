@@ -4,20 +4,16 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour
 {
     [SerializeField] private Image _image;
-    [SerializeField] private int[] _index;
     [SerializeField] private RectTransform _rect;
-
-    private InventoryItem _attachedItem;
-    public InventoryItem AttachedItem { get { return _attachedItem; } }
+    [SerializeField] private SlotData _slotData;
 
     private Vector2 _position;
     public Vector2 Position { get { return _position; } }
-    public int[] Index { get { return _index; } }
-    public bool HasItem { get { return _hasItem; } set { _hasItem = value; } }
+    public int[] Index { get { return _slotData.index; } }
+    public bool HasItem { get { return _slotData.hasItem; } set { _slotData.hasItem = value; } }
 
     private Sprite _highlight;
     private Sprite _normal;
-    private bool _hasItem;
 
     public Vector3 _topLeft;
     public Vector3 _topRight;
@@ -42,9 +38,11 @@ public class Slot : MonoBehaviour
       
         _position = position;
 
-        _index = new int[2];
-        _index[0] = line;
-        _index[1] = column;
+        _slotData = new SlotData();
+
+        _slotData.index = new int[2];
+        _slotData.index[0] = line;
+        _slotData.index[1] = column;
 
         _rect.sizeDelta = new Vector2(width, height);
 
@@ -53,7 +51,7 @@ public class Slot : MonoBehaviour
 
     public void Reset()
     {
-        _hasItem = false;
+        _slotData.hasItem = false;
     }
 
     public void HighLight(bool canHighLight)
@@ -64,14 +62,14 @@ public class Slot : MonoBehaviour
             _image.sprite = _normal;
     }
 
-    public void AttachItem(InventoryItem item)
+    public void AttachItem(int itemId)
     {
-        _attachedItem = item;
+        _slotData.attachedItemId = itemId;
     }
 
     public void DeattachItem()
     {
-        _attachedItem = null;
+        _slotData.attachedItemId = -1;
     }
 
     private void SetSlotCorners(float width, float height)
