@@ -1,51 +1,120 @@
+using System;
+using System.ComponentModel;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.ShaderGraph.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum MoveDirection
+{
+    Left,
+    Right,
+    Up,
+    Down
+}
+
+[RequireComponent(typeof(RectTransform), typeof(Image))]
 public class InventoryItem : MonoBehaviour, IInventoryItem
 {
     [SerializeField] private InventoryItemData _data;
-    private RectTransform _rec;
+
+    private RectTransform _rect;
     private Image _image;
 
     private TextMeshProUGUI _qtd;
+    private Sprite _sprite;
+    private Color _green;
+    private Color _red;
 
-    public InventoryItemData Data { get { return _data; } }
+    private float _horizontal;
+    private float _vertical;
+
+    private float _width;
+    private float _height;
+
+    public InventoryItemData Data { get { return _data; } set { _data = value; } }
+    public Image Image { get { return _image; } }
     public int Qtd { get { return _data.qtd; } set { _data.qtd = value; } }
+    public RectTransform Rect { get { return _rect; } set { _rect = value; } }
 
-    public void Init(InventoryItemData  data, Sprite inventoryImage)
+    public void Start()
     {
+        
+    }
+
+    public void Init(InventoryItemData data, Sprite inventoryImage)
+    {
+        SetProperties();
+
         _data = new InventoryItemData();
         _data = data;
-        _data.name = data.name;
+
+        _sprite = inventoryImage;         
+    }
+
+    public void SetSize()
+    {
+        _rect.localPosition = Vector3.zero;
+
+        _width = _image.rectTransform.sizeDelta.x;
+        _height = _image.rectTransform.sizeDelta.y;
+    }
+
+    public void SetProperties()
+    {
+        if (_rect == null)
+            _rect = GetComponent<RectTransform>();
 
         if (_image == null)
             _image = GetComponent<Image>();
 
-        _image.sprite = inventoryImage;
+        _image.SetNativeSize();
+    }
+
+    public void SetPosition(Transform parent, Slot slot)
+    {
+        transform.SetParent(parent);
+        _rect.localPosition = Vector3.zero;
+
+        _rect.localPosition = slot.GetComponent<RectTransform>().localPosition;
     }
 
     public void Rotate()
     {
-        _rec.Rotate(0, 0, -90);
+        _rect.Rotate(0, 0, -90);
     }
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        _horizontal = Input.GetAxis("Horizontal");
+        _vertical = Input.GetAxis("Vertical");
+
+        
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Rotate();
         }
     }
 
-    public void UpdateQtd(int value)
+    public void UpdateQtd()
     {
-        _qtd.text = value.ToString();
+        _qtd.text = Qtd.ToString();
     }
 
-    public void SetInventoryIndex(int line, int column)
+    public void SetInventoryIndex()
     {
-        _data.inventoryIndex[0] = line;
-        _data.inventoryIndex[1] = column;
+
+    }
+
+    public void OnUse()
+    {
+
+    }
+
+    private void Move()
+    {
+
     }
 }

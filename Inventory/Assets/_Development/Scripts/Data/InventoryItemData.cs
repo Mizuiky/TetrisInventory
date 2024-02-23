@@ -8,5 +8,6 @@ public class InventoryItemData
     public int id;
     public int qtd;
     public string description;
-    public int[] inventoryIndex = new int[2];
+    public SlotPosition[] slotPosition;
+    public int[,] imageConfig;
 }
