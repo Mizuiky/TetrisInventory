@@ -1,8 +1,4 @@
-using System;
-using System.ComponentModel;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +8,12 @@ public enum MoveDirection
     Right,
     Up,
     Down
+}
+
+public enum Status
+{
+    Enabled,
+    Disabled
 }
 
 [RequireComponent(typeof(RectTransform), typeof(Image))]
@@ -93,7 +95,6 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         _vertical = Input.GetAxis("Vertical");
 
         
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Rotate();
@@ -105,18 +106,25 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         _qtd.text = Qtd.ToString();
     }
 
-    public void SetInventoryIndex()
-    {
-
-    }
-
     public void OnUse()
     {
 
     }
 
+    public void ChangeColor(Status status)
+    {
+        if (status == Status.Enabled)
+            _image.color = _green;
+        else
+            _image.color = _red;
+    }
+
     private void Move()
     {
+        /*-Direita: Constante + n x 64 NO EIXO x
+        - Esquerda: Constante - n x 64 NO EIXO x
 
+        - Emcima: Constante + m x 64 NO EIXO y
+        - Embaixo: Constante - m x 64 NO EIXO y */
     }
 }
