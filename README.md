@@ -146,6 +146,14 @@ onde m 'e o numero de linhas e n o numero de colunas
 
 ---
 
+## Como spawnar o primeiro item
+
+- No na hierarchy no prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
+- Na game Scene clicar no botao rosa Spawn item.
+- Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 6 colunas.
+
+---
+
 ## Continuacao da tool de adicionar itens mas agora para edita-los
 
 Adicionar continuacao da tool de criacao de itens mas agora para poder edita-los
