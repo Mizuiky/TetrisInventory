@@ -11,9 +11,19 @@ public class UIController : Singleton<UIController>
         GameManager.Instance.ItemManager.OnUpdateItem += UpdateInventory;
     }
 
-    public void OpenInventory(bool canOpen)
+    public void OpenInventory()
     {
-        _inventory.Open(canOpen);
+        if(_inventory != null)
+        {
+            if (!_inventory.gameObject.activeInHierarchy)
+            {
+                _inventory.Open(true);
+            }
+            else
+            {
+                _inventory.Open(false);
+            }
+        }        
     }
 
     public void UpdateInventory(GameObject item, int id)

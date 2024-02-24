@@ -23,6 +23,10 @@ public class ItemBuilder : MonoBehaviour
 
     public void Init()
     {
+        _itemBaseList = new List<ItemBase> ();
+        _itemData = new List<ItemData> ();
+        _inventoryItemList = new List<InventoryItem> ();
+
         LoadData();
         //Load all prefabs of type ItemBase and InventoryItem from Resource folder inside Assets and update them on Item Manager
         LoadPrefabs();
