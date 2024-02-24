@@ -117,7 +117,7 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 ---
 
-## Rotacionar itens
+## Rotacionar items
 
 - Espace key rotaciona em 90 graus a peca para a esquerda
 
@@ -125,7 +125,7 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 ## Como spawnar o primeiro item
 
-- No na hierarchy no prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
+- Na hierarchy no prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
 - Na game Scene clicar no botao rosa Spawn item.
 - Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 6 colunas.
 
@@ -135,11 +135,11 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 ## Movimentacao das pecas no inventario
 
-- Implementar a movimentacao da peca, sendo que para movimentar, w = width e h = height
+Implementar a movimentacao da peca, sendo que para movimentar, w = width e h = height
 
 Precisamos usar a constante:
 
-Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
+### Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
 
 e movimentar usando ela usando:
 
