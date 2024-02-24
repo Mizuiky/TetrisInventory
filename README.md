@@ -3,6 +3,9 @@ README
 Link para o board do Projeto:
 
 https://github.com/users/Mizuiky/projects/11/views/1
+
+Tags:
+- v1.0  https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.0
   
 ## Supreme Tile Inventory
 
