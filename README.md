@@ -93,6 +93,8 @@ armazena esses prefabs na Pasta Resources/Prefabs/InventoryItems  e  Resources/P
 - Quando o jogo é iniciado, é feito o load dos dados desses arquivos, alem disso é feito o load de cada um dos prefabs de items e inventory items
 o dados correspondendte de cada um é encaixado e o item manager adiciona esses itens e dados em listas para que sejam de facil acesso.
 
+<img src="assets/ReadMe/tool.png" alt="item tool" width="350"/>
+
 ---
 
 ## Tool para criar o inventario
@@ -114,6 +116,11 @@ Para cada indice da matriz linha e coluna é instanciado um novo slot na posicao
 Apos o termino da matriz o inventario é inicializado com seus slots, parent, e setado no UIController
 
 ---
+
+## Rotacionar itens
+
+- Espace key rotaciona em 90 graus a peca para a esquerda
+
  # Proximos passos do projeto
 
 ## Movimentacao das pecas no inventario
@@ -127,6 +134,7 @@ Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
 e movimentar usando ela usando:
 
 matriz [m,n]
+onde m 'e o numero de linhas e n o numero de colunas
 
 - Direita: Constante + n x 64 NO EIXO x
 - Esquerda: Constante - n x 64 NO EIXO x
