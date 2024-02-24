@@ -15,7 +15,7 @@ public class SaveManager
     List<SlotData> _inventorySlotData;
 
     private string _directoryPath;
-    private string _GameDataDirectory = "GameData";
+    private string _SaveDataDirectory = "SaveData";
     private string _itemDataFile = "ItemData.json";
     private string _inventoryFile = "InventoryData.json";
 
@@ -27,7 +27,7 @@ public class SaveManager
 
     public void Init()
     {
-        _directoryPath = Path.Combine(Application.persistentDataPath, _GameDataDirectory);
+        _directoryPath = Path.Combine(Application.persistentDataPath, _SaveDataDirectory);
         _itemPath = Path.Combine(_directoryPath, _itemDataFile);
         _inventoryPath = Path.Combine(_directoryPath, _inventoryFile);
 
