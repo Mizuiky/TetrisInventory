@@ -177,6 +177,10 @@ blocos na peca em L, seria uma forma mais visual de mapeamento
 
 ---
 
+## Salvar os dados de cada slot do inventario ara poder fazer o load deles no inicio do jogo
+
+---
+
 ## Completar a documentacao, deixa-la mais bonita e salvar em PDF
 
 ---
