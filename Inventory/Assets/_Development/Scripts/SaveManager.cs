@@ -43,7 +43,7 @@ public class SaveManager
         if (!Directory.Exists(_directoryPath))
             Directory.CreateDirectory(_directoryPath);      
        
-        var ItemDataRead = Read<ItemData>(_itemPath, out List<ItemData> itemData);
+        var ItemDataRead = Read<ItemData>(_itemPath, out _itemData);
         if(!ItemDataRead)
         {
             try
@@ -58,7 +58,7 @@ public class SaveManager
         }
                 
 
-        var InventoryDataRead = Read<SlotData>(_inventoryPath, out List<SlotData> inventoryData);
+        var InventoryDataRead = Read<SlotData>(_inventoryPath, out _inventorySlotData);
         if (!InventoryDataRead)
         {
             try
