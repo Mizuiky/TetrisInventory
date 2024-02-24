@@ -10,7 +10,9 @@ Um inventário que possa conter itens com diversos tamanhos diferentes, e poder 
 No fim, o proprio inventário se torna um mini quebra-cabeça para o jogador, deixando o jogo mais estratégico do que apenas
 uma bolsa da hermione.
 
----
+### Observacoes:
+- Dentro da pasta Resources am Assets/Resources/SaveData deixei o json limpo do inventario e da configuracao dos items adicionados
+- estava usando o persistent data path do meu pc mas como no de voces sera diferente entao seria so atualizar os jsons criados em parsistentDtata path + GameData/ utilizando os jsons do Resources folder
 
 ## Descoberta:
 Isso obviamente é mais dificil do que parece, justamente porque os itens precisam manter uma forma de 'encaixar' no inventário,
@@ -178,6 +180,10 @@ blocos na peca em L, seria uma forma mais visual de mapeamento
 ---
 
 ## Salvar os dados de cada slot do inventario ara poder fazer o load deles no inicio do jogo
+
+---
+
+## O ideal seria salvar os dados do player em um servidor e dar load deles a partir disso, com os dados carregados salvar eles no persistent data path que sera o caminho para o computador do usuario
 
 ---
 
