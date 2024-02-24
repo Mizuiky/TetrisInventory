@@ -121,7 +121,17 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 - Espace key rotaciona em 90 graus a peca para a esquerda
 
- # Proximos passos do projeto
+---
+
+## Como spawnar o primeiro item
+
+- No na hierarchy no prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
+- Na game Scene clicar no botao rosa Spawn item.
+- Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 6 colunas.
+
+---
+
+# Proximos passos do projeto
 
 ## Movimentacao das pecas no inventario
 
@@ -143,14 +153,6 @@ onde m 'e o numero de linhas e n o numero de colunas
 - Embaixo: Constante - m x 64 NO EIXO y
 
 - Verificar casos de boarda para nao dar overflow na peca dentro do inventario
-
----
-
-## Como spawnar o primeiro item
-
-- No na hierarchy no prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
-- Na game Scene clicar no botao rosa Spawn item.
-- Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 6 colunas.
 
 ---
 
