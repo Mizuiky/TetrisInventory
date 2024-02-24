@@ -54,9 +54,9 @@ public class ItemManager
         _inventoryItems.Add(newInventoryItem);
     }
 
-    public ItemBase GetItemAtIndex(int index)
+    public ItemBase GetItemById(int id)
     {
-        return _items[index];
+        return _items.FirstOrDefault(x=>x.ID == id);
     }
 
     public InventoryItemData GetInventoryDataById(int id)
