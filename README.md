@@ -1,5 +1,8 @@
 README
 
+- Link para o board do Projeto
+https://github.com/users/Mizuiky/projects/11/views/1
+  
 ## Supreme Tile Inventory
 
 (Disclaimer: Essa 'documentação' só está em portugues porque é mais simples de explicar. Normalmente, faria em ingles.)
