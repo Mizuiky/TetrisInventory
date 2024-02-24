@@ -1,5 +1,9 @@
 README
 
+Link para o board do Projeto:
+
+https://github.com/users/Mizuiky/projects/11/views/1
+  
 ## Supreme Tile Inventory
 
 (Disclaimer: Essa 'documentação' só está em portugues porque é mais simples de explicar. Normalmente, faria em ingles.)
@@ -9,6 +13,12 @@ README
 Um inventário que possa conter itens com diversos tamanhos diferentes, e poder organizar entre eles.
 No fim, o proprio inventário se torna um mini quebra-cabeça para o jogador, deixando o jogo mais estratégico do que apenas
 uma bolsa da hermione.
+
+### Observacoes:
+- Dentro da pasta Resources em Assets/Resources/SaveData deixei o json limpo do inventario e da configuracao dos items adicionados
+- estava usando o persistent data path do meu pc mas como no de voces sera diferente entao seria so atualizar os jsons criados em parsistentData path + SaveData/ utilizando os jsons do Resources folder
+
+persistent data path aqui no meu : C:\Users\gabri\AppData\LocalLow\DefaultCompany\Inventory\SaveData
 
 ---
 
@@ -117,19 +127,29 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 ---
 
-## Rotacionar itens
+## Rotacionar items
 
 - Espace key rotaciona em 90 graus a peca para a esquerda
 
- # Proximos passos do projeto
+---
+
+## Como spawnar o primeiro item
+
+- Na hierarchy no prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
+- Na game Scene clicar no botao rosa Spawn item.
+- Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 6 colunas.
+
+---
+
+# Proximos passos do projeto
 
 ## Movimentacao das pecas no inventario
 
-- Implementar a movimentacao da peca, sendo que para movimentar, w = width e h = height
+Implementar a movimentacao da peca, sendo que para movimentar, w = width e h = height
 
 Precisamos usar a constante:
 
-Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
+### Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
 
 e movimentar usando ela usando:
 
@@ -164,6 +184,14 @@ poderia ter usado scritable objects mas acredito que uma tool fica mais intuitiv
 - Seria legal ser possivel adicionar a linha e coluna e elas formassem o formato da matriz visualmente na tool para o game designer,
 assim ele so encaixaria cada bloco formando a peca, no exemplo do L ele adicionaria blocos 64x64 da imagem somente onde existe 
 blocos na peca em L, seria uma forma mais visual de mapeamento
+
+---
+
+## Salvar os dados de cada slot do inventario ara poder fazer o load deles no inicio do jogo
+
+---
+
+## O ideal seria salvar os dados do player em um servidor e dar load deles a partir disso, com os dados carregados salvar eles no persistent data path que sera o caminho para o computador do usuario
 
 ---
 
