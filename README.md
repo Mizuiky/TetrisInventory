@@ -1,16 +1,18 @@
 README
 
-=======================SUPREME TILES INVENTORY==================
+## Supreme Tile Inventory
 
 (Disclaimer: Essa 'documentação' só está em portugues porque é mais simples de explicar. Normalmente, faria em ingles.)
 
-Ideia básica:
+### Ideia básica:
 
 Um inventário que possa conter itens com diversos tamanhos diferentes, e poder organizar entre eles.
 No fim, o proprio inventário se torna um mini quebra-cabeça para o jogador, deixando o jogo mais estratégico do que apenas
 uma bolsa da hermione.
 
-Discovery:
+---
+
+## Descoberta:
 Isso obviamente é mais dificil do que parece, justamente porque os itens precisam manter uma forma de 'encaixar' no inventário,
 de tal forma que ele saiba qual peça está em cada lugar, para possibilitar com que as outras também possam ser encaixadas.
 
@@ -25,12 +27,23 @@ Computacionalmente isso não é performático (fazer vários loops em matriz), m
 não creio que será um problema.
 Unico ponto negativo (até o momento) é que o código acaba ficando bem mais complexo.
 
-=============ADICIONANDO PRIMEIRA PECA AO INVENTARIO===============
+## Adicionando primeira peca ao inventario
+
 A ideia foi para cada novo item adicionado, criar uma configuracao formada por 0 e 1 onde 1 representa na matriz de configuracao o local onde existe um quadrado 64x64 que compoe a peca
 entao seguindo o exemplo do L ficaria:
 
-(1,0,0)
-(1,1,1)
+|   A   |   B   |   C   |
+|-------|-------|-------|      
+| 0,0   | 0,1   | 0,2   |       
+| 1,0   | 1,1   | 1,2   |       
+
+
+# = L    
+
+|   A   |   B   |   C   |
+|-------|-------|-------|      
+|   1   |   0   |   0   |       
+|   1   |   1   |   1   |  
 
 Quando adicionamos uma nova peca ao inventario:
 
@@ -44,64 +57,68 @@ Quando adicionamos uma nova peca ao inventario:
 8) Repito isso ate que tenha visto cada item da matrz de configuracao do item
 9) Caso nao for satisfeito, esse slot atual nao é um canditato a anexar o meu item, entao o for que passa pelo inventario continua para o proximo voltando para o numero 1)
 
-10)Quando todas as condicoes forem satisfeitas e minha configuracao for possivel encaixar no meu slot atual
-11)Seto o parent do meu item para o transform do meu inventario, e atualizo a posicao da minha peca seguindo uma constante utilizando como base a altura, largura da image e altura e largura do meu slot
+10) Quando todas as condicoes forem satisfeitas e minha configuracao for possivel encaixar no meu slot atual
+11) Seto o parent do meu item para o transform do meu inventario, e atualizo a posicao da minha peca seguindo uma constante utilizando como base a altura, largura da image e altura e largura do meu slot
 
-12)Para cada index de slot em que meu item é encaixado eu atualizo o meu inventoryItemData que contem um lista de slots em que o item é encaixado
-13)O Slot referente ao inventario é atualizado com o has item = true indicando que 'a um novo item anexado a ele
-14)Passo o id do item para o slot saber depois qual o item tem dentro dele
-15)O item 'e adicionado a uma lista de items do meu inventario, 
-16)Os dados do inventario e do item sao salvos.
+12) Para cada index de slot em que meu item é encaixado eu atualizo o meu inventoryItemData que contem um lista de slots em que o item é encaixado
+13) O Slot referente ao inventario é atualizado com o has item = true indicando que 'a um novo item anexado a ele
+14) Passo o id do item para o slot saber depois qual o item tem dentro dele
+15) O item 'e adicionado a uma lista de items do meu inventario, 
+16) Os dados do inventario e do item sao salvos.
 
-Tool para Adicionar novos items
+---
+
+## Tool para Adicionar novos items
 
 Campos:
 
--Nome do item
--ID
--Type(None, Material, Weapon, Ammo, Consumable)
--Sprite(sprite referente ao item)
--Descricao do item
--Imagem do inventario(selecionar uma das pecas dentro da pasta Assets/UI/InventoryItems
--ImageConfig(configuracao em formato de matriz da peca do inventario)
-   -Linhas
-   -Colunas
+- Nome do item
+- ID
+- Type(None, Material, Weapon, Ammo, Consumable)
+- Sprite(sprite referente ao item)
+- Descricao do item
+- Imagem do inventario(selecionar uma das pecas dentro da pasta Assets/UI/InventoryItems
+- ImageConfig(configuracao em formato de matriz da peca do inventario)
+   - Linhas
+   - Colunas
 
 Ao preencher todos os campos aparecerá um botao para criar o item
 
--O item builder cria prefabs com as configuracoes setadas para um item normal e um item de inventario
+- O item builder cria prefabs com as configuracoes setadas para um item normal e um item de inventario
 armazena esses prefabs na Pasta Resources/Prefabs/InventoryItems  e  Resources/Prefabs/Items
 
--Os dados dos items criados sao salvos em json dentro do caminho C:\Users\[Seu usuario]\AppData\LocalLow\DefaultCompany\Inventory\GameData
--O arquivo referente aos items se chama ItemData, e para os de inventario, InventoryData
+- Os dados dos items criados sao salvos em json dentro do caminho C:\Users\[Seu usuario]\AppData\LocalLow\DefaultCompany\Inventory\GameData
+- O arquivo referente aos items se chama ItemData, e para os de inventario, InventoryData
 
-
-Quando o jogo é iniciado, é feito o load dos dados desses arquivos, alem disso é feito o load de cada um dos prefabs de items e inventory items
+- Quando o jogo é iniciado, é feito o load dos dados desses arquivos, alem disso é feito o load de cada um dos prefabs de items e inventory items
 o dados correspondendte de cada um é encaixado e o item manager adiciona esses itens e dados em listas para que sejam de facil acesso.
 
+---
 
-=============INVENTORY BUILDER===============
+## Tool para criar o inventario
+
 Aqui temos um Inventory Builder, que a partir de campos cria um novo inventario
 
 Campos:
--Prefab do slot que compoem o inventario
--Parent para encaixar o inventario na UI
--O parent para poder ser um container para os itens do inventario
--Sprite com o slot normal
--Sprite com slot iluminado
--Posicao x inicial 
--Posicao y inicial
--Quantidade de linhas
--Quantidade de colunas
+- Prefab do slot que compoem o inventario
+- Parent para encaixar o inventario na UI
+- O parent para poder ser um container para os itens do inventario
+- Sprite com o slot normal
+- Sprite com slot iluminado
+- Posicao x inicial 
+- Posicao y inicial
+- Quantidade de linhas
+- Quantidade de colunas
 
 Para cada indice da matriz linha e coluna é instanciado um novo slot na posicao x,y, alem disso o slot é inicializado com seu indice posicao e dados salvos
 Apos o termino da matriz o inventario é inicializado com seus slots, parent, e setado no UIController
 
-============PROXIMOS PASSOS DO PROJETO========
+---
+ # Proximos passos do projeto
 
--MOVIMENTACAO DAS PECAS NO INVENTARIO
+## Movimentacao das pecas no inventario
 
--Implementar a movimentacao da peca, sendo que para movimentar, w = width e h = height
+- Implementar a movimentacao da peca, sendo que para movimentar, w = width e h = height
 
 Precisamos usar a constante:
 
@@ -111,15 +128,17 @@ e movimentar usando ela usando:
 
 matriz [m,n]
 
-Direita: Constante + n x 64 NO EIXO x
-Esquerda: Constante - n x 64 NO EIXO x
+- Direita: Constante + n x 64 NO EIXO x
+- Esquerda: Constante - n x 64 NO EIXO x
 
-Emcima: Constante + m x 64 NO EIXO y
-Embaixo: Constante - m x 64 NO EIXO y
+- Emcima: Constante + m x 64 NO EIXO y
+- Embaixo: Constante - m x 64 NO EIXO y
 
--Verificar casos de boarda para nao dar overflow na peca dentro do inventario
------------------------------------------------
--CONTINUACAO DA TOOL DE ADICIONAR ITENS
+- Verificar casos de boarda para nao dar overflow na peca dentro do inventario
+
+---
+
+## Continuacao da tool de adicionar itens mas agora para edita-los
 
 Adicionar continuacao da tool de criacao de itens mas agora para poder edita-los
 é possivel editar via json mas nao é pratico para game designers, entao uma nova tool
@@ -129,14 +148,19 @@ json atraves do save manager seria o ideal;
 
 poderia ter usado scritable objects mas acredito que uma tool fica mais intuitivo para um game designer.
 
------------------------------------------------
--MELHORAR DE FORMA VISUAL A MATRIZ DE MAPEAMENTO DA PECA
--A matriz de 1 e 0 mapeia os campos da peca que nao sao transparentes
--Seria legal ser possivel adicionar a linha e coluna e elas formassem o formato da matriz visualmente na tool para o game designer,
+---
+
+## Melhorar de forma visual a matriz de mapeamento da peca  
+
+- A matriz de 1 e 0 mapeia os campos da peca que nao sao transparentes
+- Seria legal ser possivel adicionar a linha e coluna e elas formassem o formato da matriz visualmente na tool para o game designer,
 assim ele so encaixaria cada bloco formando a peca, no exemplo do L ele adicionaria blocos 64x64 da imagem somente onde existe 
 blocos na peca em L, seria uma forma mais visual de mapeamento
-------------------------------------------------
-DEIXAR A DOCUMENTACAO MAIS BONITA EM PDF
-------------------------------------------------
+
+---
+
+## Completar a documentacao, deixa-la mais bonita e salvar em PDF
+
+---
 
 
