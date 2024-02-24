@@ -4,7 +4,6 @@ public class InventoryBuilder : MonoBehaviour
 {
     [SerializeField] private GameObject _slotPrefab;
     [SerializeField] private Transform _parent;
-    [SerializeField] private Transform _itemParent;
 
     [SerializeField] private Sprite _normalSlot;
     [SerializeField] private Sprite _highLightedSlot;
@@ -27,8 +26,21 @@ public class InventoryBuilder : MonoBehaviour
 
     private Slot[,] _inventory;
 
+    private GameObject _inventoryComponent;
+    private GameObject _objItems;
+
     public void Init()
     {
+        _inventoryComponent = new GameObject("Inventory");
+        _inventoryComponent.AddComponent<Inventory>();
+
+        _objItems = new GameObject("Items");
+        _objItems.transform.SetParent(_inventoryComponent.transform);
+        _objItems.transform.localPosition = Vector2.zero;
+
+        _inventoryComponent.transform.SetParent(_parent);
+        _inventoryComponent.transform.localPosition = Vector2.zero;
+
         _x = _startX;
         _y = _startY;
 
@@ -64,7 +76,7 @@ public class InventoryBuilder : MonoBehaviour
     {
         _position = new Vector2(x, y);
 
-        _square = Instantiate(_slotPrefab, _parent);
+        _square = Instantiate(_slotPrefab, _objItems.transform);
         _square.transform.localPosition = _position;
 
         if(_square != null)
@@ -80,15 +92,10 @@ public class InventoryBuilder : MonoBehaviour
 
     private void BuildInventory()
     {
-        GameObject obj = new GameObject("Inventory");
-        obj.AddComponent<Inventory>();
+        var newInventory = _inventoryComponent.GetComponent<Inventory>();
+        newInventory.Init(_inventory, _objItems.transform, _slotWidth, _slotHeight);
 
-        Inventory inventory = obj.AddComponent<Inventory>();
-        if (inventory != null)
-        {
-            inventory.Init(_inventory, _itemParent, _slotWidth, _slotHeight);
-            GameManager.Instance.UIController.SetInventory(inventory);
-        }        
+        GameManager.Instance.UIController.SetInventory(newInventory);             
     }
 
     private void GetSlotSize()
