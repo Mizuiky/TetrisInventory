@@ -119,6 +119,7 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 ## Rotacionar itens
 
+- Espace key rotaciona em 90 graus a peca para a esquerda
 
  # Proximos passos do projeto
 
@@ -133,6 +134,7 @@ Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
 e movimentar usando ela usando:
 
 matriz [m,n]
+onde m 'e o numero de linhas e n o numero de colunas
 
 - Direita: Constante + n x 64 NO EIXO x
 - Esquerda: Constante - n x 64 NO EIXO x
