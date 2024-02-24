@@ -15,14 +15,10 @@ public class UIController : Singleton<UIController>
     {
         if(_inventory != null)
         {
-            if (!_inventory.gameObject.activeInHierarchy)
-            {
-                _inventory.Open(true);
-            }
+            if(_inventory.gameObject.activeSelf)
+                _inventory.gameObject.SetActive(false);
             else
-            {
-                _inventory.Open(false);
-            }
+                _inventory.gameObject.SetActive(true);
         }        
     }
 
