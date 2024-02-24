@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2544020758337414734
+--- !u!1 &849875829897826385
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3510807338463419865}
-  - component: {fileID: 650047614395494436}
-  - component: {fileID: 56338876102192829}
-  - component: {fileID: 7767665697559803009}
+  - component: {fileID: 48864203470325286}
+  - component: {fileID: 2549637899123453068}
+  - component: {fileID: 5705015170088932135}
+  - component: {fileID: 2998422151754208444}
   m_Layer: 0
-  m_Name: Long rope
+  m_Name: Fishing rod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3510807338463419865
+--- !u!4 &48864203470325286
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2544020758337414734}
+  m_GameObject: {fileID: 849875829897826385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -34,13 +34,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &650047614395494436
+--- !u!212 &2549637899123453068
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2544020758337414734}
+  m_GameObject: {fileID: 849875829897826385}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6df25a0bd5a249945bbb72c9808e55aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a5f18fdcd01fd2f4096092db2322500d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,13 +86,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &56338876102192829
+--- !u!65 &5705015170088932135
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2544020758337414734}
+  m_GameObject: {fileID: 849875829897826385}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -107,41 +107,41 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7767665697559803009
+--- !u!114 &2998422151754208444
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2544020758337414734}
+  m_GameObject: {fileID: 849875829897826385}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee8f9e3dd18517c48bd411af64ab65bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    itemName: Long rope
-    id: 0
+    itemName: Fishing rod
+    id: 11
     type: 5
-    spriteName: rope
+    spriteName: fishing-rod
     inventoryData:
-      imageName: 3x3 c
-      name: Long rope
-      id: 0
-      qtd: 1
-      description: Rope used to climb
+      imageName: 6x2 a
+      name: Fishing rod
+      id: 11
+      qtd: 0
+      description: Fishing rod made of iron
       slotPosition:
       - line: 0
         column: 0
       - line: 0
-        column: 1
-      - line: 0
-        column: 2
-      - line: 1
         column: 0
-      - line: 1
-        column: 2
-      - line: 1
-        column: 2
-      - line: 1
-        column: 2
+      - line: 0
+        column: 0
+      - line: 0
+        column: 0
+      - line: 0
+        column: 0
+      - line: 0
+        column: 0
+      - line: 0
+        column: 0
