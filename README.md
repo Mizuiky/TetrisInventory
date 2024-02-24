@@ -11,8 +11,12 @@ No fim, o proprio inventário se torna um mini quebra-cabeça para o jogador, de
 uma bolsa da hermione.
 
 ### Observacoes:
-- Dentro da pasta Resources am Assets/Resources/SaveData deixei o json limpo do inventario e da configuracao dos items adicionados
-- estava usando o persistent data path do meu pc mas como no de voces sera diferente entao seria so atualizar os jsons criados em parsistentDtata path + GameData/ utilizando os jsons do Resources folder
+- Dentro da pasta Resources em Assets/Resources/SaveData deixei o json limpo do inventario e da configuracao dos items adicionados
+- estava usando o persistent data path do meu pc mas como no de voces sera diferente entao seria so atualizar os jsons criados em parsistentData path + SaveData/ utilizando os jsons do Resources folder
+
+persistent data path aqui no meu : C:\Users\gabri\AppData\LocalLow\DefaultCompany\Inventory\SaveData
+
+---
 
 ## Descoberta:
 Isso obviamente é mais dificil do que parece, justamente porque os itens precisam manter uma forma de 'encaixar' no inventário,
