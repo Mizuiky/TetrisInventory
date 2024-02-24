@@ -68,8 +68,6 @@ public class ItemBuilder : MonoBehaviour
 
             data.inventoryData.imageConfig = inventoryConfig;
 
-            _itemData.Add(data);
-
             CreateInventoryItemPrefab(data, inventoryImage, sprite);
 
             GameManager.Instance.SaveManager.Save(_itemData, FileType.ItemData);
@@ -87,13 +85,11 @@ public class ItemBuilder : MonoBehaviour
             {
                 ItemBase item = itemList[i].GetComponent<ItemBase>();
                 item.Data = _itemData.FirstOrDefault(x=>x.id == item.ID);
-
                 _itemBaseList.Add(item);
+
                 InventoryItem inventoryItem = inventoryItemList[i].GetComponent<InventoryItem>();
                 inventoryItem.Data = item.Data.inventoryData;
-
                 _inventoryItemList.Add(inventoryItem);
-                _itemData.Add(item.Data);
             }
 
             GameManager.Instance.ItemManager.FillItemList(_itemBaseList, _inventoryItemList);
@@ -115,6 +111,8 @@ public class ItemBuilder : MonoBehaviour
 
             currentInventoryItem.Init(data.inventoryData, inventoryImage);
 
+            _inventoryItemList.Add(currentInventoryItem);
+
             _itemPath = Path.Combine(_inventoryItemFolderPath, data.inventoryData.name + ".prefab");
             PrefabUtility.SaveAsPrefabAsset(currentInventoryItem.gameObject, _itemPath);
 
@@ -135,6 +133,9 @@ public class ItemBuilder : MonoBehaviour
         {
             currentItem.Init(data, sprite);
             currentItem.InventoryData = newInventoryItem.Data;
+
+            _itemData.Add(currentItem.Data);
+            _itemBaseList.Add(currentItem);
 
             _itemPath = Path.Combine(_ResourceFolderItemPath, data.itemName + ".prefab");
             PrefabUtility.SaveAsPrefabAsset(currentItem.gameObject, _itemPath);
