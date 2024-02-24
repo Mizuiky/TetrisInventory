@@ -76,7 +76,7 @@ public class InventoryBuilder : MonoBehaviour
     {
         _position = new Vector2(x, y);
 
-        _square = Instantiate(_slotPrefab, _objItems.transform);
+        _square = Instantiate(_slotPrefab, _inventoryComponent.transform);
         _square.transform.localPosition = _position;
 
         if(_square != null)
