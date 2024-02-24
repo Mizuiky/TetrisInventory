@@ -167,7 +167,6 @@ public class Inventory : MonoBehaviour
         _items.Add(_currentItem);
 
         GameManager.Instance.ItemManager.UpdateInventoryItemList(_currentItem.Data);
-        GameManager.Instance.ItemManager.SaveItems();
     }
 
     private void RemoveItem(int id)
