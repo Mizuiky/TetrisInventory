@@ -1,13 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.U2D;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class ItemBuilder : MonoBehaviour
 {
@@ -28,6 +24,7 @@ public class ItemBuilder : MonoBehaviour
         _inventoryItemList = new List<InventoryItem> ();
 
         LoadData();
+
         //Load all prefabs of type ItemBase and InventoryItem from Resource folder inside Assets and update them on Item Manager
         LoadPrefabs();
     }
@@ -39,7 +36,9 @@ public class ItemBuilder : MonoBehaviour
 
     private void LoadData()
     {
-        _itemData = GameManager.Instance.SaveManager.ItemData;
+        var load = GameManager.Instance.SaveManager.ItemData;
+        if (load != null)
+            _itemData = load;
     }
 
     public void AddItem(string name, int id, ItemType type, Sprite sprite, string itemDescription, Sprite inventoryImage, int[,] inventoryConfig, int _slotPositions)
@@ -93,6 +92,7 @@ public class ItemBuilder : MonoBehaviour
             }
 
             GameManager.Instance.ItemManager.FillItemList(_itemBaseList, _inventoryItemList);
+            GameManager.Instance.SaveManager.Save(_itemData, FileType.ItemData);
         }        
     }
 

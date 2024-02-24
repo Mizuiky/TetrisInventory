@@ -6,7 +6,9 @@ public enum ItemType
     Material,
     Weapon,
     Ammo,
-    Consumable
+    Consumable,
+    Tool,
+    Equipment
 }
 
 public class ItemBase : MonoBehaviour, IItem
