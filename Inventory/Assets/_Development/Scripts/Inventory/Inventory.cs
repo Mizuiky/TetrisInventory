@@ -44,16 +44,10 @@ public class Inventory : MonoBehaviour
         _slotHeight = slotHeight;
     }
 
-    public void Open(bool canOpen)
-    {
-        if(canOpen)
-            gameObject.SetActive(true);
-        else
-            gameObject.SetActive(false);
-    }
-
     public void SetItem(GameObject item, int id)
     {
+        _slotPositions.Clear();
+
         for (int i = 0; i < _lines; i++)
         {
             for(int j = 0; j < _columns; j++)
@@ -136,16 +130,17 @@ public class Inventory : MonoBehaviour
         {
             for (int j = 0; j < itemConfig.GetLength(1); j++)
             {
-                auxLine += i;
-                auxColumn += j;
-
-                if (itemConfig[i, j] == 1 && _inventory[auxLine, auxColumn].HasItem)
+                if (itemConfig[i, j] == 1 && _inventory[i, j].HasItem)
                 {
                     _slotPositions.Clear();
                     return false;
                 }
-                  
-                _slotPositions.Add(new SlotPosition(auxLine, auxColumn));
+                if (itemConfig[i, j] == 0)
+                    continue;
+                else
+                {
+                    _slotPositions.Add(new SlotPosition(i, j));
+                }                 
             }
         }
 
