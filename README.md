@@ -160,11 +160,11 @@ e movimentar usando ela usando:
 matriz [m,n]
 onde m 'e o numero de linhas e n o numero de colunas
 
-- Direita: Constante + n x 64 NO EIXO x
-- Esquerda: Constante - n x 64 NO EIXO x
+- Direita: + 64 NO EIXO x
+- Esquerda: - 64 NO EIXO x
 
-- Emcima: Constante + m x 64 NO EIXO y
-- Embaixo: Constante - m x 64 NO EIXO y
+- Emcima: + 64 NO EIXO y
+- Embaixo: - 64 NO EIXO y
 
 - Verificar casos de boarda para nao dar overflow na peca dentro do inventario
 
