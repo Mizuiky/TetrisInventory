@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour
     private Slot _currentAvailableSlot;
     private Slot _attachedSlot;
     private List<SlotPosition> _slotPositions;
+    private bool _canAddItem;
 
     public void Init(Slot[,] slots, Transform itemParent, float slotWidth, float slotHeight)
     {
@@ -56,13 +57,13 @@ public class Inventory : MonoBehaviour
 
                 if (!availableSlot)
                 {
-                    bool canAddItem = CheckAddItem(item);
-                    if (canAddItem)
+                    _canAddItem = CheckCanAttachItem(item);
+                    if (_canAddItem)
                         break;               
                 }
             }
 
-            if (canAddItem)
+            if (_canAddItem)
                 break;
         }    
     }
@@ -78,7 +79,7 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    private bool CheckAddItem(GameObject item)
+    private bool CheckCanAttachItem(GameObject item)
     {
         if (_currentItem == null)
         {
