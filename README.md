@@ -3,6 +3,9 @@ README
 Link para o board do Projeto:
 
 https://github.com/users/Mizuiky/projects/11/views/1
+
+Tags:
+- v1.0  https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.0
   
 ## Supreme Tile Inventory
 
@@ -135,7 +138,8 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 ## Como spawnar o primeiro item
 
-- Na hierarchy no prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
+- Na hierarchy preencher os campos do inventory builder para criar um novo inventario, depois iniciar o jogo
+- No prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
 - Na game Scene clicar no botao rosa Spawn item.
 - Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 6 colunas.
 
