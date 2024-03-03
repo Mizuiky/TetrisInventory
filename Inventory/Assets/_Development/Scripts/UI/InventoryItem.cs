@@ -34,6 +34,14 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
     private float _width;
     private float _height;
+    private bool _canMove = true;
+    private float _slotWidth;
+    private float _slotHeight;
+    private float _duration = 0.5f;
+    private float _speed = 2f;
+    private float _timeElapsed = 0f;
+    private Vector2 _movement;
+    private Vector3 _newPosition;
 
     public InventoryItemData Data { get { return _data; } set { _data = value; } }
     public Image Image { get { return _image; } }
@@ -42,7 +50,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
     public void Start()
     {
-        
+
     }
 
     public void Init(InventoryItemData data, Sprite inventoryImage)
@@ -52,7 +60,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         _data = new InventoryItemData();
         _data = data;
 
-        _sprite = inventoryImage;         
+        _sprite = inventoryImage;
     }
 
     public void SetSize()
@@ -74,12 +82,15 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         _image.SetNativeSize();
     }
 
-    public void SetPosition(Transform parent, Slot slot, float _slotWidth, float slotHeight)
+    public void SetPosition(Transform parent, Slot slot, float slotWidth, float slotHeight)
     {
         transform.SetParent(parent);
         _rect.localPosition = Vector3.zero;
 
-        Vector3 constant = new Vector3((_width / 2 - _slotWidth / 2), (-_height / 2 + slotHeight / 2));
+        _slotWidth = slotWidth;
+        _slotHeight = slotHeight;
+
+        Vector3 constant = new Vector3((_width / 2 - slotWidth / 2), (-_height / 2 + slotHeight / 2));
 
         _rect.localPosition = constant;
     }
@@ -91,10 +102,34 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
     public void Update()
     {
-        _horizontal = Input.GetAxis("Horizontal");
-        _vertical = Input.GetAxis("Vertical");
+        if(_canMove)
+        {
+            _horizontal = Input.GetAxis("Horizontal");
+            _vertical = Input.GetAxis("Vertical");
 
-        
+            _movement = new Vector2(_horizontal, _vertical);
+
+            if (_movement != Vector2.zero)
+            {
+                SetNewPosition();
+                _canMove = false;            
+                _timeElapsed = 0f;
+            }
+        }
+        else
+        {
+            if(_timeElapsed < _duration)
+            {
+                _rect.localPosition = Vector3.Lerp(_rect.localPosition, _newPosition, _timeElapsed / _duration);
+                _timeElapsed += Time.deltaTime * _speed;
+            }
+            else
+            {
+                _rect.localPosition = _newPosition;              
+                _canMove = true;
+            }
+        }      
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Rotate();
@@ -119,12 +154,15 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
             _image.color = _red;
     }
 
-    private void Move()
+    private void SetNewPosition()
     {
-        /*-Direita: Constante + n x 64 NO EIXO x
-        - Esquerda: Constante - n x 64 NO EIXO x
-
-        - Emcima: Constante + m x 64 NO EIXO y
-        - Embaixo: Constante - m x 64 NO EIXO y */
+        if (_movement.x > 0)
+            _newPosition = new Vector3(_rect.localPosition.x + _slotWidth, _rect.localPosition.y, _rect.localPosition.z);
+        else if (_movement.x < 0)
+            _newPosition = new Vector3(_rect.localPosition.x - _slotWidth, _rect.localPosition.y, _rect.localPosition.z);
+        else if (_movement.y > 0)
+            _newPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y + _slotHeight, _rect.localPosition.z);
+        else if (_movement.y < 0)
+            _newPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y - _slotHeight, _rect.localPosition.z);
     }
 }

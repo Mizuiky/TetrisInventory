@@ -13,7 +13,6 @@ public class Inventory : MonoBehaviour
     private int _columns;
     private TextMeshProUGUI _itemDescription;
     private bool availableSlot = false;
-    private bool canAddItem = false;
 
     private Transform _inventoryItemsParent;
     private List<InventoryItem> _items;
@@ -30,7 +29,7 @@ public class Inventory : MonoBehaviour
     private Slot _currentAvailableSlot;
     private Slot _attachedSlot;
     private List<SlotPosition> _slotPositions;
-    private bool _canAddItem;
+    private bool _canAddItem = false;
 
     public void Init(Slot[,] slots, Transform itemParent, float slotWidth, float slotHeight)
     {
