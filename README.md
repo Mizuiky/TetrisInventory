@@ -106,8 +106,6 @@ armazena esses prefabs na Pasta Resources/Prefabs/InventoryItems  e  Resources/P
 - Quando o jogo é iniciado, é feito o load dos dados desses arquivos, alem disso é feito o load de cada um dos prefabs de items e inventory items
 o dados correspondendte de cada um é encaixado e o item manager adiciona esses itens e dados em listas para que sejam de facil acesso.
 
-<img src="assets/ReadMe/tool.png" alt="item tool" width="350"/>
-
 ---
 
 ## Tool para criar o inventario
