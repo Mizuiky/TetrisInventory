@@ -32,7 +32,7 @@ de tal forma que ele saiba qual peça está em cada lugar, para possibilitar com
 A primeira abordagem, foi tentar utilizar collider para as peças, para umas não poderem tocar umas nas outras, mas isso não funcionou
 tão bem porque por exemplo usando imagem estilo L o collider iria cobrir a imagem por inteiro que 'e um retangulo e nao somente o formato em L em si, entao descartei esta possibilidade
 
-Uma segunda abordagem, foi em usar matrizes, tanto para o investário quando para cada peça.
+Uma segunda abordagem, foi em usar matrizes para o inventário e para a configuracao do item.
 Dessa forma, cada peça teria sua propria "configuração" que assume no inventário (eliminando o problema com o transparente).
 E o inventário, por sua vez, consegue sempre determinar qual peça consegue encaixar em cada lugar.
 
