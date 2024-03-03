@@ -148,10 +148,12 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 Para adicionar precisamos usar a constante:
 
-wSlot = Width do Slot;
-hSlot = Height do Slot;
-
 ### Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
+
+onde:
+
+- wSlot = Width do Slot.
+- hSlot = Height do Slot.
 
 e para movimentar usamos:
 
@@ -161,7 +163,7 @@ e para movimentar usamos:
 - Emcima: + hSlot NO EIXO y
 - Embaixo: - hSlot NO EIXO y
 
-- Verificar casos de boarda para nao dar overflow na peca dentro do inventario
+Verificar casos de boarda para nao dar overflow na peca dentro do inventario.
 ---
 
 ## Continuacao da tool de adicionar itens mas agora para edita-los
