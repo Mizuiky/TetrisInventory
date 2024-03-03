@@ -143,28 +143,20 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 - Na game Scene clicar no botao rosa Spawn item.
 - Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 6 colunas.
 
----
 
-# Proximos passos do projeto
+## Adicao e movimentacao das pecas no inventario
 
-## Movimentacao das pecas no inventario
-
-Implementar a movimentacao da peca, sendo que para movimentar, w = width e h = height
-
-Precisamos usar a constante:
+Para adicionar precisamos usar a constante:
 
 ### Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
 
-e movimentar usando ela usando:
+e para movimentar usamos:
 
-matriz [m,n]
-onde m 'e o numero de linhas e n o numero de colunas
+- Direita: + 64 NO EIXO x
+- Esquerda: - 64 NO EIXO x
 
-- Direita: Constante + n x 64 NO EIXO x
-- Esquerda: Constante - n x 64 NO EIXO x
-
-- Emcima: Constante + m x 64 NO EIXO y
-- Embaixo: Constante - m x 64 NO EIXO y
+- Emcima: + 64 NO EIXO y
+- Embaixo: - 64 NO EIXO y
 
 - Verificar casos de boarda para nao dar overflow na peca dentro do inventario
 
