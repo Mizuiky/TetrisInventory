@@ -92,14 +92,14 @@ MonoBehaviour:
     imageName: 3x2 b
     name: Iron Hammer
     id: 7
-    qtd: 0
+    qtd: 10
     description: Hammer made of iron
     slotPosition:
-    - line: 0
+    - line: 1
       column: 0
-    - line: 0
-      column: 0
-    - line: 0
-      column: 0
-    - line: 0
-      column: 0
+    - line: 2
+      column: 1
+    - line: 3
+      column: 2
+    - line: 3
+      column: 3
