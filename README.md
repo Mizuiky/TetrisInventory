@@ -32,7 +32,7 @@ de tal forma que ele saiba qual peça está em cada lugar, para possibilitar com
 A primeira abordagem, foi tentar utilizar collider para as peças, para umas não poderem tocar umas nas outras, mas isso não funcionou
 tão bem porque por exemplo usando imagem estilo L o collider iria cobrir a imagem por inteiro que 'e um retangulo e nao somente o formato em L em si, entao descartei esta possibilidade
 
-Uma segunda abordagem, foi em usar matrizes, tanto para o investário quando para cada peça.
+Uma segunda abordagem, foi em usar matrizes para o inventário e para a configuracao do item.
 Dessa forma, cada peça teria sua propria "configuração" que assume no inventário (eliminando o problema com o transparente).
 E o inventário, por sua vez, consegue sempre determinar qual peça consegue encaixar em cada lugar.
 
@@ -106,8 +106,6 @@ armazena esses prefabs na Pasta Resources/Prefabs/InventoryItems  e  Resources/P
 - Quando o jogo é iniciado, é feito o load dos dados desses arquivos, alem disso é feito o load de cada um dos prefabs de items e inventory items
 o dados correspondendte de cada um é encaixado e o item manager adiciona esses itens e dados em listas para que sejam de facil acesso.
 
-<img src="assets/ReadMe/tool.png" alt="item tool" width="350"/>
-
 ---
 
 ## Tool para criar o inventario
@@ -150,16 +148,20 @@ Para adicionar precisamos usar a constante:
 
 ### Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
 
+onde:
+
+- wSlot = Width do Slot.
+- hSlot = Height do Slot.
+
 e para movimentar usamos:
 
-- Direita: + 64 NO EIXO x
-- Esquerda: - 64 NO EIXO x
+- Direita: + wSlot NO EIXO x
+- Esquerda: - wSlot NO EIXO x
 
-- Emcima: + 64 NO EIXO y
-- Embaixo: - 64 NO EIXO y
+- Emcima: + hSlot NO EIXO y
+- Embaixo: - hSlot NO EIXO y
 
-- Verificar casos de boarda para nao dar overflow na peca dentro do inventario
-
+Verificar casos de boarda para nao dar overflow na peca dentro do inventario.
 ---
 
 ## Continuacao da tool de adicionar itens mas agora para edita-los
