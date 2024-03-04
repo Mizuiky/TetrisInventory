@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,14 +21,7 @@ public class Inventory : MonoBehaviour
     private float _slotWidth;
     private float _slotHeight;
 
-    private Vector3 _topLeft;
-    private Vector3 _bottomLeft;
-    private Vector3 _topRight;
-    private Vector3 _bottomRight;
-
-    private InventoryItem _currentItem;
     private Slot _currentAvailableSlot;
-    private Slot _attachedSlot;
     private List<SlotPosition> _slotPositions;
     private bool _canAddItem = false;
 
@@ -44,7 +38,7 @@ public class Inventory : MonoBehaviour
         _slotHeight = slotHeight;
     }
 
-    public void SetItem(GameObject item, int id)
+    public void SetItem(InventoryItem item)
     {
         _slotPositions.Clear();
 
@@ -52,11 +46,11 @@ public class Inventory : MonoBehaviour
         {
             for(int j = 0; j < _columns; j++)
             {
-                availableSlot = HasItemOnSlot(_inventory[i,j], id);
+                availableSlot = IsAvailableSlot(_inventory[i,j]);
 
-                if (!availableSlot)
+                if (availableSlot)
                 {
-                    _canAddItem = CheckCanAttachItem(item);
+                    _canAddItem = CheckCanAttachItem(item, i, j);
                     if (_canAddItem)
                         break;               
                 }
@@ -67,55 +61,59 @@ public class Inventory : MonoBehaviour
         }    
     }
 
-    private bool HasItemOnSlot(Slot slot, int id)
+    private bool IsAvailableSlot(Slot slot)
     {
         if (slot.HasItem)
-        {
-            UpdateQtd(id);
-            return true;
-        }
+            return false;
 
-        return false;
+        return true;
     }
 
-    private bool CheckCanAttachItem(GameObject item)
+    private bool CheckCanAttachItem(InventoryItem item, int line, int column)
     {
-        if (_currentItem == null)
+        var currentItem = SetInventoryItem(item);
+
+        if(currentItem != null)
         {
-            var attachedItem = GameManager.Instance.Spawner.Spawn(item.gameObject, _inventoryItemsParent);
-
-            if (attachedItem != null)
+            if (CanAddItem(currentItem, line, column))
             {
-                var component = attachedItem.GetComponent<InventoryItem>();
-                component.SetProperties();
-                component.SetSize();
-                
-                var data = GameManager.Instance.ItemManager.GetInventoryDataById(component.Data.id);
-                if (data != null)
-                    component.Data = data;
-
-                _currentItem = component;               
+                AddItem(currentItem);
+                _slotPositions.Clear();
+                return true;
             }
         }
-
-        if (CanAttachItem())
-        {
-            Attach();
-            _slotPositions.Clear();
-            return true;
-        }
-
+    
         return false;
     }
 
-    private bool CanAttachItem()
-    {
-        for (int i = 0; i < _inventory.GetLength(0); i++)
+    private InventoryItem SetInventoryItem(InventoryItem item)
+    {   
+        var newItem = GameManager.Instance.Spawner.Spawn(item.gameObject, _inventoryItemsParent);
+            
+        if (newItem != null)
         {
-            for (int j = 0; j < _inventory.GetLength(1); j++)
+            var itemToAdd = newItem.GetComponent<InventoryItem>();
+            itemToAdd.Data = item.Data;
+            itemToAdd.SetProperties();
+            itemToAdd.SetSize();
+               
+            return itemToAdd;
+        }
+        
+        return null;
+    }
+
+    private bool CanAddItem(InventoryItem Item, int line, int column)
+    {
+        for (int i = line; i < _inventory.GetLength(0); i++)
+        {
+            for (int j = column; j < _inventory.GetLength(1); j++)
             {
-                if (CanStoreItem(_currentItem.Data.imageConfig, i, j))
+                if (CanStoreItem(Item.Data.imageConfig, i, j))
                     return true;
+                else
+                    if (j + 1 > _inventory.GetLength(1) - 1)
+                        column = 0;
             }
         }
         return false;       
@@ -124,24 +122,41 @@ public class Inventory : MonoBehaviour
     private bool CanStoreItem(int[,] itemConfig, int line, int column)
     {
         var auxLine = line;
-        var auxColumn = column; 
+        var auxColumn = column;
+
+        _slotPositions.Clear();
+
+        var inventoryLenght = _inventory.GetLength(1) - column;
+        var itemLenght = itemConfig.GetLength(1);
+
+        if (itemLenght > inventoryLenght)
+            return false;
 
         for (int i = 0; i < itemConfig.GetLength(0); i++)
         {
             for (int j = 0; j < itemConfig.GetLength(1); j++)
             {
-                if (itemConfig[i, j] == 1 && _inventory[i, j].HasItem)
-                {
-                    _slotPositions.Clear();
-                    return false;
-                }
                 if (itemConfig[i, j] == 0)
-                    continue;
-                else
                 {
-                    _slotPositions.Add(new SlotPosition(i, j));
-                }                 
+                    if (j == itemConfig.GetLength(1) - 1)
+                        auxColumn = 0;
+
+                    continue;
+                }             
+                else if (itemConfig[i, j] == 1 && _inventory[auxLine, auxColumn].HasItem)
+                    return false;           
+                
+                else
+                {             
+                    _slotPositions.Add(new SlotPosition(auxLine, auxColumn));
+                    auxColumn++;                  
+                }
+
+                if (j == itemConfig.GetLength(1) - 1)
+                    auxColumn = 0;
             }
+
+            auxLine++;            
         }
 
         _currentAvailableSlot = _inventory[line, column];
@@ -149,24 +164,23 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    private void Attach()
+    private void AddItem(InventoryItem item)
     {
-        _currentItem.SetPosition(_inventoryItemsParent, _currentAvailableSlot, _slotWidth, _slotHeight);
+        item.SetPosition(_inventoryItemsParent, _currentAvailableSlot, _slotWidth, _slotHeight);
 
         var slots = _slotPositions.ToArray();
 
         for(int i = 0; i < slots.Length; i++)
         {
             var config = slots[i];
-            _currentItem.Data.slotPosition[i] = config;
-            var slot = _inventory[config.line, config.column];
-            slot.HasItem = true;
-            slot.AttachItem(_currentItem.Data.id);
+            item.Data.slotPosition[i] = config;
+            _inventory[config.line, config.column].HasItem = true;
+            _inventory[config.line, config.column].AttachItem(item.Data.id);
         }
 
-        _items.Add(_currentItem);
+        _items.Add(item);
 
-        GameManager.Instance.ItemManager.UpdateInventoryItemList(_currentItem.Data);
+        GameManager.Instance.ItemManager.UpdateInventoryItemList(item.Data);
     }
 
     private void RemoveItem(int id)
@@ -180,16 +194,6 @@ public class Inventory : MonoBehaviour
                 Destroy(item.gameObject);
                 break;
             }            
-        }
-    }
-
-    private void UpdateQtd(int id)
-    {
-        var item = _items.FirstOrDefault(x => x.Data.id == id);
-        if (item != null)
-        {
-            item.UpdateQtd();
-            item.Qtd++;
         }
     }
 
