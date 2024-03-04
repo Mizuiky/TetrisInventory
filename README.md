@@ -173,6 +173,8 @@ com isso:
 - Se a quantidade de linhas do meu item for maior que o numero de linhas disponiveis do meu inventario, eu tambem nao posso adicionar o item.
 ---
 
+## Itens para fazer  
+
 ## Continuacao da tool de adicionar itens mas agora para edita-los
 
 Adicionar continuacao da tool de criacao de itens mas agora para poder edita-los
@@ -194,7 +196,7 @@ blocos na peca em L, seria uma forma mais visual de mapeamento
 
 ---
 
-## Salvar os dados de cada slot do inventario ara poder fazer o load deles no inicio do jogo
+## Salvar os dados de cada slot do inventario para poder fazer o load deles no inicio do jogo
 
 ---
 
