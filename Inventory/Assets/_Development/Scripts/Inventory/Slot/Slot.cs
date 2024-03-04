@@ -15,11 +15,6 @@ public class Slot : MonoBehaviour
     private Sprite _highlight;
     private Sprite _normal;
 
-    public Vector3 _topLeft;
-    public Vector3 _topRight;
-    public Vector3 _bottomLeft;
-    public Vector3 _bottomRight;
-
     public void Awake()
     {
         if (_image == null)
@@ -45,8 +40,6 @@ public class Slot : MonoBehaviour
         _slotData.index[1] = column;
 
         _rect.sizeDelta = new Vector2(width, height);
-
-        SetSlotCorners(width, height);
     }
 
     public void Reset()
@@ -70,14 +63,5 @@ public class Slot : MonoBehaviour
     public void DeattachItem()
     {
         _slotData.attachedItemId = -1;
-    }
-
-    private void SetSlotCorners(float width, float height)
-    {
-        _topLeft = new Vector3(_rect.localPosition.x - width / 2, _rect.localPosition.y + height / 2, 0);
-        _topRight = new Vector3(_rect.localPosition.x + width / 2, _rect.localPosition.y + height / 2, 0);
-
-        _bottomLeft = new Vector3(_rect.localPosition.x - width / 2, _rect.localPosition.y - height / 2, 0);
-        _bottomRight = new Vector3(_rect.localPosition.x + width / 2, _rect.localPosition.y - height / 2, 0);
     }
 }
