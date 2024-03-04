@@ -22,9 +22,9 @@ public class UIController : MonoBehaviour
         }        
     }
 
-    public void UpdateInventory(GameObject item, int id)
+    public void UpdateInventory(InventoryItem item)
     {
-        _inventory.SetItem(item, id);
+        _inventory.SetItem(item);
     }
 
     public void SetInventory(Inventory inventory)

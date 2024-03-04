@@ -8,7 +8,7 @@ public class ItemManager
 {
     public List<ItemBase> _items;
     public List<InventoryItem> _inventoryItems;
-    public Action<GameObject, int> OnUpdateItem;
+    public Action<InventoryItem> OnUpdateItem;
 
     public void Init()
     {
@@ -19,22 +19,23 @@ public class ItemManager
     public void UpdateQtd(ItemBase item)
     {
         var currentItem = _items.FirstOrDefault(x => x.Data.id == item.Data.id);
-        
-        if(currentItem == null)
+        var inventoryItem = _inventoryItems.FirstOrDefault(x => x.Data.id == item.Data.id);
+
+        if (currentItem == null)
         {
             currentItem = item;
+            currentItem.InventoryData = inventoryItem.Data;
             AddItem(currentItem);
         }
-
-        var inventoryItem = _inventoryItems.FirstOrDefault(x => x.Data.id == item.Data.id);
+      
         inventoryItem.Qtd += 1;
 
-        UpdateInventory(inventoryItem.gameObject, inventoryItem.Data.id);
+        UpdateInventory(inventoryItem);
     }
 
-    public void UpdateInventory(GameObject item, int id)
+    public void UpdateInventory(InventoryItem item)
     {
-        OnUpdateItem?.Invoke(item, id);
+        OnUpdateItem?.Invoke(item);
     }
 
     public void FillItemList(List<ItemBase> itemBase, List<InventoryItem> inventoryItems)
@@ -57,11 +58,6 @@ public class ItemManager
     public ItemBase GetItemById(int id)
     {
         return _items.FirstOrDefault(x=>x.ID == id);
-    }
-
-    public InventoryItemData GetInventoryDataById(int id)
-    {
-        return _inventoryItems.FirstOrDefault(x=>x.Data.id == id).Data;
     }
 
     public void UpdateInventoryItemList(InventoryItemData itemData)
