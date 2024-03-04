@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +43,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
     private float _timeElapsed = 0f;
     private Vector2 _movement;
     private Vector3 _newPosition;
+    private Vector3 _constant;
 
     public InventoryItemData Data { get { return _data; } set { _data = value; } }
     public Image Image { get { return _image; } }
@@ -85,14 +87,22 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
     public void SetPosition(Transform parent, Slot slot, float slotWidth, float slotHeight)
     {
         transform.SetParent(parent);
-        _rect.localPosition = Vector3.zero;
+
+        Debug.Log(_rect.localPosition);
+        Debug.Log(slot.Position);
+        Debug.Log($"{slot.Index[0]}, {slot.Index[1]}");
+
+        _rect.localPosition = slot.Position;
 
         _slotWidth = slotWidth;
         _slotHeight = slotHeight;
+        _constant = Vector3.zero;
 
-        Vector3 constant = new Vector3((_width / 2 - slotWidth / 2), (-_height / 2 + slotHeight / 2));
+        _constant = new Vector3((_width / 2 - slotWidth / 2), (-_height / 2 + slotHeight / 2));
+        
+        var newPosition = new Vector3(slot.Position.x + _constant.x, slot.Position.y + _constant.y, _rect.localPosition.z);
 
-        _rect.localPosition = constant;
+        _rect.localPosition = newPosition;
     }
 
     public void Rotate()
@@ -118,16 +128,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         }
         else
         {
-            if(_timeElapsed < _duration)
-            {
-                _rect.localPosition = Vector3.Lerp(_rect.localPosition, _newPosition, _timeElapsed / _duration);
-                _timeElapsed += Time.deltaTime * _speed;
-            }
-            else
-            {
-                _rect.localPosition = _newPosition;              
-                _canMove = true;
-            }
+            Move();
         }      
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -164,5 +165,19 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
             _newPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y + _slotHeight, _rect.localPosition.z);
         else if (_movement.y < 0)
             _newPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y - _slotHeight, _rect.localPosition.z);
+    }
+
+    private void Move()
+    {
+        if (_timeElapsed < _duration)
+        {
+            _rect.localPosition = Vector3.Lerp(_rect.localPosition, _newPosition, _timeElapsed / _duration);
+            _timeElapsed += Time.deltaTime * _speed;
+        }
+        else
+        {
+            _rect.localPosition = _newPosition;
+            _canMove = true;
+        }
     }
 }
