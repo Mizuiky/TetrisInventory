@@ -11,21 +11,20 @@ using static UnityEditor.Progress;
 public class Inventory : MonoBehaviour
 {
     private Slot[,] _inventory;
+    private Slot _currentAvailableSlot;
+    private Transform _inventoryItemsParent;
+    private List<SlotPosition> _slotPositions;
+    private List<InventoryItem> _items;
+    private TextMeshProUGUI _itemDescription;
+
     private int _lines;
     private int _columns;
-    private TextMeshProUGUI _itemDescription;
+   
     private bool availableSlot = false;
-
-    private Transform _inventoryItemsParent;
-    private List<InventoryItem> _items;
+    private bool _canAddItem = false;
 
     private float _slotWidth;
     private float _slotHeight;
-
-    private Slot _currentAvailableSlot;
-    private List<SlotPosition> _slotPositions;
-    private bool _canAddItem = false;
-    private bool _pieceCanBeAdded = true;
 
     public void Init(Slot[,] slots, Transform itemParent, float slotWidth, float slotHeight)
     {
@@ -44,29 +43,41 @@ public class Inventory : MonoBehaviour
     {
          _slotPositions.Clear();
 
+        if (HasAddedItem(item))
+            return;
+
          for (int i = 0; i < _lines; i++)
          {
             for(int j = 0; j < _columns; j++)
             {
                 availableSlot = IsAvailableSlot(_inventory[i,j]);
 
-                if (!_pieceCanBeAdded)
-                    break;
-
                 if (availableSlot)
                 {
                     _canAddItem = CheckCanAttachItem(item, i, j);
-                    if (_canAddItem || _pieceCanBeAdded)
+                    if (_canAddItem)
                         break;
                 }
             }
 
-            if (_canAddItem || !_pieceCanBeAdded)
+            if (_canAddItem)
                 break;            
         }
 
         _canAddItem = false;
-        _pieceCanBeAdded = true;
+    }
+
+    private bool HasAddedItem(InventoryItem item) 
+    {
+        var inventoryItem = _items.FirstOrDefault(x => x.Data.id == item.Data.id);
+
+        if (inventoryItem != null)
+        {
+            inventoryItem.Qtd++;
+            return true;
+        }
+
+        return false;
     }
 
     private bool IsAvailableSlot(Slot slot)
@@ -78,19 +89,19 @@ public class Inventory : MonoBehaviour
     }
 
     private bool CheckCanAttachItem(InventoryItem item, int line, int column)
-    {
-        var currentItem = SetInventoryItem(item);
-
-        if(currentItem != null)
+    {     
+        if (CanStoreItem(item.Data.imageConfig, line, column))
         {
-            if (CanStoreItem(currentItem.Data.imageConfig, line, column))
+            var currentItem = SetInventoryItem(item);
+
+            if (currentItem != null)
             {
                 AddItem(currentItem);
                 _slotPositions.Clear();
                 return true;
             }
         }
-    
+           
         return false;
     }
 
@@ -125,16 +136,11 @@ public class Inventory : MonoBehaviour
         var qtdColumnsItem = itemConfig.GetLength(1);   
 
         if (qtdColumnsItem > columnsAvailable)
-        {
-            _pieceCanBeAdded = false;
             return false;
-        }
+        
         
         else if (qtdLinesItem > linesAvailable)
-        {
-            _pieceCanBeAdded = false;
             return false;
-        }
 
         for (int i = 0; i < itemConfig.GetLength(0); i++)
         {
