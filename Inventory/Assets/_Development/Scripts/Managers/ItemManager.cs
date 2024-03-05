@@ -68,7 +68,7 @@ public class ItemManager
         var InventoryItemToUpdate = _inventoryItems.FirstOrDefault(x => x.Data.id == itemData.id);
         InventoryItemToUpdate.Data = itemData;
 
-        SaveItems();
+        //SaveItems();
     }
 
     public void SaveItems()

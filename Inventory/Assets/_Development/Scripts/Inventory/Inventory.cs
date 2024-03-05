@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -72,10 +70,7 @@ public class Inventory : MonoBehaviour
         var inventoryItem = _items.FirstOrDefault(x => x.Data.id == item.Data.id);
 
         if (inventoryItem != null)
-        {
-            inventoryItem.Qtd++;
             return true;
-        }
 
         return false;
     }
