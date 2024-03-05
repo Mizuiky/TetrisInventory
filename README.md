@@ -147,6 +147,9 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 Para adicionar precisamos usar a constante:
 
 ### Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
+### a nova posicao e a posicao atual do slot + a constante tanto no eixo x como no y ficando:
+
+var newPosition = new Vector3(slot.Position.x + _constant.x, slot.Position.y + _constant.y, _rect.localPosition.z);
 
 onde:
 
@@ -155,14 +158,22 @@ onde:
 
 e para movimentar usamos:
 
-- Direita: + wSlot NO EIXO x
-- Esquerda: - wSlot NO EIXO x
+- Direita: posicao local + wSlot NO EIXO x
+- Esquerda: posicao local - wSlot NO EIXO x
 
-- Emcima: + hSlot NO EIXO y
-- Embaixo: - hSlot NO EIXO y
+- Emcima: posicao local + hSlot NO EIXO y
+- Embaixo: posicao local - hSlot NO EIXO y
 
-Verificar casos de boarda para nao dar overflow na peca dentro do inventario.
+Para verificar os casos de borda temos que achar a quantidade de colunas disponiveis(nao possuem item)a partir do slot atual.
+isso se da subtraindo a quantidade total de colunas do inventario menos a coluna atual do meu slot que estou verificando se posso encaixar o item nele.
+
+com isso:
+
+- Se a quantidade de colunas do meu item for maior que o numero de colunas disponiveis do meu inventario , eu nao posso adicionar o item, caso contario ele tem a chance de ser adicionado.
+- Se a quantidade de linhas do meu item for maior que o numero de linhas disponiveis do meu inventario, eu tambem nao posso adicionar o item.
 ---
+
+## Itens para fazer  
 
 ## Continuacao da tool de adicionar itens mas agora para edita-los
 
@@ -185,7 +196,7 @@ blocos na peca em L, seria uma forma mais visual de mapeamento
 
 ---
 
-## Salvar os dados de cada slot do inventario ara poder fazer o load deles no inicio do jogo
+## Salvar os dados de cada slot do inventario para poder fazer o load deles no inicio do jogo
 
 ---
 
