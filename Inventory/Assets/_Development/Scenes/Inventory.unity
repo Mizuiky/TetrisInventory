@@ -1416,7 +1416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213156401981435510, guid: 617b1ebba86798c44b7887f92be003fd, type: 3}
       propertyPath: _lines
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4213156401981435510, guid: 617b1ebba86798c44b7887f92be003fd, type: 3}
       propertyPath: _parent
@@ -1424,7 +1424,7 @@ PrefabInstance:
       objectReference: {fileID: 405202929}
     - target: {fileID: 4213156401981435510, guid: 617b1ebba86798c44b7887f92be003fd, type: 3}
       propertyPath: _columns
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4213156401981435510, guid: 617b1ebba86798c44b7887f92be003fd, type: 3}
       propertyPath: _itemParent
@@ -1630,7 +1630,7 @@ PrefabInstance:
       objectReference: {fileID: 201485808}
     - target: {fileID: 8637367283016721885, guid: 6b62ebe9ce11ae946b55581b403b615a, type: 3}
       propertyPath: ItemIdToSpawn
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

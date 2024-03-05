@@ -6,6 +6,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class Inventory : MonoBehaviour
     private Slot _currentAvailableSlot;
     private List<SlotPosition> _slotPositions;
     private bool _canAddItem = false;
+    private bool _pieceCanBeAdded = true;
 
     public void Init(Slot[,] slots, Transform itemParent, float slotWidth, float slotHeight)
     {
@@ -40,25 +42,31 @@ public class Inventory : MonoBehaviour
 
     public void SetItem(InventoryItem item)
     {
-        _slotPositions.Clear();
+         _slotPositions.Clear();
 
-        for (int i = 0; i < _lines; i++)
-        {
+         for (int i = 0; i < _lines; i++)
+         {
             for(int j = 0; j < _columns; j++)
             {
                 availableSlot = IsAvailableSlot(_inventory[i,j]);
 
+                if (!_pieceCanBeAdded)
+                    break;
+
                 if (availableSlot)
                 {
                     _canAddItem = CheckCanAttachItem(item, i, j);
-                    if (_canAddItem)
-                        break;               
+                    if (_canAddItem || _pieceCanBeAdded)
+                        break;
                 }
             }
 
-            if (_canAddItem)
-                break;
-        }    
+            if (_canAddItem || !_pieceCanBeAdded)
+                break;            
+        }
+
+        _canAddItem = false;
+        _pieceCanBeAdded = true;
     }
 
     private bool IsAvailableSlot(Slot slot)
@@ -75,7 +83,7 @@ public class Inventory : MonoBehaviour
 
         if(currentItem != null)
         {
-            if (CanAddItem(currentItem, line, column))
+            if (CanStoreItem(currentItem.Data.imageConfig, line, column))
             {
                 AddItem(currentItem);
                 _slotPositions.Clear();
@@ -103,22 +111,6 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
-    private bool CanAddItem(InventoryItem Item, int line, int column)
-    {
-        for (int i = line; i < _inventory.GetLength(0); i++)
-        {
-            for (int j = column; j < _inventory.GetLength(1); j++)
-            {
-                if (CanStoreItem(Item.Data.imageConfig, i, j))
-                    return true;
-                else
-                    if (j + 1 > _inventory.GetLength(1) - 1)
-                        column = 0;
-            }
-        }
-        return false;       
-    }
-
     private bool CanStoreItem(int[,] itemConfig, int line, int column)
     {
         var auxLine = line;
@@ -126,11 +118,23 @@ public class Inventory : MonoBehaviour
 
         _slotPositions.Clear();
 
-        var inventoryLenght = _inventory.GetLength(1) - column;
-        var itemLenght = itemConfig.GetLength(1);
+        var linesAvailable = _inventory.GetLength(0) - line;
+        var columnsAvailable = _inventory.GetLength(1) - column;
 
-        if (itemLenght > inventoryLenght)
+        var qtdLinesItem = itemConfig.GetLength(0);
+        var qtdColumnsItem = itemConfig.GetLength(1);   
+
+        if (qtdColumnsItem > columnsAvailable)
+        {
+            _pieceCanBeAdded = false;
             return false;
+        }
+        
+        else if (qtdLinesItem > linesAvailable)
+        {
+            _pieceCanBeAdded = false;
+            return false;
+        }
 
         for (int i = 0; i < itemConfig.GetLength(0); i++)
         {
@@ -153,7 +157,7 @@ public class Inventory : MonoBehaviour
                 }
 
                 if (j == itemConfig.GetLength(1) - 1)
-                    auxColumn = 0;
+                    auxColumn = column;
             }
 
             auxLine++;            
