@@ -15,6 +15,6 @@ public class Spawner : MonoBehaviour
     public void AddItemToInventory()
     {
         var item = GameManager.Instance.ItemManager.GetItemById(ItemIdToSpawn);
-        GameManager.Instance.ItemManager.UpdateQtd(item);
+        GameManager.Instance.ItemManager.SendItemDataToInventory(item);
     }
 }
