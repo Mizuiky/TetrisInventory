@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
 
                 if (availableSlot)
                 {
-                    _canAddItem = CheckCanAttachItem(item, i, j);
+                    _canAddItem = CheckCanAddItem(item, i, j);
                     if (_canAddItem)
                         break;                   
                 }
@@ -67,7 +67,7 @@ public class Inventory : MonoBehaviour
 
     private bool HasAddedItem(InventoryItem item) 
     {
-        var inventoryItem = GetItem(item.Data.id);
+        var inventoryItem = GetItemById(item.Data.id);
 
         if (inventoryItem != null)
         {
@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    private InventoryItem GetItem(int id)
+    private InventoryItem GetItemById(int id)
     {
         var inventoryItem = _items.FirstOrDefault(x => x.Data.id == id);
         return inventoryItem;
@@ -92,7 +92,7 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-    private bool CheckCanAttachItem(InventoryItem item, int line, int column)
+    private bool CheckCanAddItem(InventoryItem item, int line, int column)
     {     
         if (CanStoreItem(item.Data.imageConfig, line, column))
         {
