@@ -150,9 +150,14 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
     public void ChangeColor(Status status)
     {
         if (status == Status.Enabled)
-            _image.color = _green;
+            SetColor(_green);
         else
-            _image.color = _red;
+            SetColor(_red);
+    }
+
+    public void SetColor(Color color)
+    {
+        _image.color = color;
     }
 
     private void SetNewPosition()
