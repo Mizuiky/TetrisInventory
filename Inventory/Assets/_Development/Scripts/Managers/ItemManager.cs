@@ -27,8 +27,6 @@ public class ItemManager
             currentItem.InventoryData = inventoryItem.Data;
             AddItem(currentItem);
         }
-      
-        inventoryItem.Qtd += 1;
 
         UpdateInventory(inventoryItem);
     }
