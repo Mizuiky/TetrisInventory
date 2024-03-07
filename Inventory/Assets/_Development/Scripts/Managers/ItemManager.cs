@@ -16,7 +16,7 @@ public class ItemManager
         _inventoryItems = new List<InventoryItem>();
     }
 
-    public void UpdateQtd(ItemBase item)
+    public void SendItemDataToInventory(ItemBase item)
     {
         var currentItem = _items.FirstOrDefault(x => x.Data.id == item.Data.id);
         var inventoryItem = _inventoryItems.FirstOrDefault(x => x.Data.id == item.Data.id);
@@ -56,6 +56,11 @@ public class ItemManager
     public ItemBase GetItemById(int id)
     {
         return _items.FirstOrDefault(x=>x.ID == id);
+    }
+
+    public InventoryItem GetInventoryItemById(int id)
+    {
+        return _inventoryItems.FirstOrDefault(x => x.Data.id == id);
     }
 
     public void UpdateInventoryItemList(InventoryItemData itemData)
