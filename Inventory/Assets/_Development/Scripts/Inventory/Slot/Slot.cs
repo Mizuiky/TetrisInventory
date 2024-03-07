@@ -9,7 +9,7 @@ public class Slot : MonoBehaviour
 
     private Vector2 _position;
     public Vector2 Position { get { return _position; } }
-    public int[] Index { get { return _slotData.index; } }
+    public SlotData Data { get { return _slotData; } }
     public bool HasItem { get { return _slotData.hasItem; } set { _slotData.hasItem = value; } }
 
     private Sprite _highlight;
