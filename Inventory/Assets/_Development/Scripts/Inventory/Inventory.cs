@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour
                 {
                     _canAddItem = CheckCanAttachItem(item, i, j);
                     if (_canAddItem)
-                        break;
+                        break;                   
                 }
             }
 
@@ -67,12 +67,21 @@ public class Inventory : MonoBehaviour
 
     private bool HasAddedItem(InventoryItem item) 
     {
-        var inventoryItem = _items.FirstOrDefault(x => x.Data.id == item.Data.id);
+        var inventoryItem = GetItem(item.Data.id);
 
         if (inventoryItem != null)
+        {
+            inventoryItem.Qtd++;
             return true;
-
+        }
+          
         return false;
+    }
+
+    private InventoryItem GetItem(int id)
+    {
+        var inventoryItem = _items.FirstOrDefault(x => x.Data.id == id);
+        return inventoryItem;
     }
 
     private bool IsAvailableSlot(Slot slot)
@@ -144,7 +153,9 @@ public class Inventory : MonoBehaviour
                 if (itemConfig[i, j] == 0)
                 {
                     if (j == itemConfig.GetLength(1) - 1)
-                        auxColumn = 0;
+                        auxColumn = column;
+                    else
+                        auxColumn++;
 
                     continue;
                 }             
@@ -182,6 +193,8 @@ public class Inventory : MonoBehaviour
             _inventory[config.line, config.column].HasItem = true;
             _inventory[config.line, config.column].AttachItem(item.Data.id);
         }
+
+        item.Qtd++;
 
         _items.Add(item);
 
