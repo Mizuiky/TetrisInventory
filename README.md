@@ -106,6 +106,25 @@ armazena esses prefabs na Pasta Resources/Prefabs/InventoryItems  e  Resources/P
 - Quando o jogo é iniciado, é feito o load dos dados desses arquivos, alem disso é feito o load de cada um dos prefabs de items e inventory items
 o dados correspondendte de cada um é encaixado e o item manager adiciona esses itens e dados em listas para que sejam de facil acesso.
 
+<p align="center">
+
+### Botao na barra de ferramentas para abrir a tool
+
+<img src="Inventory\Assets\ReadMe\Images\item creator path.jpg" alt="Tool">
+
+### Tool para criar os itens
+
+<img src="Inventory/Assets/ReadMe/Images/tool.png" alt="Tool">
+
+### Exemplo da configuracao do item criado dentro do JSON
+
+![alt text](Inventory/Assets/ReadMe/Images/JsonConfig.png)
+
+### Exemplo de como  configurar a adicao de um novo item.
+
+<video controls width="900" height="800" src="Inventory/Assets/ReadMe/Images/CreateNewItem.mp4" title="Title"></video>
+
+</p>
 ---
 
 ## Tool para criar o inventario
