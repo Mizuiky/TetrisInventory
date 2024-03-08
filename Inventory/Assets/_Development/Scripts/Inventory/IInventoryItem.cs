@@ -5,8 +5,11 @@ public interface IInventoryItem
 {
     public InventoryItemData Data { get; }
     public Image Image { get; }
+    public int Qtd { get; set; }
+    public RectTransform Rect { get; set; }
+    public bool IsSelected { get; }
+    public Move Move { get; }
     public void Init(InventoryItemData data, Sprite sprite);
-    public void Rotate();
     public void UpdateQtd();
     public void OnUse();
 }
