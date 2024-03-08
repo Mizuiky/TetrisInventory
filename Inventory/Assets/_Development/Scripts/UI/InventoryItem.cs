@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
@@ -11,49 +12,51 @@ public enum MoveDirection
     Down
 }
 
-public enum Status
-{
-    Enabled,
-    Disabled
-}
-
 [RequireComponent(typeof(RectTransform), typeof(Image))]
 public class InventoryItem : MonoBehaviour, IInventoryItem
 {
     [SerializeField] private InventoryItemData _data;
+
+    public delegate bool EventHandler();
+    public event EventHandler OnVerifyNextSlotAvailability;
 
     private RectTransform _rect;
     private Image _image;
 
     private TextMeshProUGUI _qtd;
     private Sprite _sprite;
+
     private Color _green;
     private Color _red;
+    private Color _originalItemColor;
+
+    private Vector2 _movement;
+    private Vector3 _newPosition;
+    private Vector3 _constant;
 
     private float _horizontal;
     private float _vertical;
 
     private float _width;
     private float _height;
-    private bool _canMove = true;
     private float _slotWidth;
     private float _slotHeight;
+
     private float _duration = 0.5f;
     private float _speed = 2f;
     private float _timeElapsed = 0f;
-    private Vector2 _movement;
-    private Vector3 _newPosition;
-    private Vector3 _constant;
+
+    private float _selectedZposition;
+    private float _selectedYPosition;
+  
+    private bool _isNextPositionSet;
+    private bool _isSelected;
 
     public InventoryItemData Data { get { return _data; } set { _data = value; } }
     public Image Image { get { return _image; } }
     public int Qtd { get { return _data.qtd; } set { _data.qtd = value; } }
     public RectTransform Rect { get { return _rect; } set { _rect = value; } }
-
-    public void Start()
-    {
-
-    }
+    public bool IsSelected { get { return _isSelected; } }
 
     public void Init(InventoryItemData data, Sprite inventoryImage)
     {
@@ -63,6 +66,9 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         _data = data;
 
         _sprite = inventoryImage;
+
+        _isNextPositionSet = false;
+        _isSelected = false;
     }
 
     public void SetSize()
@@ -82,16 +88,15 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
             _image = GetComponent<Image>();
 
         _image.SetNativeSize();
+        _originalItemColor = _image.color;
+
+        _selectedZposition = -3;
+        _selectedYPosition = 3;
     }
 
     public void SetPosition(Transform parent, Slot slot, float slotWidth, float slotHeight)
     {
         transform.SetParent(parent);
-
-        Debug.Log(_rect.localPosition);
-        Debug.Log(slot.Position);
-        Debug.Log($"{slot.Index[0]}, {slot.Index[1]}");
-
         _rect.localPosition = slot.Position;
 
         _slotWidth = slotWidth;
@@ -112,7 +117,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
     public void Update()
     {
-        if(_canMove)
+        if(_isSelected && !_isNextPositionSet)
         {
             _horizontal = Input.GetAxis("Horizontal");
             _vertical = Input.GetAxis("Vertical");
@@ -121,12 +126,13 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
             if (_movement != Vector2.zero)
             {
+                Debug.Log("2");
                 SetNewPosition();
-                _canMove = false;            
+                _isNextPositionSet = true;            
                 _timeElapsed = 0f;
             }
         }
-        else
+        else if(_isSelected && _isNextPositionSet)
         {
             Move();
         }      
@@ -147,29 +153,40 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
     }
 
-    public void ChangeColor(Status status)
-    {
-        if (status == Status.Enabled)
-            SetColor(_green);
-        else
-            SetColor(_red);
-    }
-
     public void SetColor(Color color)
     {
         _image.color = color;
     }
 
+    public void Select()
+    {
+        _isSelected = true;
+        _rect.localPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y + _selectedYPosition, _rect.localPosition.z + _selectedZposition);
+        SetColor(Color.yellow);
+    }
+
+    public void Unselect()
+    {
+        _isSelected = false;
+        _rect.localPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y - _selectedYPosition, _rect.localPosition.z - _selectedZposition);
+        SetColor(_originalItemColor);
+    }
+
     private void SetNewPosition()
     {
-        if (_movement.x > 0)
-            _newPosition = new Vector3(_rect.localPosition.x + _slotWidth, _rect.localPosition.y, _rect.localPosition.z);
-        else if (_movement.x < 0)
-            _newPosition = new Vector3(_rect.localPosition.x - _slotWidth, _rect.localPosition.y, _rect.localPosition.z);
-        else if (_movement.y > 0)
-            _newPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y + _slotHeight, _rect.localPosition.z);
-        else if (_movement.y < 0)
-            _newPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y - _slotHeight, _rect.localPosition.z);
+        //var response = OnVerifyNextSlotAvailability?.Invoke();
+
+        //if(response.Value)
+        //{
+            if (_movement.x > 0)
+                _newPosition = new Vector3(_rect.localPosition.x + _slotWidth, _rect.localPosition.y, _rect.localPosition.z);
+            else if (_movement.x < 0)
+                _newPosition = new Vector3(_rect.localPosition.x - _slotWidth, _rect.localPosition.y, _rect.localPosition.z);
+            else if (_movement.y > 0)
+                _newPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y + _slotHeight, _rect.localPosition.z);
+            else if (_movement.y < 0)
+                _newPosition = new Vector3(_rect.localPosition.x, _rect.localPosition.y - _slotHeight, _rect.localPosition.z);
+        //}      
     }
 
     private void Move()
@@ -182,7 +199,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         else
         {
             _rect.localPosition = _newPosition;
-            _canMove = true;
+            _isNextPositionSet = false;
         }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -30,5 +31,10 @@ public class UIController : MonoBehaviour
     public void SetInventory(Inventory inventory)
     {
         _inventory = inventory;
+    }
+
+    public InventoryItem GetItem(int id)
+    {
+        return _inventory.GetInventoryItemById(id);
     }
 }

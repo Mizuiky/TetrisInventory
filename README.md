@@ -155,7 +155,7 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 - Na hierarchy preencher os campos do inventory builder para criar um novo inventario, depois iniciar o jogo
 - No prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
 - Na game Scene clicar no botao rosa Spawn item.
-- Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 6 colunas.
+- Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 5 colunas.
 
 
 ## Adicao e movimentacao das pecas no inventario

@@ -67,7 +67,7 @@ public class Inventory : MonoBehaviour
 
     private bool HasAddedItem(InventoryItem item) 
     {
-        var inventoryItem = GetItemById(item.Data.id);
+        var inventoryItem = GetInventoryItemById(item.Data.id);
 
         if (inventoryItem != null)
         {
@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    private InventoryItem GetItemById(int id)
+    public InventoryItem GetInventoryItemById(int id)
     {
         var inventoryItem = _items.FirstOrDefault(x => x.Data.id == id);
         return inventoryItem;

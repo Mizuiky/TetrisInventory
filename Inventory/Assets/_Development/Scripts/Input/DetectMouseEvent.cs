@@ -1,19 +1,40 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Slot slot;
+    private InventoryItem inventoryItem;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log($"mouse is over this slot{slot.Index[0]},{slot.Index[1]}");
-        slot.HighLight(true);
+        Debug.Log($"mouse is over this slot{slot.Data.index[0]},{slot.Data.index[1]}"); 
+        
+        if(!slot.HasItem)
+            slot.HighLight(true);
+        else
+            slot.HighLight(false);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {        
+        if (slot.HasItem)
+        {
+            inventoryItem = GameManager.Instance.UIController.GetItem(slot.Data.attachedItemId);
+            if(inventoryItem != null) 
+            {
+                if (!inventoryItem.IsSelected)
+                    inventoryItem.Select();
+                else
+                    inventoryItem.Unselect();
+            }
+        }      
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("mouse exit");
+        inventoryItem = null;
         slot.HighLight(false);
-    }
+    }    
 }
