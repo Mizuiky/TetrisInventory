@@ -6,10 +6,33 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private Inventory _inventory;
+    [SerializeField] private Color[] _colors;
+    [SerializeField] ColorTint _tint;
+
+    private Dictionary<int, Color> _itemColors;
 
     public void Init()
     {
+        InitDictionary();
+        _tint = new ColorTint();
+        _tint.Init(_itemColors.Count);
+
         GameManager.Instance.ItemManager.OnUpdateItem += UpdateInventory;
+    }
+
+    private void InitDictionary()
+    {
+        _itemColors = new Dictionary<int, Color>();
+
+        for (int i = 0; i < _colors.Length; i++)
+        {
+            _itemColors.Add(i, _colors[i]);
+        }
+    }
+
+    public Color GetColorById(int id)
+    {
+        return _itemColors[id];
     }
 
     public void OpenInventory()

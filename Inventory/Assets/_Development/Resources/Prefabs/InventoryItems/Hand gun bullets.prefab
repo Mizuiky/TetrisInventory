@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4285838883849334559}
   - component: {fileID: 973978607381557309}
   - component: {fileID: 7350796354695315486}
+  - component: {fileID: -5887843852667980920}
   m_Layer: 0
   m_Name: Hand gun bullets
   m_TagString: Untagged
@@ -97,17 +98,40 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
+--- !u!114 &-5887843852667980920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3464143822426389466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item: {fileID: 0}
+  selectedZposition: 0
+  selectedYPosition: 0

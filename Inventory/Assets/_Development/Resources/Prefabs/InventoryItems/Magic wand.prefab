@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7692612581432840886}
   - component: {fileID: 7958533873053905066}
   - component: {fileID: 6043816371634474712}
+  - component: {fileID: 3993181620414514288}
   m_Layer: 0
   m_Name: Magic wand
   m_TagString: Untagged
@@ -97,9 +98,28 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
+--- !u!114 &3993181620414514288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8275140367783732328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item: {fileID: 0}
+  selectedZposition: 0
+  selectedYPosition: 0

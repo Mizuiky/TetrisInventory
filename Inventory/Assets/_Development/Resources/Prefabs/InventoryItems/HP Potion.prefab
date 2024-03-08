@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 893558050532492668}
   - component: {fileID: 298866430940963526}
   - component: {fileID: 4875841385968934660}
+  - component: {fileID: 2365508613053816575}
   m_Layer: 0
   m_Name: HP Potion
   m_TagString: Untagged
@@ -97,3 +98,19 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
+      isEmptySlot: 0
+--- !u!114 &2365508613053816575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6769867574707212898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item: {fileID: 0}
+  selectedZposition: 0
+  selectedYPosition: 0

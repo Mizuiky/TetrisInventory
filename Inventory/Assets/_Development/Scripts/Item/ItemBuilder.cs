@@ -41,8 +41,9 @@ public class ItemBuilder : MonoBehaviour
             _itemData = load;
     }
 
-    public void AddItem(string name, int id, ItemType type, Sprite sprite, string itemDescription, Sprite inventoryImage, int[,] inventoryConfig, int _slotPositions)
+    public void AddItem(string name, int id, ItemType type, Sprite sprite, string itemDescription, Sprite inventoryImage, int[,] itemConfig)
     {
+        var slotPositionLenght = itemConfig.GetLength(0) * itemConfig.GetLength(1);
         if(_itemData.Count > 0)
             _hasItem = _itemData.Any(x => x.id == id);
         
@@ -60,12 +61,12 @@ public class ItemBuilder : MonoBehaviour
                     name = name,
                     id = id,
                     description = itemDescription,
-                    slotPosition = new SlotPosition[_slotPositions],
-                    imageConfig = new int[inventoryConfig.GetLength(0), inventoryConfig.GetLength(1)]
+                    slotPosition = new SlotPosition[slotPositionLenght],
+                    imageConfig = new int[itemConfig.GetLength(0), itemConfig.GetLength(1)]
                 }        
             };
 
-            data.inventoryData.imageConfig = inventoryConfig;
+            data.inventoryData.imageConfig = itemConfig;
 
             CreateInventoryItemPrefab(data, inventoryImage, sprite);
 
@@ -88,11 +89,12 @@ public class ItemBuilder : MonoBehaviour
 
                 InventoryItem inventoryItem = inventoryItemList[i].GetComponent<InventoryItem>();
                 inventoryItem.Data = item.Data.inventoryData;
+                inventoryItem.InitializeComponent();
                 _inventoryItemList.Add(inventoryItem);
             }
 
             GameManager.Instance.ItemManager.FillItemList(_itemBaseList, _inventoryItemList);
-            GameManager.Instance.SaveManager.Save(_itemData, FileType.ItemData);
+            //GameManager.Instance.SaveManager.Save(_itemData, FileType.ItemData);
         }        
     }
 
@@ -102,6 +104,7 @@ public class ItemBuilder : MonoBehaviour
         GameObject item = new GameObject(data.itemName);
 
         item.AddComponent<Image>();
+        item.AddComponent<Move>();
 
         InventoryItem currentInventoryItem = item.AddComponent<InventoryItem>();
 

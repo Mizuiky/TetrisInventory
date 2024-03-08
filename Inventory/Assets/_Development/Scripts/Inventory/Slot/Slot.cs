@@ -55,13 +55,15 @@ public class Slot : MonoBehaviour
             _image.sprite = _normal;
     }
 
-    public void AttachItem(int itemId)
+    public void AddItem(int itemId)
     {
         _slotData.attachedItemId = itemId;
+        _slotData.hasItem = true;
     }
 
-    public void DeattachItem()
+    public void RemoveItem()
     {
         _slotData.attachedItemId = -1;
+        _slotData.hasItem = false;
     }
 }

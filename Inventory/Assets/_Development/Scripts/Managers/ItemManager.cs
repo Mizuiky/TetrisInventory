@@ -58,11 +58,6 @@ public class ItemManager
         return _items.FirstOrDefault(x=>x.ID == id);
     }
 
-    public InventoryItem GetInventoryItemById(int id)
-    {
-        return _inventoryItems.FirstOrDefault(x => x.Data.id == id);
-    }
-
     public void UpdateInventoryItemList(InventoryItemData itemData)
     {
         var itemToUpdate = _items.FirstOrDefault(x => x.Data.id == itemData.id).Data.inventoryData;

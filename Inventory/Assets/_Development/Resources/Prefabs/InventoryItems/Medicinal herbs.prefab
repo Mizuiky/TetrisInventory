@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6472786104724677162}
   - component: {fileID: 3040354513254872169}
   - component: {fileID: 576230260462632761}
+  - component: {fileID: 840341511724866240}
   m_Layer: 0
   m_Name: Medicinal herbs
   m_TagString: Untagged
@@ -97,15 +98,43 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
+      isEmptySlot: 1
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 0
     - line: 0
       column: 0
+      isEmptySlot: 1
+    - line: 0
+      column: 0
+      isEmptySlot: 0
+    - line: 0
+      column: 0
+      isEmptySlot: 0
+--- !u!114 &840341511724866240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175861176267197040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _item: {fileID: 0}
+  selectedZposition: 0
+  selectedYPosition: 0

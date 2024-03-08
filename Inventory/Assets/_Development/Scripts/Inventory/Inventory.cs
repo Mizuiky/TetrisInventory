@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -65,6 +66,17 @@ public class Inventory : MonoBehaviour
         _canAddItem = false;
     }
 
+    private bool OnCheckSlotAvailability(InventoryItem item, int nextLine, int nextColumn) 
+    {
+        if(CanStoreItem(item.Data, nextLine, nextColumn))
+        {
+            RemoveItemFromSlots(item.Data.slotPosition);
+            SetSlot(item);
+            return true;
+        }
+
+        return false;
+    }
     private bool HasAddedItem(InventoryItem item) 
     {
         var inventoryItem = GetInventoryItemById(item.Data.id);
@@ -72,6 +84,7 @@ public class Inventory : MonoBehaviour
         if (inventoryItem != null)
         {
             inventoryItem.Qtd++;
+            GameManager.Instance.ItemManager.UpdateInventoryItemList(item.Data);
             return true;
         }
           
@@ -94,7 +107,7 @@ public class Inventory : MonoBehaviour
 
     private bool CheckCanAddItem(InventoryItem item, int line, int column)
     {     
-        if (CanStoreItem(item.Data.imageConfig, line, column))
+        if (CanStoreItem(item.Data, line, column))
         {
             var currentItem = SetInventoryItem(item);
 
@@ -117,16 +130,18 @@ public class Inventory : MonoBehaviour
         {
             var itemToAdd = newItem.GetComponent<InventoryItem>();
             itemToAdd.Data = item.Data;
+            itemToAdd.Data.slotPosition = _slotPositions.ToArray();
             itemToAdd.SetProperties();
             itemToAdd.SetSize();
-               
+            itemToAdd.Move.OnVerifyNextSlotAvailability += OnCheckSlotAvailability;
+
             return itemToAdd;
         }
         
         return null;
     }
 
-    private bool CanStoreItem(int[,] itemConfig, int line, int column)
+    private bool CanStoreItem(InventoryItemData data, int line, int column)
     {
         var auxLine = line;
         var auxColumn = column;
@@ -136,8 +151,8 @@ public class Inventory : MonoBehaviour
         var linesAvailable = _inventory.GetLength(0) - line;
         var columnsAvailable = _inventory.GetLength(1) - column;
 
-        var qtdLinesItem = itemConfig.GetLength(0);
-        var qtdColumnsItem = itemConfig.GetLength(1);   
+        var qtdLinesItem = data.imageConfig.GetLength(0);
+        var qtdColumnsItem = data.imageConfig.GetLength(1);   
 
         if (qtdColumnsItem > columnsAvailable)
             return false;
@@ -146,36 +161,39 @@ public class Inventory : MonoBehaviour
         else if (qtdLinesItem > linesAvailable)
             return false;
 
-        for (int i = 0; i < itemConfig.GetLength(0); i++)
+        for (int i = 0; i < data.imageConfig.GetLength(0); i++)
         {
-            for (int j = 0; j < itemConfig.GetLength(1); j++)
+            for (int j = 0; j < data.imageConfig.GetLength(1); j++)
             {
-                if (itemConfig[i, j] == 0)
+                if (data.imageConfig[i, j] == 0)
                 {
-                    if (j == itemConfig.GetLength(1) - 1)
+                    _slotPositions.Add(new SlotPosition(auxLine, auxColumn, true));
+
+                    if (j == data.imageConfig.GetLength(1) - 1)
                         auxColumn = column;
                     else
                         auxColumn++;
 
                     continue;
-                }             
-                else if (itemConfig[i, j] == 1 && _inventory[auxLine, auxColumn].HasItem)
+                }  
+                
+                else if (data.imageConfig[i, j] == 1 && _inventory[auxLine, auxColumn].HasItem && data.id != _inventory[auxLine,auxColumn].Data.attachedItemId)
                     return false;           
                 
                 else
                 {             
-                    _slotPositions.Add(new SlotPosition(auxLine, auxColumn));
+                    _slotPositions.Add(new SlotPosition(auxLine, auxColumn, false));
                     auxColumn++;                  
                 }
 
-                if (j == itemConfig.GetLength(1) - 1)
+                if (j == data.imageConfig.GetLength(1) - 1)
                     auxColumn = column;
             }
 
             auxLine++;            
         }
 
-        _currentAvailableSlot = _inventory[line, column];
+         _currentAvailableSlot = _inventory[line, column];
 
         return true;
     }
@@ -184,15 +202,7 @@ public class Inventory : MonoBehaviour
     {
         item.SetPosition(_inventoryItemsParent, _currentAvailableSlot, _slotWidth, _slotHeight);
 
-        var slots = _slotPositions.ToArray();
-
-        for(int i = 0; i < slots.Length; i++)
-        {
-            var config = slots[i];
-            item.Data.slotPosition[i] = config;
-            _inventory[config.line, config.column].HasItem = true;
-            _inventory[config.line, config.column].AttachItem(item.Data.id);
-        }
+        SetSlot(item);
 
         item.Qtd++;
 
@@ -201,7 +211,35 @@ public class Inventory : MonoBehaviour
         GameManager.Instance.ItemManager.UpdateInventoryItemList(item.Data);
     }
 
-    private void RemoveItem(int id)
+    private void SetSlot(InventoryItem item)
+    {
+        var slots = _slotPositions.ToArray();
+
+        for (int i = 0; i < slots.Length; i++)
+        {
+            var config = slots[i];
+            item.Data.slotPosition[i] = config;
+
+            if (config.isEmptySlot)
+                continue;
+
+            _inventory[config.line, config.column].AddItem(item.Data.id);
+        }
+    }
+
+    private void RemoveItemFromSlots(SlotPosition[] slots)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            var slot = slots[i];
+            Debug.Log($"Removed Item from slots: Line{slot.line} Column{slot.column}");
+
+            if (!slot.isEmptySlot)
+                _inventory[slot.line, slot.column].RemoveItem();
+        }
+    }
+
+    private void RemoveFromInventory(int id)
     {
         for(int i = transform.childCount - 1; i >= 0; i--)
         {
@@ -226,10 +264,12 @@ public class SlotPosition
 {
     public int line;
     public int column;
+    public bool isEmptySlot;
 
-    public SlotPosition(int line, int column)
+    public SlotPosition(int line, int column, bool isItemSet)
     {
         this.line = line;
         this.column = column;
+        this.isEmptySlot = isItemSet;
     }
 }
