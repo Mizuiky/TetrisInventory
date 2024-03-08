@@ -70,7 +70,7 @@ public class CustomItemWindow : EditorWindow
         {
             if (GUILayout.Button("Create"))
             {
-                GameManager.Instance.ItemBuilder.AddItem(_itemName, _id, _type, _sprites, _itemDescription, _inventorySprite, _slotConfig, GetFilledSlotsNumber());
+                GameManager.Instance.ItemBuilder.AddItem(_itemName, _id, _type, _sprites, _itemDescription, _inventorySprite, _slotConfig);
             }
                
         }                     
@@ -91,22 +91,6 @@ public class CustomItemWindow : EditorWindow
             return false;
 
         return true;
-    }
-
-    private int GetFilledSlotsNumber()
-    {
-        var count = 0;
-
-        for (int i = 0; i < _lines; i++)
-        {
-            for (int j = 0; j < _columns; j++)
-            {
-                if (_slotConfig[i,j] == 1)
-                    count++;
-            }
-        }
-
-        return count;
     }
 
     private void ShowWarningMessage()
