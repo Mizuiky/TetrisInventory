@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,7 +8,7 @@ public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log($"mouse is over this slot{slot.Data.index[0]},{slot.Data.index[1]}"); 
+        //Debug.Log($"mouse is over this slot{slot.Data.index[0]},{slot.Data.index[1]}"); 
         
         if(!slot.HasItem)
             slot.HighLight(true);
@@ -27,7 +26,10 @@ public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExi
                 if (!inventoryItem.IsSelected)
                     inventoryItem.Select();
                 else
-                    inventoryItem.Unselect();
+                {
+                    slot.HighLight(false);
+                    inventoryItem.Unselect();                  
+                }                   
             }
         }      
     }
