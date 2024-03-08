@@ -122,9 +122,10 @@ o dados correspondendte de cada um é encaixado e o item manager adiciona esses 
 
 ### Exemplo de como  configurar a adicao de um novo item.
 
+</p>
+
 <video controls width="900" height="800" src="Inventory/Assets/ReadMe/Images/CreateNewItem.mp4" title="Title"></video>
 
-</p>
 ---
 
 ## Tool para criar o inventario
