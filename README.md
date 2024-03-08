@@ -118,7 +118,7 @@ o dados correspondendte de cada um é encaixado e o item manager adiciona esses 
 
 ### Exemplo da configuracao do item criado dentro do JSON
 
-![alt text](Inventory/Assets/ReadMe/Images/JsonConfig.png)
+<img src="Inventory/Assets/ReadMe/Images/JsonConfig.png" alt="Tool">
 
 ### Exemplo de como  configurar a adicao de um novo item.
 
