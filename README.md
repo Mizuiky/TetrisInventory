@@ -6,6 +6,10 @@ https://github.com/users/Mizuiky/projects/11/views/1
 
 Tags:
 - v1.0  https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.0
+  - Alem da tool de adicionar os itens porem sem poder serem editados ainda, foi feito no inventario, apenas conseguir adicionar uma única peça.
+  - Há um bug aqui: ao adicionar a peça ao inventário, a lógica para incrementar a quantidade na Tag v1.0 não foi ajustada.
+   
+- v1.1
   
 ## Supreme Tile Inventory
 
