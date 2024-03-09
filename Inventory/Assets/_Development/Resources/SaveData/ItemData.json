@@ -13,48 +13,39 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0               
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0               
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0           
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0              
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0                
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0      
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0           
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0   
                 }
             ],
             "imageConfig": [
@@ -90,18 +81,15 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0        
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0        
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0        
                 }
             ],
             "imageConfig": [
@@ -127,13 +115,11 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -158,48 +144,39 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -235,33 +212,27 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -269,7 +240,6 @@
                     0,
                     1,
                     0
-                    
                 ],
                 [
                     1,
@@ -293,28 +263,23 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -342,78 +307,63 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -455,34 +405,27 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
-                    
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -513,48 +456,39 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -590,8 +524,7 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -615,8 +548,7 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -640,63 +572,51 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -733,34 +653,27 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
-                    
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -791,43 +704,35 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -860,43 +765,35 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -929,23 +826,19 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -972,48 +865,39 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": true
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
@@ -1049,53 +933,43 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 },
                 {
                     "line": 0,
-                    "column": 0,
-                    "isEmptySlot": false
+                    "column": 0
                 }
             ],
             "imageConfig": [
