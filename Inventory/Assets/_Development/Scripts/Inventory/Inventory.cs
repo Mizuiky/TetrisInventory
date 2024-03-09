@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -70,7 +71,7 @@ public class Inventory : MonoBehaviour
     {
         if(CanStoreItem(item.Data, nextLine, nextColumn))
         {
-            RemoveItemFromSlots(item.Data.slotPosition, item.Data.imageConfig);
+            RemoveItemFromSlots(item.Data.slotPosition);
             SetSlot(item);
             return true;
         }
@@ -177,7 +178,7 @@ public class Inventory : MonoBehaviour
                     continue;
                 }  
                 
-                else if (data.imageConfig[i, j] == 1 && data.id != _inventory[auxLine,auxColumn].Data.attachedItemId)
+                else if (data.imageConfig[i, j] == 1 && _inventory[auxLine, auxColumn].HasItem && data.id != _inventory[auxLine,auxColumn].Data.attachedItemId)
                     return false;           
                 
                 else
@@ -213,28 +214,39 @@ public class Inventory : MonoBehaviour
 
     private void SetSlot(InventoryItem item)
     {
+        int count = 0;
+        var imageData = item.Data.imageConfig;
+
         var slots = _slotPositions.ToArray();
 
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < imageData.GetLength(0); i++)
         {
-            var config = slots[i];
-            item.Data.slotPosition[i] = config;
+            for (int j = 0; j < imageData.GetLength(1); j++)
+            {
+                var config = slots[count];
+                item.Data.slotPosition[count] = config;
 
-            if (item.Data.imageConfig[config.line, config.column] == 0)
-                continue;
+                if (imageData[i, j] == 0)
+                {
+                    item.Data.slotPosition[count].isEmpty = true;
+                    count++;
+                    continue;
+                }
 
-            _inventory[config.line, config.column].AddItem(item.Data.id);
+                item.Data.slotPosition[i].isEmpty = false;
+                _inventory[config.line, config.column].AddItem(item.Data.id);
+            }
         }
     }
 
-    private void RemoveItemFromSlots(SlotPosition[] slots, int[,] itemConfig)
+    private void RemoveItemFromSlots(SlotPosition[] slots)
     {
         for (int i = 0; i < slots.Length; i++)
         {
             var slot = slots[i];
             Debug.Log($"Removed Item from slots: Line{slot.line} Column{slot.column}");
 
-            if (itemConfig[slot.line, slot.column] == 1)
+            if (!slot.isEmpty)
                 _inventory[slot.line, slot.column].RemoveItem();
         }
     }
@@ -264,10 +276,12 @@ public class SlotPosition
 {
     public int line;
     public int column;
+    public bool isEmpty;
 
-    public SlotPosition(int line, int column, bool isItemSet)
+    public SlotPosition(int line, int column, bool isEmpty)
     {
         this.line = line;
         this.column = column;
+        this.isEmpty = isEmpty;
     }
 }

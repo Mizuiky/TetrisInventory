@@ -13,39 +13,48 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0               
+                    "column": 0,
+                    "isEmpty": false               
                 },
                 {
                     "line": 0,
-                    "column": 0               
+                    "column": 0,
+                    "isEmpty": false          
                 },
                 {
                     "line": 0,
-                    "column": 0           
+                    "column": 0,
+                    "isEmpty": false           
                 },
                 {
                     "line": 0,
-                    "column": 0              
+                    "column": 0,
+                    "isEmpty": false              
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0                
+                    "column": 0,
+                    "isEmpty": false                
                 },
                 {
                     "line": 0,
-                    "column": 0      
+                    "column": 0,
+                    "isEmpty": false      
                 },
                 {
                     "line": 0,
-                    "column": 0           
+                    "column": 0,
+                    "isEmpty": true           
                 },
                 {
                     "line": 0,
-                    "column": 0   
+                    "column": 0,
+                    "isEmpty": false   
                 }
             ],
             "imageConfig": [
@@ -81,15 +90,18 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0        
+                    "column": 0,
+                    "isEmpty": false        
                 },
                 {
                     "line": 0,
-                    "column": 0        
+                    "column": 0,
+                    "isEmpty": false        
                 },
                 {
                     "line": 0,
-                    "column": 0        
+                    "column": 0,
+                    "isEmpty": false        
                 }
             ],
             "imageConfig": [
@@ -115,11 +127,13 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -144,39 +158,48 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -212,27 +235,34 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
+
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -263,23 +293,28 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -307,63 +342,78 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -405,27 +455,33 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -456,39 +512,48 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 }
             ],
             "imageConfig": [
@@ -524,7 +589,8 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -548,7 +614,8 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -572,51 +639,63 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -653,27 +732,33 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 }
             ],
             "imageConfig": [
@@ -704,35 +789,43 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -765,35 +858,43 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -826,19 +927,23 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -865,39 +970,48 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": true
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
@@ -933,43 +1047,53 @@
             "slotPosition": [
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 },
                 {
                     "line": 0,
-                    "column": 0
+                    "column": 0,
+                    "isEmpty": false
                 }
             ],
             "imageConfig": [
