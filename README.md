@@ -102,7 +102,7 @@ c. Se o slot estiver disponível:
 - Incrementamos a quantidade do item para 1.
 
 ### 7 - Atualização e Salvamento:
--  o item à lista de itens no inventário.
+-  O item é adicionado à lista de itens no inventário.
 - Atualizamos os dados do item e do inventário, sendo passados para o Item Manager, que chamará o Save Manager para atualizar esses dados no JSON posteriormente.
 
 ---
