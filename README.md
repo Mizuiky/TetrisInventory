@@ -6,7 +6,7 @@ https://github.com/users/Mizuiky/projects/11/views/1
 
 Tags:
 - v1.0  https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.0
-  - Alem da tool de adicionar os itens porem sem poder serem editados ainda, foi feito no inventario, apenas conseguir adicionar uma única peça.
+  - Alem da tool de adicionar os itens porem sem poder serem editados ainda, criacao do inventario de forma dinamica, rotacionar o item criado, foi feito no inventario, apenas conseguir adicionar uma única peça.
   - Há um bug aqui: ao adicionar a peça ao inventário, a lógica para incrementar a quantidade na Tag v1.0 não foi ajustada.
    
 - v1.1
@@ -225,9 +225,9 @@ com isso:
 
 Adicionar continuacao da tool de criacao de itens mas agora para poder edita-los
 é possivel editar via json mas nao é pratico para game designers, entao uma nova tool
-que pudesse pegar a lista de items disponiveis e setar um um campo, e eu poder escolher o item pelo id
-e todos os itens aparecessem para edtar e no final um botao de update que alem de atualizar no item manager atualizasse tambem no
-json atraves do save manager seria o ideal;
+que pudesse pegar a lista de items disponiveis e setar em um campo, para ser possivel escolher o item pelo id
+, todos os itens aparecessem para edtar, e no final, um botao de update que alem de atualizar no item manager atualizar tambem no
+json atraves do save manager, seria o ideal.
 
 poderia ter usado scritable objects mas acredito que uma tool fica mais intuitivo para um game designer.
 
