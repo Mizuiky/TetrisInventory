@@ -131,7 +131,6 @@ public class Inventory : MonoBehaviour
         {
             var itemToAdd = newItem.GetComponent<InventoryItem>();
             itemToAdd.Data = item.Data;
-            itemToAdd.Data.slotPosition = _slotPositions.ToArray();
             itemToAdd.SetProperties();
             itemToAdd.SetSize();
             itemToAdd.Move.OnVerifyNextSlotAvailability += OnCheckSlotAvailability;
@@ -235,6 +234,7 @@ public class Inventory : MonoBehaviour
 
                 item.Data.slotPosition[i].isEmpty = false;
                 _inventory[config.line, config.column].AddItem(item.Data.id);
+                count++;
             }
         }
     }

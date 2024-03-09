@@ -545,6 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventory: {fileID: 0}
+  _colors: []
 --- !u!114 &499921592 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5039782235950204626, guid: 8ba72161f3dd5a941b3e1c667e199ed0, type: 3}
@@ -1416,7 +1417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213156401981435510, guid: 617b1ebba86798c44b7887f92be003fd, type: 3}
       propertyPath: _lines
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4213156401981435510, guid: 617b1ebba86798c44b7887f92be003fd, type: 3}
       propertyPath: _parent
@@ -1424,7 +1425,7 @@ PrefabInstance:
       objectReference: {fileID: 405202929}
     - target: {fileID: 4213156401981435510, guid: 617b1ebba86798c44b7887f92be003fd, type: 3}
       propertyPath: _columns
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4213156401981435510, guid: 617b1ebba86798c44b7887f92be003fd, type: 3}
       propertyPath: _itemParent
