@@ -75,6 +75,7 @@ entao seguindo o exemplo do L ficaria:
 
 ### 5 - Lógica de Encaixe do Item:
 a. Se o valor na configuração do item for zero (indicando posição vazia para o item, como no exemplo do "L"):
+- Adicionamos a posição atual à lista de posições.
 - Se estiver na última coluna da configuração do item:
   - Ajustamos a coluna do auxiliar do inventário para a coluna inicial.
   - Continuamos a verificação nas próximas colunas quando a linha muda.
