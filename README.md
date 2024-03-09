@@ -58,26 +58,51 @@ entao seguindo o exemplo do L ficaria:
 |   1   |   0   |   0   |       
 |   1   |   1   |   1   |  
 
-Quando adicionamos uma nova peca ao inventario:
+### 1 - Verificação de Disponibilidade do Slot:
+- Percorremos cada slot no inventário para verificar se está disponível, ou seja, se não possui itens adicionados.
 
-1) Passamos por cada um dos slots dele checando se nao ha pecas anexadas a ele
-2) Se nao houver instanciamos no inventario a peca correspondente
-3) Extraimos sua configuracao
-4) Para cada item da matriz de configuracao , tenho como parametros a linha e coluna do slot atual que esta sendo verificado
-5) Armazeno o indice atual do slot
-6) Checo se existe o numero 1 e o slot nao tem items anexados
-7) Se isso for satisfeito eu armazeno os dados do indice em que posso encaixar a peca
-8) Repito isso ate que tenha visto cada item da matrz de configuracao do item
-9) Caso nao for satisfeito, esse slot atual nao é um canditato a anexar o meu item, entao o for que passa pelo inventario continua para o proximo voltando para o numero 1)
+### 2 - Verificação da Configuração do Item:
+- Se o slot estiver disponível, verificamos se a configuração do item pode se encaixar a partir desse slot.
+- Calculamos a quantidade de colunas e linhas disponíveis a partir do slot verificado.
 
-10) Quando todas as condicoes forem satisfeitas e minha configuracao for possivel encaixar no meu slot atual
-11) Seto o parent do meu item para o transform do meu inventario, e atualizo a posicao da minha peca seguindo uma constante utilizando como base a altura, largura da image e altura e largura do meu slot
+### 3 - Determinação de Colunas e Linhas Disponíveis:
+- Calculamos as colunas disponíveis a partir do slot atual subtraindo a coluna atual da quantidade total de colunas no inventário.
+- Calculamos as linhas disponíveis a partir do slot atual subtraindo a linha atual da quantidade total de linhas no inventário.
 
-12) Para cada index de slot em que meu item é encaixado eu atualizo o meu inventoryItemData que contem um lista de slots em que o item é encaixado
-13) O Slot referente ao inventario é atualizado com o has item = true indicando que 'a um novo item anexado a ele
-14) Passo o id do item para o slot saber depois qual o item tem dentro dele
-15) O item 'e adicionado a uma lista de items do meu inventario, 
-16) Os dados do inventario e do item sao salvos.
+### 4 - Restrições de Configuração do Item:
+- Se o número de colunas da matriz de configuração do item for maior que as colunas disponíveis, não é possível adicionar o item.
+- Se a quantidade de linhas da matriz de configuração do item for maior que as linhas disponíveis, não é possível adicionar o item.
+
+### 5 - Lógica de Encaixe do Item:
+a. Se o valor na configuração do item for zero (indicando posição vazia para o item, como no exemplo do "L"):
+- Se estiver na última coluna da configuração do item:
+  - Ajustamos a coluna do auxiliar do inventário para a coluna inicial.
+  - Continuamos a verificação nas próximas colunas quando a linha muda.
+
+#### Caso contrário:
+- Incrementamos a coluna atual e passamos para a próxima iteração na configuração do item.
+
+b. Se encontrar o numero um na configuração e a posição do inventário na linha e coluna atual tiver um item diferente do item atual na configuração:
+- Significa que o slot do inventário está ocupado.
+- Passamos para a próxima posição do inventário para verificar se a configuração encaixa.
+
+c. Se o slot estiver disponível:
+- Adicionamos esta nova posição à lista de posições.
+- Incrementamos a coluna indo para a próxima.
+- Se estivermos na última coluna da matriz de configuração do item:
+  - Na próxima iteração, mudaremos de linha, ajustamos a coluna atual para a coluna inicial.
+  - Incrementamos o auxiliar da linha para o inventário.
+  - Slot atual é armazenado para uso posterior.
+
+### 6 - Instanciação e Adição do Item:
+- Instanciamos o item, atualizando dados e propriedades e subscrevendo a eventos para verificar a próxima posição disponível.
+- A posição do item é definida com base no slot atual e nas dimensões do slot do inventário.
+- Adicionamos o item a cada posição da lista de posições encontradas anteriormente, caso a configuração atual da posição não seja vazia.
+- Incrementamos a quantidade do item para 1.
+
+### 7 - Atualização e Salvamento:
+-  o item à lista de itens no inventário.
+- Atualizamos os dados do item e do inventário, sendo passados para o Item Manager, que chamará o Save Manager para atualizar esses dados no JSON posteriormente.
 
 ---
 
