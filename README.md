@@ -29,7 +29,7 @@ Tags:
 - Os itens do inventarioa quando selecionados mudam para a cor amarela e mudam um pouco sua posicao para dar efeito em 3D de que a peca subiu.
 - Atualizacao do json com novos campos
 
-##
+---
 
 ## Supreme Tile Inventory
 
@@ -264,6 +264,8 @@ poderia ter usado scritable objects mas acredito que uma tool fica mais intuitiv
 ---
 
 ## Item precisa mudar para cor vermelha caso haja um outro item na posicao que ele ira se mover
+
+---
 
 ## Melhorar de forma visual a matriz de mapeamento da peca  
 
