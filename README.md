@@ -237,6 +237,13 @@ com isso:
 
 - Se a quantidade de colunas do meu item for maior que o numero de colunas disponiveis do meu inventario , eu nao posso adicionar o item, caso contario ele tem a chance de ser adicionado.
 - Se a quantidade de linhas do meu item for maior que o numero de linhas disponiveis do meu inventario, eu tambem nao posso adicionar o item.
+
+![preview](Inventory\Assets\ReadMe\VideoGif\AddAndMoveItem.gif)
+#### Exemplo adicionando e movimentando as pecas:
+- id 4 (3x2c) - Treasure chest key
+- id 6 (3x5) - Blue diamond chest
+- id 9 (1x1) - HP Potion
+- id 10 (1x1) - MP Potion
 ---
 
 ## Itens para fazer  
