@@ -29,6 +29,8 @@ Tags:
 - Os itens do inventarioa quando selecionados mudam para a cor amarela e mudam um pouco sua posicao para dar efeito em 3D de que a peca subiu.
 - Atualizacao do json com novos campos
 
+#### Obs: Ao adicionar um item no inventario, falta fazer a atualizacao da quantidade do item no json.
+
 ---
 
 ## Supreme Tile Inventory
