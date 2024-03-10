@@ -197,6 +197,7 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 - Espace key rotaciona em 90 graus a peca para a direita
 ### Obs: Nao esta feito ainda a mudanca do posicionamento da matriz de configuracao quando o item 'e rotacionado para poder ser encaixado depois.
+- talvez se necessario utilizar matriz transposta
 
 ---
 
