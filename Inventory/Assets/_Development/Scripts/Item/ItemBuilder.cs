@@ -104,7 +104,7 @@ public class ItemBuilder : MonoBehaviour
         GameObject item = new GameObject(data.itemName);
 
         item.AddComponent<Image>();
-        item.AddComponent<Move>();
+        item.AddComponent<MovementController>();
 
         InventoryItem currentInventoryItem = item.AddComponent<InventoryItem>();
 
