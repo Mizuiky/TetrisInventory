@@ -8,7 +8,7 @@ public interface IInventoryItem
     public int Qtd { get; set; }
     public RectTransform Rect { get; set; }
     public bool IsSelected { get; }
-    public Move Move { get; }
+    public MovementController Move { get; }
     public void Init(InventoryItemData data, Sprite sprite);
     public void UpdateQtd();
     public void OnUse();
