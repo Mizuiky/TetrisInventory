@@ -239,7 +239,7 @@ com isso:
 - Se a quantidade de colunas do meu item for maior que o numero de colunas disponiveis do meu inventario , eu nao posso adicionar o item, caso contario ele tem a chance de ser adicionado.
 - Se a quantidade de linhas do meu item for maior que o numero de linhas disponiveis do meu inventario, eu tambem nao posso adicionar o item.
 
-![Adicionar e Mover Item](Inventory\Assets\ReadMe\VideoGif\AddAndMoveItem.gif)
+<img src="Inventory\Assets\ReadMe\VideoGif\AddAndMoveItem.gif" alt="Add and Move Item">
 
 #### Exemplo adicionando e movimentando as pecas:
 - id 4 (3x2c) - Treasure chest key
