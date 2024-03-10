@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3551790847904896543}
   - component: {fileID: 5058346468754829862}
   - component: {fileID: 5090437133087637887}
-  - component: {fileID: 2220556462596048862}
+  - component: {fileID: 904822967165404768}
   m_Layer: 0
   m_Name: Iron Hammer
   m_TagString: Untagged
@@ -98,23 +98,23 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
---- !u!114 &2220556462596048862
+      isEmpty: 0
+--- !u!114 &904822967165404768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,9 +123,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9074148045063432801}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 0}
-  selectedZposition: 0
-  selectedYPosition: 0

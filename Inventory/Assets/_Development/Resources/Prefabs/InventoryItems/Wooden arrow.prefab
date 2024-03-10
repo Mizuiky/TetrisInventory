@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4459864982276408055}
   - component: {fileID: 871967291198424046}
   - component: {fileID: 4514085152225636382}
-  - component: {fileID: 3942856132764942681}
+  - component: {fileID: 6469316498636065650}
   m_Layer: 0
   m_Name: Wooden arrow
   m_TagString: Untagged
@@ -98,20 +98,20 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
---- !u!114 &3942856132764942681
+      isEmpty: 0
+--- !u!114 &6469316498636065650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,9 +120,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5585573758862890814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 0}
-  selectedZposition: 0
-  selectedYPosition: 0

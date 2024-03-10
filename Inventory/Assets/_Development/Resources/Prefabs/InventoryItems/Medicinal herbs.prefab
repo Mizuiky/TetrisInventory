@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6472786104724677162}
   - component: {fileID: 3040354513254872169}
   - component: {fileID: 576230260462632761}
-  - component: {fileID: 840341511724866240}
+  - component: {fileID: 7206942136759367303}
   m_Layer: 0
   m_Name: Medicinal herbs
   m_TagString: Untagged
@@ -98,32 +98,32 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
---- !u!114 &840341511724866240
+      isEmpty: 0
+--- !u!114 &7206942136759367303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,9 +132,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1175861176267197040}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 0}
-  selectedZposition: 0
-  selectedYPosition: 0

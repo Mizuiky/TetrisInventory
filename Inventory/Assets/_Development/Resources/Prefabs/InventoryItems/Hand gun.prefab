@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9103190769816961997}
   - component: {fileID: 8805862650653337923}
   - component: {fileID: 4012471493516776643}
-  - component: {fileID: -2207051654868273490}
+  - component: {fileID: 4491120976755800027}
   m_Layer: 0
   m_Name: Hand gun
   m_TagString: Untagged
@@ -98,23 +98,23 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 1
---- !u!114 &-2207051654868273490
+      isEmpty: 0
+--- !u!114 &4491120976755800027
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,9 +123,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2644026708277199698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 0}
-  selectedZposition: 0
-  selectedYPosition: 0

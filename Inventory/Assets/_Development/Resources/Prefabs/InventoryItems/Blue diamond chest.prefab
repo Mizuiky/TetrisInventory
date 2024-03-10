@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2346701262890688103}
   - component: {fileID: 3007254803386380299}
   - component: {fileID: 2960188266073210024}
-  - component: {fileID: 7034472015838581061}
+  - component: {fileID: 1187527893797037625}
   m_Layer: 0
   m_Name: Blue diamond chest
   m_TagString: Untagged
@@ -98,50 +98,50 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
---- !u!114 &7034472015838581061
+      isEmpty: 0
+--- !u!114 &1187527893797037625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,9 +150,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3742886937629686900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 0}
-  selectedZposition: 0
-  selectedYPosition: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4594856534200540879}
   - component: {fileID: 6738792538159398551}
   - component: {fileID: 179020212908701385}
-  - component: {fileID: 8731184162366492123}
+  - component: {fileID: 3175407740544698281}
   m_Layer: 0
   m_Name: MP Potion
   m_TagString: Untagged
@@ -98,8 +98,8 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
-      isEmptySlot: 0
---- !u!114 &8731184162366492123
+      isEmpty: 0
+--- !u!114 &3175407740544698281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,9 +108,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5213825232839057969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 0}
-  selectedZposition: 0
-  selectedYPosition: 0

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1981697669632395892}
   - component: {fileID: 1834002537084030748}
   - component: {fileID: 3795383595747917454}
-  - component: {fileID: 552763736799143450}
+  - component: {fileID: 7217749099852122561}
   m_Layer: 0
   m_Name: Treasure chest key
   m_TagString: Untagged
@@ -98,23 +98,23 @@ MonoBehaviour:
     slotPosition:
     - line: 2
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 2
       column: 1
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 2
       column: 2
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 3
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 3
       column: 1
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 3
       column: 2
-      isEmptySlot: 0
---- !u!114 &552763736799143450
+      isEmpty: 0
+--- !u!114 &7217749099852122561
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,9 +123,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6737932058367905708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 0}
-  selectedZposition: 0
-  selectedYPosition: 0

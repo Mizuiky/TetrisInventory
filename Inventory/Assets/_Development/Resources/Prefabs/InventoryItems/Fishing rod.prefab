@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5846211783114633387}
   - component: {fileID: 4375038868247276788}
   - component: {fileID: 7659853404888364188}
-  - component: {fileID: 6145974284326888669}
+  - component: {fileID: 1478428250864216215}
   m_Layer: 0
   m_Name: Fishing rod
   m_TagString: Untagged
@@ -98,41 +98,41 @@ MonoBehaviour:
     slotPosition:
     - line: 0
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 1
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
+      isEmpty: 0
     - line: 0
       column: 0
-      isEmptySlot: 0
---- !u!114 &6145974284326888669
+      isEmpty: 0
+--- !u!114 &1478428250864216215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,9 +141,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2611687411991965357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f11abcca6c68e1646ae4353a98bd37c3, type: 3}
+  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _item: {fileID: 0}
-  selectedZposition: 0
-  selectedYPosition: 0
