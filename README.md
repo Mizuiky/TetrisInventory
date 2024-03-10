@@ -6,10 +6,29 @@ https://github.com/users/Mizuiky/projects/11/views/1
 
 Tags:
 - v1.0  https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.0
-  - Alem da tool de adicionar os itens porem sem poder serem editados ainda, criacao do inventario de forma dinamica, rotacionar o item criado, foi feito no inventario, apenas conseguir adicionar uma única peça.
+  - Tool para adicionar os itens porem sem poder serem editados ainda.
+  - Criacao do inventario de forma dinamica.
+  - Rotacao do item criado(sem mudar o posicionamento do item).
+  - Adicionar apenas uma unica peca ao inventario.
+  - Adicao de um botao para abrir e fechar o inventario.
+  - Adicao de prefabs pela tool de criacao de itens
+
   - Há um bug aqui: ao adicionar a peça ao inventário, a lógica para incrementar a quantidade na Tag v1.0 não foi ajustada.
-   
-- v1.1
+
+## 
+
+- v1.1 https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.1
+
+- Bug fix
+  - Increase item quantity in inventory when add one insted need to be increased in item manager.
+- Area limite do inventario criada.
+- Mais de uma peca pode ser encaixada no inventario.
+- O item do inventario pode se mover para qualquer um dos slots desde que siga os limites do inventario.
+- Os itens do inventario podem ser selecionados e somente se selecionados podem mover-se.
+- Os itens do inventario nao sao acendidos com a mesma selecao do slot do inventario quando sao selecionados.
+- Os itens do inventarioa quando selecionados mudam para a cor amarela e mudam um pouco sua posicao para dar efeito em 3D de que a peca subiu.
+- Atualizacao do json com novos campos
+
   
 ## Supreme Tile Inventory
 
@@ -176,7 +195,8 @@ Apos o termino da matriz o inventario é inicializado com seus slots, parent, e 
 
 ## Rotacionar items
 
-- Espace key rotaciona em 90 graus a peca para a esquerda
+- Espace key rotaciona em 90 graus a peca para a direita
+### Obs: Nao esta feito ainda a mudanca do posicionamento da matriz de configuracao quando o item 'e rotacionado para poder ser encaixado depois.
 
 ---
 
@@ -233,6 +253,8 @@ poderia ter usado scritable objects mas acredito que uma tool fica mais intuitiv
 
 ---
 
+## Item precisa mudar para cor vermelha caso haja um outro item na posicao que ele ira se mover
+
 ## Melhorar de forma visual a matriz de mapeamento da peca  
 
 - A matriz de 1 e 0 mapeia os campos da peca que nao sao transparentes
@@ -246,7 +268,7 @@ blocos na peca em L, seria uma forma mais visual de mapeamento
 
 ---
 
-## O ideal seria salvar os dados do player em um servidor e dar load deles a partir disso, com os dados carregados salvar eles no persistent data path que sera o caminho para o computador do usuario
+## O ideal seria salvar o json com os dados dos itens e dos itens do inventario em um servidor e dar load deles a partir disso, com os dados carregados salvar eles no persistent data path que sera o caminho para o computador do usuario
 
 ---
 
