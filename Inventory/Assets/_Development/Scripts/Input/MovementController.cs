@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+using UnityEngine.Rendering;
 
-public class Move : MonoBehaviour
+public class MovementController : MonoBehaviour
 {
-    [SerializeField] private InventoryItem _item;
+    private InventoryItem _item;
 
     public delegate bool EventHandler(InventoryItem item, int line, int column);
     public event EventHandler OnVerifyNextSlotAvailability;
@@ -25,14 +26,38 @@ public class Move : MonoBehaviour
     private float _slotWidth;
     private float _slotHeight;
 
-    public float selectedZposition;
-    public float selectedYPosition;
+    private float _width;
+    private float _height;
 
-    public void Init(InventoryItem item)
+    private int _inventoryColumns;
+    private int _inventoryLines;
+
+    private float _selectedZposition;
+    private float _selectedYPosition;
+    private Vector3 _seletedPosition;
+
+    private Vector3 _constant;
+
+    public void Init(InventoryItem item, float imgWidth, float imgHeight)
     {
-        _isNextPositionSet = false;
         _item = item;
-        Debug.Log("is selected" + _item.IsSelected);
+        _isNextPositionSet = false;      
+        _selectedZposition = -3;
+        _selectedYPosition = 3;
+        _width = imgWidth;
+        _height = imgHeight;
+    }
+
+    public void SetInventorySize(int inventoryMaxColumns, int inventoryMaxLines)
+    {
+        _inventoryColumns = inventoryMaxColumns;
+        _inventoryLines = inventoryMaxLines;
+    }
+
+    public void SetSlotSize(float slotWidth, float slotHeight)
+    {
+        _slotWidth = slotWidth;
+        _slotHeight = slotHeight;
     }
 
     public void Update()
@@ -45,9 +70,7 @@ public class Move : MonoBehaviour
 
             if (_movement != Vector2.zero)
             {
-                var hasSetPosition = SetNewPosition();
-                Debug.Log($"SetPosition:{hasSetPosition}");
-
+                var hasSetPosition = MoveToPosition();
                 if (hasSetPosition)
                 {
                     _isNextPositionSet = true;
@@ -56,14 +79,10 @@ public class Move : MonoBehaviour
             }
         }
         else if (_item.IsSelected && _isNextPositionSet)
-        {
             MoveItem();
-        }
 
         if (Input.GetKeyDown(KeyCode.Space))
-        {
             Rotate();
-        }
     }
 
     public void Rotate()
@@ -71,13 +90,29 @@ public class Move : MonoBehaviour
         _item.Rect.Rotate(0, 0, -90);
     }
 
-    public void SetSlotSize(float width, float height)
+    public void SetPosition(Transform parent, Slot slot)
     {
-        _slotWidth = width;
-        _slotHeight = height;      
+        transform.SetParent(parent);
+        _item.Rect.localPosition = slot.Position;
+
+        _constant = Vector3.zero;
+        _constant = new Vector3((_width / 2 - _slotWidth / 2), (-_height / 2 + _slotHeight / 2));
+        var newPosition = new Vector3(slot.Position.x + _constant.x, slot.Position.y + _constant.y, _item.Rect.localPosition.z);
+
+        _item.Rect.localPosition = newPosition;
     }
 
-    private bool SetNewPosition()
+    public void SetSelectedPosition(bool isSelected)
+    {
+        if (isSelected)
+            _seletedPosition = new Vector3(_item.Rect.localPosition.x, _item.Rect.localPosition.y + _selectedYPosition, _item.Rect.localPosition.z + _selectedZposition);
+        else
+            _seletedPosition = new Vector3(_item.Rect.localPosition.x, _item.Rect.localPosition.y - _selectedYPosition, _item.Rect.localPosition.z - _selectedZposition);
+
+        _item.Rect.localPosition = _seletedPosition;
+    }
+
+    private bool MoveToPosition()
     {
         int nextLine = _item.Data.slotPosition[0].line;
         int nextColumn = _item.Data.slotPosition[0].column;
@@ -85,7 +120,7 @@ public class Move : MonoBehaviour
         if (_movement.x > 0)
         {
             nextColumn++;
-            if (nextColumn > _item.Data.imageConfig.GetLength(1))
+            if (nextColumn > _inventoryColumns)
                 return false;
 
             _newPosition = new Vector3(_item.Rect.localPosition.x + _slotWidth, _item.Rect.localPosition.y, _item.Rect.localPosition.z);
@@ -112,7 +147,7 @@ public class Move : MonoBehaviour
         else if (_movement.y < 0)
         {
             nextLine++;
-            if (nextLine > _item.Data.imageConfig.GetLength(0))
+            if (nextLine > _inventoryLines)
                 return false;
 
             _newPosition = new Vector3(_item.Rect.localPosition.x, _item.Rect.localPosition.y - _slotHeight, _item.Rect.localPosition.z);
