@@ -132,8 +132,9 @@ public class Inventory : MonoBehaviour
             var itemToAdd = newItem.GetComponent<InventoryItem>();
             itemToAdd.Data = item.Data;
             itemToAdd.SetProperties();
-            itemToAdd.SetSize();
             itemToAdd.Move.OnVerifyNextSlotAvailability += OnCheckSlotAvailability;
+            itemToAdd.Move.SetSlotSize(_slotWidth, _slotHeight);
+            itemToAdd.Move.SetInventorySize(_inventory.GetLength(0), _inventory.GetLength(0));
 
             return itemToAdd;
         }
@@ -200,7 +201,7 @@ public class Inventory : MonoBehaviour
 
     private void AddItem(InventoryItem item)
     {
-        item.SetPosition(_inventoryItemsParent, _currentAvailableSlot, _slotWidth, _slotHeight);
+        item.Move.SetPosition(_inventoryItemsParent, _currentAvailableSlot);
 
         SetSlot(item);
 
