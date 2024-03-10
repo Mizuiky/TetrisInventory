@@ -134,7 +134,8 @@ public class Inventory : MonoBehaviour
             itemToAdd.SetProperties();
             itemToAdd.Move.OnVerifyNextSlotAvailability += OnCheckSlotAvailability;
             itemToAdd.Move.SetSlotSize(_slotWidth, _slotHeight);
-            itemToAdd.Move.SetInventorySize(_inventory.GetLength(0), _inventory.GetLength(0));
+
+            itemToAdd.Move.SetInventorySize(_inventory.GetLength(1), _inventory.GetLength(0));
 
             return itemToAdd;
         }
