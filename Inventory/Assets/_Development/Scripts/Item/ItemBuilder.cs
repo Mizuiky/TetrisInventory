@@ -7,10 +7,9 @@ using UnityEngine.UI;
 
 public class ItemBuilder : MonoBehaviour
 {
-    [SerializeField] List<ItemData> _itemData;
-    List<ItemBase> _itemBaseList;
-    List<InventoryItem> _inventoryItemList;
- 
+    private List<ItemData> _itemData;
+    private List<InventoryItemData> _inventoryItemData;
+
     private string _ResourceFolderItemPath = "Assets/_Development/Resources/Prefabs/Items";
     private string _inventoryItemFolderPath = "Assets/_Development/Resources/Prefabs/InventoryItems/";
     private string _itemPath;
@@ -19,10 +18,8 @@ public class ItemBuilder : MonoBehaviour
 
     public void Init()
     {
-        _itemBaseList = new List<ItemBase> ();
-        _itemData = new List<ItemData> ();
-        _inventoryItemList = new List<InventoryItem> ();
-
+        _itemData = new List<ItemData>();
+        _inventoryItemData = new List<InventoryItemData>();
         LoadData();
 
         //Load all prefabs of type ItemBase and InventoryItem from Resource folder inside Assets and update them on Item Manager
@@ -36,42 +33,55 @@ public class ItemBuilder : MonoBehaviour
 
     private void LoadData()
     {
-        var load = GameManager.Instance.SaveManager.ItemData;
-        if (load != null)
-            _itemData = load;
+        var loadItemData = GameManager.Instance.SaveManager.ItemData;
+        if (loadItemData != null)
+            _itemData = loadItemData;
+
+        var loadInventoryIntemData = GameManager.Instance.SaveManager.InventoryItemData;
+        if (loadInventoryIntemData != null)
+            _inventoryItemData = loadInventoryIntemData;
     }
 
     public void AddItem(string name, int id, ItemType type, Sprite sprite, string itemDescription, Sprite inventoryImage, int[,] itemConfig)
     {
+        _hasItem = false;
         var slotPositionLenght = itemConfig.GetLength(0) * itemConfig.GetLength(1);
-        if(_itemData.Count > 0)
-            _hasItem = _itemData.Any(x => x.id == id);
+
+        _hasItem = GameManager.Instance.ItemManager.CheckHasItem(id);
         
-        if(!_hasItem)
+        if(_hasItem)
         {
-            ItemData data = new ItemData()
-            {
-                itemName = name,
-                id = id,
-                type = (int)type,
-                spriteName = sprite.name,       
-                inventoryData = new InventoryItemData()
-                {
-                    imageName = inventoryImage.name,
-                    name = name,
-                    id = id,
-                    description = itemDescription,
-                    slotPosition = new SlotPosition[slotPositionLenght],
-                    imageConfig = new int[itemConfig.GetLength(0), itemConfig.GetLength(1)]
-                }        
-            };
-
-            data.inventoryData.imageConfig = itemConfig;
-
-            CreateInventoryItemPrefab(data, inventoryImage, sprite);
-
-            GameManager.Instance.SaveManager.Save(_itemData, FileType.ItemData);
+            Debug.Log("Cant Add Item - Same ID");
+            return;
         }
+
+        ItemData data = new ItemData()
+        {
+            itemName = name,
+            id = id,
+            type = (int)type,
+            spriteName = sprite.name,             
+        };
+
+        _itemData.Add(data);
+
+        InventoryItemData inventoryItemData = new InventoryItemData()
+        {
+            imageName = inventoryImage.name,
+            name = name,
+            id = id,
+            description = itemDescription,
+            slotPosition = new SlotPosition[slotPositionLenght],
+            imageConfig = new int[itemConfig.GetLength(0), itemConfig.GetLength(1)]
+        };
+
+        inventoryItemData.imageConfig = itemConfig;
+        _inventoryItemData.Add(inventoryItemData);
+
+        CreateInventoryItemPrefab(data, inventoryItemData, inventoryImage, sprite);
+
+        GameManager.Instance.SaveManager.Save(_itemData, FileType.ItemData);
+        GameManager.Instance.SaveManager.Save(_inventoryItemData, FileType.InventoryData);
     }
 
     private void LoadPrefabs()
@@ -79,31 +89,34 @@ public class ItemBuilder : MonoBehaviour
         GameObject[] itemList = Resources.LoadAll<GameObject>("Prefabs/Items");
         GameObject[] inventoryItemList = Resources.LoadAll<GameObject>("Prefabs/InventoryItems");
 
+        List<ItemBase> tempItemBaseList = new List<ItemBase>();
+        List<InventoryItem> tempInventoryItemList = new List<InventoryItem>();
+
         if (itemList.Length > 0 && inventoryItemList.Length > 0)
         {
             for(int i = 0; i < itemList.Length; i++)
             {
                 ItemBase item = itemList[i].GetComponent<ItemBase>();
-                item.Data = _itemData.FirstOrDefault(x=>x.id == item.ID);
-                _itemBaseList.Add(item);
+                item.Data = _itemData.FirstOrDefault(x=>x.id == item.Data.id);
+                tempItemBaseList.Add(item);
 
                 InventoryItem inventoryItem = inventoryItemList[i].GetComponent<InventoryItem>();
-                inventoryItem.Data = item.Data.inventoryData;
+                inventoryItem.Data = _inventoryItemData.FirstOrDefault(x => x.id == inventoryItem.Data.id);
                 inventoryItem.InitializeComponent();
-                _inventoryItemList.Add(inventoryItem);
+                tempInventoryItemList.Add(inventoryItem);
             }
 
-            GameManager.Instance.ItemManager.FillItemList(_itemBaseList, _inventoryItemList);
-            //GameManager.Instance.SaveManager.Save(_itemData, FileType.ItemData);
+            GameManager.Instance.ItemManager.FillItemList(tempItemBaseList, tempInventoryItemList);
         }        
     }
 
     #region Create Item and Inventory Item Prefab
-    private void CreateInventoryItemPrefab(ItemData data, Sprite inventoryImage, Sprite sprite)
+    private void CreateInventoryItemPrefab(ItemData itemData, InventoryItemData inventoryData, Sprite inventoryImage, Sprite sprite)
     {
-        GameObject item = new GameObject(data.itemName);
+        GameObject item = new GameObject(itemData.itemName);
 
         item.AddComponent<Image>();
+        item.AddComponent<ColorTint>();
         item.AddComponent<MovementController>();
 
         InventoryItem currentInventoryItem = item.AddComponent<InventoryItem>();
@@ -112,14 +125,12 @@ public class ItemBuilder : MonoBehaviour
         {
             currentInventoryItem.GetComponent<Image>().sprite = inventoryImage;
 
-            currentInventoryItem.Init(data.inventoryData, inventoryImage);
+            currentInventoryItem.Init(inventoryData, inventoryImage);
 
-            _inventoryItemList.Add(currentInventoryItem);
-
-            _itemPath = Path.Combine(_inventoryItemFolderPath, data.inventoryData.name + ".prefab");
+            _itemPath = Path.Combine(_inventoryItemFolderPath, itemData.itemName + ".prefab");
             PrefabUtility.SaveAsPrefabAsset(currentInventoryItem.gameObject, _itemPath);
 
-            CreateItemPrefab(data, sprite, currentInventoryItem);
+            CreateItemPrefab(itemData, sprite, currentInventoryItem);
         }
     }
 
@@ -135,10 +146,6 @@ public class ItemBuilder : MonoBehaviour
         if(currentItem != null) 
         {
             currentItem.Init(data, sprite);
-            currentItem.InventoryData = newInventoryItem.Data;
-
-            _itemData.Add(currentItem.Data);
-            _itemBaseList.Add(currentItem);
 
             _itemPath = Path.Combine(_ResourceFolderItemPath, data.itemName + ".prefab");
             PrefabUtility.SaveAsPrefabAsset(currentItem.gameObject, _itemPath);
