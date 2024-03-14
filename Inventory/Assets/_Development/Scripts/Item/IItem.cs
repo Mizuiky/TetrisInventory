@@ -4,9 +4,7 @@ using UnityEngine;
 
 public interface IItem
 {
-    public ItemData Data { get; set; }
-    public InventoryItemData InventoryData { get; set; }
-    public int ID { get; }
+    public ItemData Data { get; }
     public void Init(ItemData data, Sprite sprite);
     public void UpdateBoxCollider();
 }

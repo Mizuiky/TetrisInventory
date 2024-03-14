@@ -18,12 +18,13 @@ public class ItemBase : MonoBehaviour, IItem
     private Sprite _sprite;
 
     public ItemData Data { get { return _data; } set { _data = value; } }
-    public InventoryItemData InventoryData { get { return _data.inventoryData; } set { _data.inventoryData = value; } } 
-    public int ID { get { return _data.id; } }
 
     public void Init(ItemData data, Sprite sprite)
     {
+        _data = new ItemData();
         _data = data;
+        _data.spriteName = sprite.name;
+
         _sprite = sprite;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = sprite;
