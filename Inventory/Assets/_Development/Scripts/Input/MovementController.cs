@@ -8,10 +8,12 @@ public class MovementController : MonoBehaviour
 {
     private InventoryItem _item;
 
-    public delegate bool EventHandler(InventoryItem item, int line, int column);
-    public event EventHandler OnVerifyNextSlotAvailability;
+    public delegate bool EventHandler(int itemID, int line, int column);
+    public static event EventHandler OnVerifyNextSlotAvailability;
 
-    private Vector2 _movement;
+    public InventoryItem Item {  get { return _item; } }
+
+    private Vector3 _movement;
     private Vector3 _newPosition;
 
     private float _horizontal;
@@ -29,7 +31,7 @@ public class MovementController : MonoBehaviour
     private float _width;
     private float _height;
 
-    private int _inventoryColumns;
+    private int _inventoryMaxColumns;
     private int _inventoryLines;
 
     private float _selectedZposition;
@@ -50,7 +52,7 @@ public class MovementController : MonoBehaviour
 
     public void SetInventorySize(int inventoryMaxColumns, int inventoryMaxLines)
     {
-        _inventoryColumns = inventoryMaxColumns;
+        _inventoryMaxColumns = inventoryMaxColumns;
         _inventoryLines = inventoryMaxLines;
     }
 
@@ -66,9 +68,9 @@ public class MovementController : MonoBehaviour
         {
             _horizontal = Input.GetAxis("Horizontal");
             _vertical = Input.GetAxis("Vertical");
-            _movement = new Vector2(_horizontal, _vertical);
+            _movement = new Vector3(_horizontal, _vertical, 0);
 
-            if (_movement != Vector2.zero)
+            if (_movement != Vector3.zero)
             {
                 var hasSetPosition = MoveToPosition();
                 if (hasSetPosition)
@@ -76,6 +78,8 @@ public class MovementController : MonoBehaviour
                     _isNextPositionSet = true;
                     _timeElapsed = 0f;
                 }
+                else
+                    _movement = Vector3.zero;
             }
         }
         else if (_item.IsSelected && _isNextPositionSet)
@@ -114,13 +118,22 @@ public class MovementController : MonoBehaviour
 
     private bool MoveToPosition()
     {
-        int nextLine = _item.Data.slotPosition[0].line;
-        int nextColumn = _item.Data.slotPosition[0].column;
+        Debug.Log(Item);
+
+        var slots = _item.Data.slotPosition;
+
+        int currentLine = slots[0].line;
+        int currentColumn = slots[0].column;
+
+        int lastColumn = slots[slots.Length - 1].column;
+        int lastLine = slots[slots.Length - 1].line;
+
+        Debug.Log("Current slotData");
 
         if (_movement.x > 0)
         {
-            nextColumn++;
-            if (nextColumn > _inventoryColumns)
+            currentColumn++;
+            if (lastColumn + 1 > _inventoryMaxColumns)
                 return false;
 
             _newPosition = new Vector3(_item.Rect.localPosition.x + _slotWidth, _item.Rect.localPosition.y, _item.Rect.localPosition.z);
@@ -128,8 +141,8 @@ public class MovementController : MonoBehaviour
 
         else if (_movement.x < 0)
         {
-            nextColumn--;
-            if (nextColumn < 0)
+            currentColumn--;
+            if (currentColumn < 0)
                 return false;
 
             _newPosition = new Vector3(_item.Rect.localPosition.x - _slotWidth, _item.Rect.localPosition.y, _item.Rect.localPosition.z);
@@ -137,8 +150,8 @@ public class MovementController : MonoBehaviour
 
         else if (_movement.y > 0)
         {
-            nextLine--;
-            if (nextLine < 0)
+            currentLine--;
+            if (currentLine < 0)
                 return false;
 
             _newPosition = new Vector3(_item.Rect.localPosition.x, _item.Rect.localPosition.y + _slotHeight, _item.Rect.localPosition.z);
@@ -146,31 +159,39 @@ public class MovementController : MonoBehaviour
 
         else if (_movement.y < 0)
         {
-            nextLine++;
-            if (nextLine > _inventoryLines)
+            currentLine++;
+            if (lastLine + 1 > _inventoryLines)
                 return false;
 
             _newPosition = new Vector3(_item.Rect.localPosition.x, _item.Rect.localPosition.y - _slotHeight, _item.Rect.localPosition.z);
         }
 
-        return CheckNextPosition(nextLine, nextColumn);
+        var canPlace = CheckForConflicts(currentLine, currentColumn);
+        _item.SetCanPlaceItem(canPlace);
+
+        return true;
     }
 
-    private bool CheckNextPosition(int nextLine, int nextColumn)
+    private bool CheckForConflicts(int nextLine, int nextColumn)
     {
-        var hasCheckNewPositon = OnVerifyNextSlotAvailability?.Invoke(_item, nextLine, nextColumn);
+        var hasItemConflict = OnVerifyNextSlotAvailability?.Invoke(_item.Data.id, nextLine, nextColumn);
 
-        if (hasCheckNewPositon.HasValue && hasCheckNewPositon.Value)
+        if (hasItemConflict.HasValue && hasItemConflict.Value)
         {
+            Debug.Log("After hasItemConflict = true");
             for (int i = 0; i < _item.Data.slotPosition.GetLength(0); i++)
             {
                 Debug.Log($"Added item to slots: Line{_item.Data.slotPosition[i].line} Column{_item.Data.slotPosition[i].column}");
             }
-
-            return true;
-        }
-        else
             return false;
+        }
+        
+        Debug.Log("After hasItemConflict = false");
+        for (int i = 0; i < _item.Data.slotPosition.GetLength(0); i++)
+        {
+            Debug.Log($"Added item to slots: Line{_item.Data.slotPosition[i].line} Column{_item.Data.slotPosition[i].column}");
+        }
+        return true;                 
     }
 
     private void MoveItem()
