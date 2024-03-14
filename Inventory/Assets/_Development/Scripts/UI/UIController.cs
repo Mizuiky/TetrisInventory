@@ -7,32 +7,11 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] private Inventory _inventory;
     [SerializeField] private Color[] _colors;
-    [SerializeField] ColorTint _tint;
-
-    private Dictionary<int, Color> _itemColors;
 
     public void Init()
     {
-        InitDictionary();
-        _tint = new ColorTint();
-        _tint.Init(_itemColors.Count);
-
         GameManager.Instance.ItemManager.OnUpdateItem += UpdateInventory;
-    }
-
-    private void InitDictionary()
-    {
-        _itemColors = new Dictionary<int, Color>();
-
-        for (int i = 0; i < _colors.Length; i++)
-        {
-            _itemColors.Add(i, _colors[i]);
-        }
-    }
-
-    public Color GetColorById(int id)
-    {
-        return _itemColors[id];
+        MovementController.OnVerifyNextSlotAvailability += VerifySlotAvailability;
     }
 
     public void OpenInventory()
@@ -44,6 +23,11 @@ public class UIController : MonoBehaviour
             else
                 _inventory.gameObject.SetActive(true);
         }        
+    }
+
+    private bool VerifySlotAvailability(int itemID, int line, int column)
+    {
+        return _inventory.FindConflictOnNextMove(itemID, line, column);
     }
 
     public void UpdateInventory(InventoryItem item)
