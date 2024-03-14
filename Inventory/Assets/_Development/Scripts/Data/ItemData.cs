@@ -5,5 +5,4 @@ public class ItemData
     public int id;
     public int type;
     public string spriteName;
-    public InventoryItemData inventoryData;
 }
