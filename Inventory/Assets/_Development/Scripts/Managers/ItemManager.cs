@@ -2,7 +2,6 @@ using NaughtyAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 public class ItemManager
 {
@@ -18,20 +17,12 @@ public class ItemManager
 
     public void SendItemDataToInventory(ItemBase item)
     {
-        var currentItem = _items.FirstOrDefault(x => x.Data.id == item.Data.id);
         var inventoryItem = _inventoryItems.FirstOrDefault(x => x.Data.id == item.Data.id);
-
-        if (currentItem == null)
-        {
-            currentItem = item;
-            currentItem.InventoryData = inventoryItem.Data;
-            AddItem(currentItem);
-        }
-
-        UpdateInventory(inventoryItem);
+        if(inventoryItem != null)
+            OnUpdateInventory(inventoryItem);
     }
 
-    public void UpdateInventory(InventoryItem item)
+    public void OnUpdateInventory(InventoryItem item)
     {
         OnUpdateItem?.Invoke(item);
     }
@@ -42,11 +33,6 @@ public class ItemManager
         _inventoryItems = inventoryItems;
     }
 
-    public void AddItem(ItemBase item)
-    {
-        _items.Add(item);
-    }
-
     public void AddNewItem(ItemBase item, InventoryItem newInventoryItem)
     {
         _items.Add(item);
@@ -55,14 +41,17 @@ public class ItemManager
 
     public ItemBase GetItemById(int id)
     {
-        return _items.FirstOrDefault(x=>x.ID == id);
+        return _items.FirstOrDefault(x=>x.Data.id == id);
+    }
+
+    public bool CheckHasItem(int id)
+    {
+        if(_items.Count == 0) return false;
+        return _items.FirstOrDefault(x => x.Data.id == id);
     }
 
     public void UpdateInventoryItemList(InventoryItemData itemData)
     {
-        var itemToUpdate = _items.FirstOrDefault(x => x.Data.id == itemData.id).Data.inventoryData;
-        itemToUpdate = itemData;
-
         var InventoryItemToUpdate = _inventoryItems.FirstOrDefault(x => x.Data.id == itemData.id);
         InventoryItemToUpdate.Data = itemData;
 
