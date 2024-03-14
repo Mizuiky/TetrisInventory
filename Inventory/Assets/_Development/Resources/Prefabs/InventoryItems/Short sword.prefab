@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7230234676472304355
+--- !u!1 &3729432021989937222
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8032757002153049209}
-  - component: {fileID: 8356767413235791865}
-  - component: {fileID: 1121424294411715083}
-  - component: {fileID: 8951297006670299186}
-  - component: {fileID: 8909969655667613576}
+  - component: {fileID: 1549927150367615634}
+  - component: {fileID: 3949364261254310945}
+  - component: {fileID: 9133185209207751537}
+  - component: {fileID: 2238145526828897307}
+  - component: {fileID: 1749053869463097032}
+  - component: {fileID: 5971397046752545653}
   m_Layer: 0
-  m_Name: Short sword
+  m_Name: Short Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8032757002153049209
+--- !u!224 &1549927150367615634
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7230234676472304355}
+  m_GameObject: {fileID: 3729432021989937222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -39,21 +40,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 127, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8356767413235791865
+--- !u!222 &3949364261254310945
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7230234676472304355}
+  m_GameObject: {fileID: 3729432021989937222}
   m_CullTransparentMesh: 1
---- !u!114 &1121424294411715083
+--- !u!114 &9133185209207751537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7230234676472304355}
+  m_GameObject: {fileID: 3729432021989937222}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -77,13 +78,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8951297006670299186
+--- !u!114 &2238145526828897307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7230234676472304355}
+  m_GameObject: {fileID: 3729432021989937222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061122737cc34844aa4ecc0598ca1620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1749053869463097032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729432021989937222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5971397046752545653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3729432021989937222}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 002e06abfa4632846a50bb72d3234f83, type: 3}
@@ -91,8 +116,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     imageName: 2x1
-    name: Short sword
-    id: 2
+    name: Short Sword
+    id: 1
     qtd: 0
     description: Sword made of cooper
     slotPosition:
@@ -102,15 +127,3 @@ MonoBehaviour:
     - line: 0
       column: 0
       isEmpty: 0
---- !u!114 &8909969655667613576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7230234676472304355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c79ec6e553e9b054786ecacf1a2459f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
