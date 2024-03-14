@@ -2,18 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
     private Slot[,] _inventory;
     private Slot _currentAvailableSlot;
     private Transform _inventoryItemsParent;
-    private List<SlotPosition> _slotPositions;
+    private List<SlotPosition> _auxSlotPositions;
     private List<InventoryItem> _items;
     private TextMeshProUGUI _itemDescription;
 
@@ -22,6 +19,7 @@ public class Inventory : MonoBehaviour
    
     private bool availableSlot = false;
     private bool _canAddItem = false;
+    private bool _hasItemConflit = false;
 
     private float _slotWidth;
     private float _slotHeight;
@@ -33,7 +31,7 @@ public class Inventory : MonoBehaviour
         _inventory = new Slot[_lines, _columns];
         _inventory = slots;
         _items = new List<InventoryItem>();
-        _slotPositions = new List<SlotPosition>();
+        _auxSlotPositions = new List<SlotPosition>();
         _inventoryItemsParent = itemParent;
         _slotWidth = slotWidth;
         _slotHeight = slotHeight;
@@ -41,7 +39,7 @@ public class Inventory : MonoBehaviour
 
     public void SetItem(InventoryItem item)
     {
-         _slotPositions.Clear();
+         _auxSlotPositions.Clear();
 
         if (HasAddedItem(item))
             return;
@@ -54,7 +52,7 @@ public class Inventory : MonoBehaviour
 
                 if (availableSlot)
                 {
-                    _canAddItem = CheckCanAddItem(item, i, j);
+                    _canAddItem = TryAddItem(item, i, j);
                     if (_canAddItem)
                         break;                   
                 }
@@ -67,18 +65,7 @@ public class Inventory : MonoBehaviour
         _canAddItem = false;
     }
 
-    private bool OnCheckSlotAvailability(InventoryItem item, int nextLine, int nextColumn) 
-    {
-        if(CanStoreItem(item.Data, nextLine, nextColumn))
-        {
-            RemoveItemFromSlots(item.Data.slotPosition);
-            SetSlot(item);
-            return true;
-        }
-
-        return false;
-    }
-    private bool HasAddedItem(InventoryItem item) 
+    private bool HasAddedItem(InventoryItem item)
     {
         var inventoryItem = GetInventoryItemById(item.Data.id);
 
@@ -88,7 +75,7 @@ public class Inventory : MonoBehaviour
             GameManager.Instance.ItemManager.UpdateInventoryItemList(item.Data);
             return true;
         }
-          
+
         return false;
     }
 
@@ -104,64 +91,53 @@ public class Inventory : MonoBehaviour
             return false;
 
         return true;
-    }
+    }  
 
-    private bool CheckCanAddItem(InventoryItem item, int line, int column)
-    {     
-        if (CanStoreItem(item.Data, line, column))
+    private bool TryAddItem(InventoryItem item, int line, int column)
+    {
+        if (!CheckBoundsOverflow(item.Data, line, column))
+            return false;
+
+        if (!VerifyItemConfig(item.Data, line, column, false))
+            return false;
+        
+        var currentItem = SetInventoryItem(item);
+
+        if (currentItem != null)
         {
-            var currentItem = SetInventoryItem(item);
-
-            if (currentItem != null)
-            {
-                AddItem(currentItem);
-                _slotPositions.Clear();
-                return true;
-            }
+            AddItem(currentItem);
+            _auxSlotPositions.Clear();
+            return true;
         }
-           
+       
         return false;
     }
 
-    private InventoryItem SetInventoryItem(InventoryItem item)
-    {   
-        var newItem = GameManager.Instance.Spawner.Spawn(item.gameObject, _inventoryItemsParent);
-            
-        if (newItem != null)
-        {
-            var itemToAdd = newItem.GetComponent<InventoryItem>();
-            itemToAdd.Data = item.Data;
-            itemToAdd.SetProperties();
-            itemToAdd.Move.OnVerifyNextSlotAvailability += OnCheckSlotAvailability;
-            itemToAdd.Move.SetSlotSize(_slotWidth, _slotHeight);
-
-            itemToAdd.Move.SetInventorySize(_inventory.GetLength(1), _inventory.GetLength(0));
-
-            return itemToAdd;
-        }
-        
-        return null;
-    }
-
-    private bool CanStoreItem(InventoryItemData data, int line, int column)
+    private bool CheckBoundsOverflow(InventoryItemData data, int line, int column)
     {
-        var auxLine = line;
-        var auxColumn = column;
-
-        _slotPositions.Clear();
-
         var linesAvailable = _inventory.GetLength(0) - line;
         var columnsAvailable = _inventory.GetLength(1) - column;
 
         var qtdLinesItem = data.imageConfig.GetLength(0);
-        var qtdColumnsItem = data.imageConfig.GetLength(1);   
+        var qtdColumnsItem = data.imageConfig.GetLength(1);
 
         if (qtdColumnsItem > columnsAvailable)
             return false;
-        
-        
+
+
         else if (qtdLinesItem > linesAvailable)
             return false;
+
+        return true;
+    }
+
+    private bool VerifyItemConfig(InventoryItemData data, int line, int column, bool detectItemConflict)
+    {
+        _auxSlotPositions.Clear();
+
+        var auxLine = line;
+        var auxColumn = column;
+        var hasConflict = false;
 
         for (int i = 0; i < data.imageConfig.GetLength(0); i++)
         {
@@ -169,7 +145,7 @@ public class Inventory : MonoBehaviour
             {
                 if (data.imageConfig[i, j] == 0)
                 {
-                    _slotPositions.Add(new SlotPosition(auxLine, auxColumn, true));
+                    _auxSlotPositions.Add(new SlotPosition(auxLine, auxColumn, true));
 
                     if (j == data.imageConfig.GetLength(1) - 1)
                         auxColumn = column;
@@ -177,34 +153,63 @@ public class Inventory : MonoBehaviour
                         auxColumn++;
 
                     continue;
-                }  
-                
-                else if (data.imageConfig[i, j] == 1 && _inventory[auxLine, auxColumn].HasItem && data.id != _inventory[auxLine,auxColumn].Data.attachedItemId)
-                    return false;           
-                
+                }
+
+                else if (data.imageConfig[i, j] == 1 && _inventory[auxLine, auxColumn].HasItem && data.id != _inventory[auxLine, auxColumn].Data.attachedItemId)
+                {
+                    if (!detectItemConflict)
+                        return false;
+                    
+                    _auxSlotPositions.Add(new SlotPosition(auxLine, auxColumn, false));
+                    hasConflict = true;
+                    auxColumn++;                   
+                }
+                    
                 else
-                {             
-                    _slotPositions.Add(new SlotPosition(auxLine, auxColumn, false));
-                    auxColumn++;                  
+                {
+                    _auxSlotPositions.Add(new SlotPosition(auxLine, auxColumn, false));
+                    auxColumn++;
                 }
 
                 if (j == data.imageConfig.GetLength(1) - 1)
                     auxColumn = column;
             }
 
-            auxLine++;            
+            auxLine++;
         }
 
-         _currentAvailableSlot = _inventory[line, column];
+        _currentAvailableSlot = _inventory[line, column];
 
-        return true;
+        if(!detectItemConflict)
+            return true;
+
+        return hasConflict;
+    }
+
+    private InventoryItem SetInventoryItem(InventoryItem item)
+    {
+        var newItem = GameManager.Instance.Spawner.Spawn(item.gameObject, _inventoryItemsParent);
+
+        if (newItem != null)
+        {
+            var itemToAdd = newItem.GetComponent<InventoryItem>();
+            itemToAdd.Data = item.Data;
+
+            itemToAdd.SetComponents();
+            itemToAdd.Move.SetSlotSize(_slotWidth, _slotHeight);
+            itemToAdd.Move.SetInventorySize(_inventory.GetLength(1) - 1, _inventory.GetLength(0) - 1);
+
+            return itemToAdd;
+        }
+
+        return null;
     }
 
     private void AddItem(InventoryItem item)
     {
         item.Move.SetPosition(_inventoryItemsParent, _currentAvailableSlot);
 
-        SetSlot(item);
+        SetSlotPosition(item.Data, false);
 
         item.Qtd++;
 
@@ -213,43 +218,71 @@ public class Inventory : MonoBehaviour
         GameManager.Instance.ItemManager.UpdateInventoryItemList(item.Data);
     }
 
-    private void SetSlot(InventoryItem item)
+    private void SetSlotPosition(InventoryItemData data, bool hasDetectItemConflict)
     {
         int count = 0;
-        var imageData = item.Data.imageConfig;
-
-        var slots = _slotPositions.ToArray();
+        var imageData = data.imageConfig;
+        var slots = _auxSlotPositions.ToArray();
 
         for (int i = 0; i < imageData.GetLength(0); i++)
         {
             for (int j = 0; j < imageData.GetLength(1); j++)
             {
                 var config = slots[count];
-                item.Data.slotPosition[count] = config;
+                data.slotPosition[count] = config;
 
                 if (imageData[i, j] == 0)
                 {
-                    item.Data.slotPosition[count].isEmpty = true;
+                    data.slotPosition[count].isEmpty = true;
                     count++;
                     continue;
                 }
 
-                item.Data.slotPosition[i].isEmpty = false;
-                _inventory[config.line, config.column].AddItem(item.Data.id);
+                data.slotPosition[i].isEmpty = false;
+
+                if(!hasDetectItemConflict)
+                    _inventory[config.line, config.column].AddItem(data.id);
+
                 count++;
             }
         }
     }
 
-    private void RemoveItemFromSlots(SlotPosition[] slots)
+    public bool FindConflictOnNextMove(int id, int nextLine, int nextColumn) 
+    {
+        var itemData = GetInventoryItemById(id).Data;
+
+        _hasItemConflit = false;
+
+        SlotPosition [] oldSlots = new SlotPosition[itemData.slotPosition.Length];
+        oldSlots = itemData.slotPosition;
+
+        _hasItemConflit = VerifyItemConfig(itemData, nextLine, nextColumn, true);
+        
+        RemoveItemFromSlots(oldSlots, itemData.id);
+        SetSlotPosition(itemData, _hasItemConflit);
+
+        GameManager.Instance.ItemManager.UpdateInventoryItemList(itemData);
+
+        Debug.Log(_inventory);
+
+        if (_hasItemConflit)
+            return true;
+       
+        return false;
+    }
+
+    private void RemoveItemFromSlots(SlotPosition[] slots, int id)
     {
         for (int i = 0; i < slots.Length; i++)
         {
             var slot = slots[i];
             Debug.Log($"Removed Item from slots: Line{slot.line} Column{slot.column}");
 
-            if (!slot.isEmpty)
-                _inventory[slot.line, slot.column].RemoveItem();
+            if (_inventory[slot.line, slot.column].HasItem && _inventory[slot.line, slot.column].Data.attachedItemId != id)
+                continue;
+
+            _inventory[slot.line, slot.column].RemoveItem();
         }
     }
 
