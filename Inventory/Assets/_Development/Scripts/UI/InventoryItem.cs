@@ -2,6 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum ColorType
+{
+    SelectedItem,
+    ReleasedItem,
+    CantPlaceItem
+}
+
 [RequireComponent(typeof(RectTransform), typeof(Image))]
 public class InventoryItem : MonoBehaviour, IInventoryItem
 {
@@ -13,21 +20,20 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
     private TextMeshProUGUI _qtd;
     private Sprite _sprite;
+    private ColorTint _colorTint;
 
-    private Color _green;
-    private Color _red;
-    private Color _originalItemColor;
     private float _width;
     private float _height;
 
     private bool _isSelected;
+    private bool _canPlaceItem;
 
     public InventoryItemData Data { get { return _data; } set { _data = value; } }
-    public Image Image { get { return _image; } }
-    public int Qtd { get { return _data.qtd; } set { _data.qtd = value; } }
     public RectTransform Rect { get { return _rect; } set { _rect = value; } }
-    public bool IsSelected { get { return _isSelected; } }
     public MovementController Move { get { return _move; } }
+    public Image Image { get { return _image; } }
+    public int Qtd { get { return _data.qtd; } set { _data.qtd = value; } }    
+    public bool IsSelected { get { return _isSelected; } }   
 
     public void Init(InventoryItemData data, Sprite inventoryImage)
     {
@@ -41,29 +47,35 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
     public void InitializeComponent()
     {
         _isSelected = false;
-        SetProperties();     
+        _canPlaceItem = false;
+        SetComponents();     
     }
 
-    public void SetProperties()
+    public void SetComponents()
     {
         if (_rect == null)
+        {
             _rect = GetComponent<RectTransform>();
-
+            _rect.localPosition = Vector3.zero;
+        }
+            
         if (_image == null)
             _image = GetComponent<Image>();
 
         _image.SetNativeSize();
         SetSize();
 
-        _originalItemColor = _image.color;
-
         if (_move == null)
         {
             _move = GetComponent<MovementController>();
             _move.Init(this, _width, _height);
         }         
-
-        _rect.localPosition = Vector3.zero;
+        
+        if(_colorTint == null)
+        {
+            _colorTint = GetComponent<ColorTint>();
+            _colorTint.Init(_image);
+        }
     }
 
     public void SetSize()
@@ -72,28 +84,37 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         _height = _image.rectTransform.sizeDelta.y;
     }
 
+    public void SetCanPlaceItem(bool canPlaceItem)
+    {
+        _canPlaceItem = canPlaceItem;
+        if (!_canPlaceItem)
+            _colorTint.SetColor(ColorType.CantPlaceItem);
+        else
+            _colorTint.SetColor(ColorType.SelectedItem);
+    }
+
     public void UpdateQtd()
     {
         _qtd.text = Qtd.ToString();
     }
 
-    public void SetColor(Color color)
-    {
-        _image.color = color;
-    }
-
     public void Select()
     {
         _isSelected = true;
+        _canPlaceItem = true;
         _move.SetSelectedPosition(_isSelected);
-        SetColor(Color.yellow);
+        _colorTint.SetColor(ColorType.SelectedItem);
     }
 
-    public void Unselect()
+    public void Release()
     {
-        _isSelected = false;
-        _move.SetSelectedPosition(_isSelected);
-        SetColor(_originalItemColor);
+        if(_canPlaceItem)
+        {
+            _isSelected = false;
+            _canPlaceItem = false;
+            _move.SetSelectedPosition(_isSelected);
+            _colorTint.SetColor(ColorType.ReleasedItem);
+        }
     }
 
     public void OnUse()
