@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using System.IO;
+using System.Globalization;
 
 public enum FileType
 {
@@ -11,28 +12,29 @@ public enum FileType
 
 public class SaveManager
 {
-    [SerializeField] List<ItemData> _itemData;
-    List<SlotData> _inventorySlotData;
+    private List<ItemData> _itemData;
+    private List<InventoryItemData> _inventoryItemData;
 
     private string _directoryPath;
     private string _SaveDataDirectory = "SaveData";
-    private string _itemDataFile = "ItemData.json";
-    private string _inventoryFile = "InventoryData.json";
+    private string _itemDataFileName = "ItemData.json";
+    private string _inventoryItemFileName = "InventoryItemData.json";
+    //add one file to inventory data
 
-    private string _itemPath;
-    private string _inventoryPath;
+    private string _itemDataPath;
+    private string _inventoryItemDataPath;
 
     public List<ItemData> ItemData { get { return _itemData; } }
-    public List<SlotData> InventoryData { get { return _inventorySlotData; } }
+    public List<InventoryItemData> InventoryItemData { get { return _inventoryItemData; } }
 
     public void Init()
     {
         _directoryPath = Path.Combine(Application.persistentDataPath, _SaveDataDirectory);
-        _itemPath = Path.Combine(_directoryPath, _itemDataFile);
-        _inventoryPath = Path.Combine(_directoryPath, _inventoryFile);
+        _itemDataPath = Path.Combine(_directoryPath, _itemDataFileName);
+        _inventoryItemDataPath = Path.Combine(_directoryPath, _inventoryItemFileName);
 
         _itemData = new List<ItemData>();
-        _inventorySlotData = new List<SlotData>();
+        _inventoryItemData = new List<InventoryItemData>();
 
         //Load items Data
         LoadData();
@@ -42,62 +44,66 @@ public class SaveManager
     {
         if (!Directory.Exists(_directoryPath))
             Directory.CreateDirectory(_directoryPath);      
-       
-        var ItemDataRead = Read<ItemData>(_itemPath, out _itemData);
-        if(!ItemDataRead)
-        {
-            try
-            {
-                File.WriteAllText(_itemPath, "New Item Data File");
-                Debug.Log("Item Data sucessfull created");
-            }
-            catch(Exception e) 
-            {
-                Debug.LogWarning("Exception catch when reading list: " + e);
-            }              
-        }
-                
 
-        var InventoryDataRead = Read<SlotData>(_inventoryPath, out _inventorySlotData);
-        if (!InventoryDataRead)
-        {
-            try
-            {
-                File.WriteAllText(_inventoryPath, "New Inventory Data File");
-                Debug.Log("Inventory Data sucessfull created");
-            }
-            catch (Exception e)
-            {
-                Debug.LogWarning("Exception catch when reading list: " + e);
-            }
-        }
+        SetPathToRead<ItemData>(_itemDataPath, _itemDataFileName, FileType.ItemData);
+        SetPathToRead<InventoryItemData>(_inventoryItemDataPath, _inventoryItemFileName, FileType.InventoryData);
     }
 
-    public bool Read<T>(string file, out List<T> result)
+    private void SetPathToRead<T>(string path, string fileName, FileType type)
     {
-        result = default(List<T>);
+        List<T> data = null;
+        bool canReadData = false;
+
+        canReadData = Read<T>(path, out data);
+
+        if (!canReadData)
+        {
+            try
+            {
+                File.WriteAllText(path, fileName);
+                Debug.Log($"{fileName} sucessfull created");
+            }
+            catch
+            {
+                Debug.LogWarning("Exception catch when writing list: Couldnt create new one");
+            }
+        }
+        else
+        {          
+            if(data != null)
+            {
+                if (type == FileType.ItemData)
+                    _itemData = data as List<ItemData>;
+                else if (type == FileType.InventoryData)
+                    _inventoryItemData = data as List<InventoryItemData>;
+            }
+        }         
+    }
+
+    public bool Read<T>(string path, out List<T> result)
+    {
+        result = null;
         
         try
         {
-            if (File.Exists(file))
+            if (File.Exists(path))
             {
-                string jsonData = File.ReadAllText(file);
+                string jsonData = File.ReadAllText(path);
 
                 if (!string.IsNullOrEmpty(jsonData))
-                {
+                {                   
                     result = JsonHelper.Deserialize<List<T>>(jsonData);
 
-                   if(result != null)
-                   {
-                       Debug.Log("Data file sucessfull read");
-                       return true;
-                   }  
+                    if (result != null)
+                        Debug.Log("Data file sucessfull read");
+                    return true;                  
                 }
             }
         }
-        catch (Exception e)
+        catch
         {
-            Debug.LogWarning("Exception catch when reading list: " + e);
+            Debug.LogWarning("Exception catch when reading list: Couldn`t deserialize file");
+            return true;
         }
 
         return false;
@@ -106,20 +112,26 @@ public class SaveManager
     public void Save<T>(List<T>list, FileType type)
     {
         string jsonData = JsonHelper.Serialize(list);
+        string path = "";
+
+        if (type == FileType.ItemData)
+            path = _itemDataPath;
+
+        else if (type == FileType.InventoryData)
+            path = _inventoryItemDataPath;
 
         if (jsonData != null)
         {
             try
-            {
-                if (type == FileType.ItemData)
-                    File.WriteAllText(_itemPath, jsonData);
-
-                else if (type == FileType.InventoryData)
-                    File.WriteAllText(_inventoryPath, jsonData);
+            { 
+                using(StreamWriter writer = new StreamWriter(path, false))
+                { 
+                    writer.Write(jsonData);
+                }    
             }
-            catch (Exception e)
+            catch
             {
-                Debug.LogWarning("Exception catch when writing list: " + e);
+                Debug.LogWarning("Exception catch when writing list: Couldn`t serialize file");
             }
         }
     }
