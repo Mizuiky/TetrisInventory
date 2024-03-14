@@ -28,7 +28,7 @@ public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExi
                 else
                 {
                     slot.HighLight(false);
-                    inventoryItem.Unselect();                  
+                    inventoryItem.Release();                  
                 }                   
             }
         }      
