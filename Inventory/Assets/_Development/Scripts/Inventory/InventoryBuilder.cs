@@ -93,9 +93,9 @@ public class InventoryBuilder : MonoBehaviour
     private void BuildInventory()
     {
         var newInventory = _inventoryComponent.GetComponent<Inventory>();
-        newInventory.Init(_inventory, _objItems.transform, _slotWidth, _slotHeight);
+        newInventory.Init(_inventory, _objItems.transform);
 
-        GameManager.Instance.UIController.SetInventory(newInventory);             
+        GameManager.Instance.UIController.SetInventory(newInventory, _slotWidth, _slotHeight);             
     }
 
     private void GetSlotSize()
