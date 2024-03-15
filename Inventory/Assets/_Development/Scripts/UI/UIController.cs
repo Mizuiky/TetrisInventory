@@ -5,43 +5,42 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private Inventory _inventory;
+    [SerializeField] private ItemSpawner _spawner;
+
     [SerializeField] private Color[] _colors;
+
+    private InventoryController _inventoryController;
 
     public void Init()
     {
         GameManager.Instance.ItemManager.OnUpdateItem += UpdateInventory;
         MovementController.OnVerifyNextSlotAvailability += VerifySlotAvailability;
+        _inventoryController = new InventoryController(_spawner);
     }
 
     public void OpenInventory()
     {
-        if(_inventory != null)
-        {
-            if(_inventory.gameObject.activeSelf)
-                _inventory.gameObject.SetActive(false);
-            else
-                _inventory.gameObject.SetActive(true);
-        }        
+        if(_inventoryController != null)
+            _inventoryController.Open();
     }
 
     private bool VerifySlotAvailability(int itemID, int line, int column)
     {
-        return _inventory.FindConflictOnNextMove(itemID, line, column);
+        return _inventoryController.FindConflictOnNextMove(itemID, line, column);
     }
 
     public void UpdateInventory(InventoryItem item)
     {
-        _inventory.SetItem(item);
+        _inventoryController.SetItem(item);
     }
 
-    public void SetInventory(Inventory inventory)
+    public void SetInventory(Inventory inventory, float slotWidth, float slotHeight)
     {
-        _inventory = inventory;
+        _inventoryController.Init(inventory, slotWidth, slotHeight);
     }
 
     public InventoryItem GetItem(int id)
     {
-        return _inventory.GetInventoryItemById(id);
+        return _inventoryController.GetInventoryItem(id);
     }
 }
