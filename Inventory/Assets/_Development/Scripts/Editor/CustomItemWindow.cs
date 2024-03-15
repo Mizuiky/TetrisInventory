@@ -78,8 +78,6 @@ public class CustomItemWindow : EditorWindow
         {
             ShowWarningMessage();
             EditorGUILayout.EndVertical();
-            //could not create item, same id change id
-            //criar evento no item builder dizendo sew ja tem o id se tiver volta pra ca senao nao volta
         }
 
         EditorGUILayout.EndScrollView();

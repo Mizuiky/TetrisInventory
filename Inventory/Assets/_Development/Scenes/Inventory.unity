@@ -544,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebe27c9da2cca74bba190154fcccf27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventory: {fileID: 0}
+  _spawner: {fileID: 1241979609}
   _colors: []
 --- !u!114 &499921592 stripped
 MonoBehaviour:
@@ -963,7 +963,7 @@ MonoBehaviour:
   _inventoryBuilder: {fileID: 702001242}
   _itemBuilder: {fileID: 499921592}
   _uiController: {fileID: 405202933}
-  _spawner: {fileID: 1241979609}
+  _itemSpawner: {fileID: 0}
 --- !u!4 &1241979608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6382070190421350465, guid: 6b62ebe9ce11ae946b55581b403b615a, type: 3}
