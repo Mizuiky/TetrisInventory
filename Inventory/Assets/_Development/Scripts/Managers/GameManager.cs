@@ -5,14 +5,14 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private InventoryBuilder _inventoryBuilder;
     [SerializeField] private ItemBuilder _itemBuilder;
     [SerializeField] private UIController _uiController;
-    [SerializeField] private Spawner _spawner;
+    [SerializeField] private ItemSpawner _itemSpawner;
     private SaveManager _saveManager;
 
     private ItemManager _itemManager;
     public ItemManager ItemManager { get { return _itemManager; } }
     public ItemBuilder ItemBuilder { get { return _itemBuilder; } }
     public UIController UIController { get { return _uiController; } }
-    public Spawner Spawner { get {  return _spawner; } }
+    public ItemSpawner ItemSpawner { get {  return _itemSpawner; } }
   
     public SaveManager SaveManager { get { return _saveManager; } }
 
