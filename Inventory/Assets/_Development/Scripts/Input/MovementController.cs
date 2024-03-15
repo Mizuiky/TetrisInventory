@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class MovementController : MonoBehaviour
 {
@@ -85,8 +81,8 @@ public class MovementController : MonoBehaviour
         else if (_item.IsSelected && _isNextPositionSet)
             MoveItem();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-            Rotate();
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    Rotate();
     }
 
     public void Rotate()
@@ -127,8 +123,6 @@ public class MovementController : MonoBehaviour
 
         int lastColumn = slots[slots.Length - 1].column;
         int lastLine = slots[slots.Length - 1].line;
-
-        Debug.Log("Current slotData");
 
         if (_movement.x > 0)
         {
