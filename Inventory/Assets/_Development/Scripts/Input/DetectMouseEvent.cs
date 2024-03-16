@@ -6,6 +6,7 @@ public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     [SerializeField] private Slot slot;
     private InventoryItem inventoryItem;
+    public static Action<string> OnSetItemDescription;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -25,12 +26,15 @@ public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExi
             if(inventoryItem != null) 
             {
                 if (!inventoryItem.IsSelected)
-                    inventoryItem.Select();                  
-
+                {
+                    inventoryItem.Select();
+                    OnSetItemDescription?.Invoke(inventoryItem.Data.description);
+                }
                 else
                 {
                     slot.HighLight(false);
-                    inventoryItem.Release();                  
+                    inventoryItem.Release();
+                    OnSetItemDescription?.Invoke("");
                 }                   
             }
         }      

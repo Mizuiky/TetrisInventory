@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private ItemSpawner _spawner;
 
     [SerializeField] private Color[] _colors;
+    [SerializeField] private TextMeshProUGUI _inventoryItemDescription;
 
     private InventoryController _inventoryController;
 
@@ -15,6 +17,9 @@ public class UIController : MonoBehaviour
     {
         GameManager.Instance.ItemManager.OnUpdateItem += UpdateInventory;
         MovementController.OnVerifyNextSlotAvailability += VerifySlotAvailability;
+        DetectMouseEvent.OnSetItemDescription += SetDescription;
+
+        _inventoryItemDescription.text = "";
         _inventoryController = new InventoryController(_spawner, _colors);
     }
 
@@ -42,5 +47,10 @@ public class UIController : MonoBehaviour
     public InventoryItem GetItem(int id)
     {
         return _inventoryController.GetInventoryItem(id);
+    }
+
+    public void SetDescription(string description) 
+    {
+        _inventoryItemDescription.text = description; 
     }
 }
