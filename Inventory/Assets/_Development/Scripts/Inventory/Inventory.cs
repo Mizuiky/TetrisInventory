@@ -49,6 +49,8 @@ public class Inventory: MonoBehaviour
         if (inventoryItem != null)
         {
             inventoryItem.Qtd++;
+            inventoryItem.UpdateQtd();
+
             GameManager.Instance.ItemManager.UpdateInventoryItemList(item.Data);
             return true;
         }
@@ -82,6 +84,7 @@ public class Inventory: MonoBehaviour
         SetSlotPosition(item.Data, _slotPositions, false);
 
         item.Qtd++;
+        item.UpdateQtd();
 
         _items.Add(item);
 
