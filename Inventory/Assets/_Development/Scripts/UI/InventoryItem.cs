@@ -45,6 +45,8 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         _data = data;
         _sprite = inventoryImage;
         _canBeSelected = true;
+        _qtd = GetComponentInChildren<TextMeshProUGUI>();
+        _qtd.text = "";
 
         InitializeComponent();       
     }
@@ -52,18 +54,24 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
     public void InitializeComponent()
     {
         _isSelected = false;
-        _canPlaceItem = false;
+        _canPlaceItem = false;    
         SetComponents();     
     }
 
-    public void SetComponents()
+    private void SetComponents()
     {
         if (_rect == null)
         {
             _rect = GetComponent<RectTransform>();
             _rect.localPosition = Vector3.zero;
         }
-            
+
+        if (_qtd == null)
+        {
+            _qtd = GetComponentInChildren<TextMeshProUGUI>();
+            _qtd.text = "";
+        }
+                      
         if (_image == null)
             _image = GetComponent<Image>();
 
@@ -83,7 +91,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         }
     }
 
-    public void SetSize()
+    private void SetSize()
     {
         _width = _image.rectTransform.sizeDelta.x;
         _height = _image.rectTransform.sizeDelta.y;
