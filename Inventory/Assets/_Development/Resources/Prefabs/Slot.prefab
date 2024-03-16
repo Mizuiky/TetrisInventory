@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 146, y: 246}
+  m_AnchoredPosition: {x: 87, y: 208}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8816425787442169777
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 05ecb79b8c7c38b41bdd4bae0263c05a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4d7a8e95249c142debd129c70b8ae108, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,17 +89,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ed0491ca731ff4f8cb9554085a89fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _image: {fileID: 0}
-  _index: 
-  _itemData:
-    imageName: 
-    name: 
-    id: 0
-    qtd: 0
-    SlotQuantity: 0
-    description: 
-    inventoryIndex: 
-  _rect: {fileID: 0}
+  _image: {fileID: 2684542189980795459}
+  _rect: {fileID: 4470197702753807007}
+  _slotData:
+    attachedItemId: 0
+    index: 
+    hasItem: 0
 --- !u!114 &8841241463647828875
 MonoBehaviour:
   m_ObjectHideFlags: 0

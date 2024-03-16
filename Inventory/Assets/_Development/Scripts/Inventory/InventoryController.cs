@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryController
@@ -8,6 +9,7 @@ public class InventoryController
 
     private Slot _currentAvailableSlot;
     private List<SlotPosition> _auxSlotPositions;
+    private List<int> _colorID;
 
     private float _slotWidth;
     private float _slotHeight;
@@ -18,10 +20,14 @@ public class InventoryController
     private bool availableSlot = false;
     private bool _canAddItem = false;
     private bool _hasItemConflit = false;
+    private Color[] _colors;
+    private int _randomColorID;
 
-    public InventoryController(ItemSpawner itemSpawner)
+    public InventoryController(ItemSpawner itemSpawner, Color[] colors)
     {
         _itemSpawner = itemSpawner;
+        _colors = colors;
+        _colorID = new List<int>();
     }
 
     public void Open()
@@ -39,6 +45,20 @@ public class InventoryController
 
         _slotWidth = slotWidth;
         _slotHeight = slotHeight;
+    }
+
+    private int GetRandomColor()
+    {
+        var randomColorID = Random.Range(0, _colors.Length);
+
+        while(_colorID.Contains(randomColorID))
+        {        
+            randomColorID = Random.Range(0, _colors.Length);
+        }
+
+        _colorID.Add(randomColorID);
+
+        return randomColorID;
     }
 
     public void SetItem(InventoryItem item)
@@ -84,6 +104,10 @@ public class InventoryController
         {
             currentItem.Move.SetSlotSize(_slotWidth, _slotHeight);
             currentItem.Move.SetInventorySize(_inventoryColumns - 1, _inventoryLines - 1);
+
+            _randomColorID = GetRandomColor();
+
+            currentItem.ColorTint.SetColor(_colors[_randomColorID]);
 
             _inventory.AddItem(currentItem, _currentAvailableSlot, _auxSlotPositions);
             _auxSlotPositions.Clear();
@@ -187,6 +211,4 @@ public class InventoryController
     {
         return _inventory.GetInventoryItemById(id);
     }
-
-
 }

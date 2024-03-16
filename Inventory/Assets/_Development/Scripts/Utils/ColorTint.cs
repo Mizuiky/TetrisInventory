@@ -14,7 +14,6 @@ public class ColorTint : MonoBehaviour
     public void Init(Image image)
     {
         _image = image;
-        _originalColor = image.color;
         _selectedColor = ColorToHex("#3EDB83");
         _cantPlaceColor = ColorToHex("#DB3D3D");
     }
@@ -31,7 +30,7 @@ public class ColorTint : MonoBehaviour
         return _originalColor;
     }
 
-    public void SetColor(ColorType type)
+    public void SetColorByType(ColorType type)
     {
         switch(type)
         {
@@ -42,5 +41,11 @@ public class ColorTint : MonoBehaviour
             case ColorType.CantPlaceItem: _image.color = _cantPlaceColor;
                 break;
         }       
+    }
+
+    public void SetColor(Color color) 
+    {
+        _originalColor = color;
+        _image.color= color;
     }
 }

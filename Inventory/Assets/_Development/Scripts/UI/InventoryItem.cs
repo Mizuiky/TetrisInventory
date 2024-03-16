@@ -28,19 +28,23 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
 
     private bool _isSelected;
     private bool _canPlaceItem;
+    private bool _canBeSelected;
 
     public InventoryItemData Data { get { return _data; } set { _data = value; } }
     public RectTransform Rect { get { return _rect; } set { _rect = value; } }
     public MovementController Move { get { return _move; } }
+    public ColorTint ColorTint { get { return _colorTint; } }
     public Image Image { get { return _image; } }
     public int Qtd { get { return _data.qtd; } set { _data.qtd = value; } }    
     public bool IsSelected { get { return _isSelected; } }   
+    public bool CanBeSelected { get { return _canBeSelected; } set { _canBeSelected = value; } }
 
     public void Init(InventoryItemData data, Sprite inventoryImage)
     {
         _data = new InventoryItemData();
         _data = data;
         _sprite = inventoryImage;
+        _canBeSelected = true;
 
         InitializeComponent();       
     }
@@ -89,9 +93,9 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
     {
         _canPlaceItem = canPlaceItem;
         if (!_canPlaceItem)
-            _colorTint.SetColor(ColorType.CantPlaceItem);
+            _colorTint.SetColorByType(ColorType.CantPlaceItem);
         else
-            _colorTint.SetColor(ColorType.SelectedItem);
+            _colorTint.SetColorByType(ColorType.SelectedItem);
     }
 
     public void UpdateQtd()
@@ -104,7 +108,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         _isSelected = true;
         _canPlaceItem = true;
         _move.SetSelectedPosition(_isSelected);
-        _colorTint.SetColor(ColorType.SelectedItem);
+        _colorTint.SetColorByType(ColorType.SelectedItem);      
     }
 
     public void Release()
@@ -114,7 +118,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
             _isSelected = false;
             _canPlaceItem = false;
             _move.SetSelectedPosition(_isSelected);
-            _colorTint.SetColor(ColorType.ReleasedItem);
+            _colorTint.SetColorByType(ColorType.ReleasedItem);
         }
     }
 

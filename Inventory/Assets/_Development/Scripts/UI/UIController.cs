@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
     {
         GameManager.Instance.ItemManager.OnUpdateItem += UpdateInventory;
         MovementController.OnVerifyNextSlotAvailability += VerifySlotAvailability;
-        _inventoryController = new InventoryController(_spawner);
+        _inventoryController = new InventoryController(_spawner, _colors);
     }
 
     public void OpenInventory()
