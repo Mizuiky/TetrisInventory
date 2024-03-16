@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemBuilder : MonoBehaviour
 {
+    [SerializeField] GameObject _QtdPrefabField;
     private List<ItemData> _itemData;
     private List<InventoryItemData> _inventoryItemData;
 
@@ -117,13 +119,21 @@ public class ItemBuilder : MonoBehaviour
         item.AddComponent<Image>();
         item.AddComponent<ColorTint>();
         item.AddComponent<MovementController>();
-
         InventoryItem currentInventoryItem = item.AddComponent<InventoryItem>();
+        
+        Image img = currentInventoryItem.GetComponent<Image>();
+        img.sprite = inventoryImage;
+
+        var height = img.sprite.rect.height;
+        var width = img.sprite.rect.width;
+
+        var bottomRightCorner = new Vector3(width/2 -32, - height/2 + 32, 0);
+
+        _QtdPrefabField = GameManager.Instance.ItemSpawner.Spawn(_QtdPrefabField, currentInventoryItem.transform);
+        _QtdPrefabField.gameObject.transform.localPosition = bottomRightCorner;
 
         if (currentInventoryItem != null)
         {
-            currentInventoryItem.GetComponent<Image>().sprite = inventoryImage;
-
             currentInventoryItem.Init(inventoryData, inventoryImage);
 
             _itemPath = Path.Combine(_inventoryItemFolderPath, itemData.itemName + ".prefab");

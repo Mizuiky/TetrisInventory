@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92de9e7ae317f194c9c46f687d744c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _QtdPrefabField: {fileID: 8457586862094136622, guid: cf302f6ef7680df4b8e370772179afea, type: 3}

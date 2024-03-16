@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3842212441112719146}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slotPrefab: {fileID: 7106546544578478256, guid: 3825574866629554db5d119481e85b9a, type: 3}
   _parent: {fileID: 0}
-  _normalSlot: {fileID: 21300000, guid: 05ecb79b8c7c38b41bdd4bae0263c05a, type: 3}
+  _normalSlot: {fileID: 21300000, guid: 4d7a8e95249c142debd129c70b8ae108, type: 3}
   _highLightedSlot: {fileID: 21300000, guid: 814dcab6a850943da9270f73aedd95f5, type: 3}
-  _startX: 0
-  _startY: 0
-  _lines: 5
-  _columns: 5
+  _startX: -240
+  _startY: 200
+  _lines: 6
+  _columns: 10
