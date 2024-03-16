@@ -265,10 +265,6 @@ poderia ter usado scritable objects mas acredito que uma tool fica mais intuitiv
 
 ---
 
-## Item precisa mudar para cor vermelha caso haja um outro item na posicao que ele ira se mover
-
----
-
 ## Melhorar de forma visual a matriz de mapeamento da peca  
 
 - A matriz de 1 e 0 mapeia os campos da peca que nao sao transparentes
