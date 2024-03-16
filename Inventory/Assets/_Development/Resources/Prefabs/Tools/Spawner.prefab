@@ -44,5 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1f5798ed9458e47b1252d1f0693b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 0}
-  ItemIdToSpawn: 10
+  ItemIdToSpawn: 0

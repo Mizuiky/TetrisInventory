@@ -24,7 +24,7 @@ public class ItemSpawner : MonoBehaviour
             var itemToAdd = newItem.GetComponent<InventoryItem>();
             itemToAdd.Data = item.Data;
 
-            itemToAdd.SetComponents();
+            itemToAdd.InitializeComponent();
             return itemToAdd;
         }
 
