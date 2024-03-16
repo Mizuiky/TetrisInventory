@@ -1,1 +1,1024 @@
-[{"imageName":"3x1","name":"Long Sword","id":0,"qtd":0,"description":"Sword made of iron","slotPosition":[{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false}],"imageConfig":[[1,1,1]]},{"imageName":"2x1","name":"Short Sword","id":1,"qtd":0,"description":"Sword made of cooper","slotPosition":[{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false}],"imageConfig":[[1,1]]},{"imageName":"3x3","name":"Treasure Chest","id":2,"qtd":0,"description":"Chest full of coins","slotPosition":[{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false},{"line":0,"column":0,"isEmpty":false}],"imageConfig":[[1,1,1],[1,1,1],[1,1,1]]}]
+[
+    {
+        "imageName": "3x3 c",
+        "name": "Long Rope",
+        "id": 0,
+        "qtd": 0,
+        "description": "Rope used to climb",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                0,
+                1
+            ],
+            [
+                1,
+                0,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "3x1",
+        "name": "Long Sword",
+        "id": 1,
+        "qtd": 0,
+        "description": "Sword made of iron",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "2x1",
+        "name": "Short Sword",
+        "id": 2,
+        "qtd": 0,
+        "description": "Sword made of cooper",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "3x3",
+        "name": "Treasure Chest",
+        "id": 3,
+        "qtd": 0,
+        "description": "Chest full of coins",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "3x2 c",
+        "name": "Treasure Chest Key",
+        "id": 4,
+        "qtd": 0,
+        "description": "Key to open treasure chest",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                0,
+                1
+            ],
+            [
+                0,
+                1
+            ],
+            [
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "5x1",
+        "name": "Wooden Arrow",
+        "id": 5,
+        "qtd": 0,
+        "description": "Simple wood arrow ",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1,
+                1,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "5x3",
+        "name": "Blue Diamond Chest",
+        "id": 6,
+        "qtd": 0,
+        "description": "Chest full of blue diamonds",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                1,
+                1,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "3x2 b",
+        "name": "Iron Hammer",
+        "id": 7,
+        "qtd": 0,
+        "description": "Hammer made of iron",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                0,
+                0
+            ],
+            [
+                1,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "3x3 b",
+        "name": "Black Magic Key",
+        "id": 8,
+        "qtd": 0,
+        "description": "Key made of misterious black magic",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                0,
+                0
+            ],
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                0,
+                0
+            ]
+        ]
+    },
+    {
+        "imageName": "1x1",
+        "name": "HP Potion",
+        "id": 9,
+        "qtd": 0,
+        "description": "Restore 10 HP",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "1x1",
+        "name": "MP Potion",
+        "id": 10,
+        "qtd": 0,
+        "description": "Restore 10 MP",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "6x2 a",
+        "name": "Fishing Rod",
+        "id": 11,
+        "qtd": 0,
+        "description": "Fishing rod made of iron",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "3x2 a",
+        "name": "Hand Gun",
+        "id": 12,
+        "qtd": 0,
+        "description": "Gun used on right hand",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                1,
+                0
+            ]
+        ]
+    },
+    {
+        "imageName": "4x2",
+        "name": "Hand gun bullets",
+        "id": 13,
+        "qtd": 0,
+        "description": "Bullets used for hand gun weapons",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1,
+                1,
+                1
+            ],
+            [
+                1,
+                1,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "4x2 a",
+        "name": "Magic Robe",
+        "id": 14,
+        "qtd": 0,
+        "description": "Robe made of soft silk for greater magicians",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1,
+                1,
+                0
+            ],
+            [
+                0,
+                1,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "4x1",
+        "name": "Magic Wand",
+        "id": 15,
+        "qtd": 0,
+        "description": "Magic wand for greater magicians",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                1,
+                1,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "3x3 a",
+        "name": "Medicinal Herbs",
+        "id": 16,
+        "qtd": 0,
+        "description": "Cure player wounds",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                0,
+                1,
+                1
+            ],
+            [
+                1,
+                1,
+                1
+            ],
+            [
+                0,
+                1,
+                1
+            ]
+        ]
+    },
+    {
+        "imageName": "4x3 a",
+        "name": "Rifle",
+        "id": 17,
+        "qtd": 0,
+        "description": "Two handed weapon",
+        "slotPosition": [
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            },
+            {
+                "line": 0,
+                "column": 0,
+                "isEmpty": false
+            }
+        ],
+        "imageConfig": [
+            [
+                0,
+                1,
+                0,
+                0
+            ],
+            [
+                1,
+                1,
+                1,
+                1
+            ],
+            [
+                0,
+                0,
+                1,
+                0
+            ]
+        ]
+    }
+]
