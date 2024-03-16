@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -24,7 +25,8 @@ public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExi
             if(inventoryItem != null) 
             {
                 if (!inventoryItem.IsSelected)
-                    inventoryItem.Select();
+                    inventoryItem.Select();                  
+
                 else
                 {
                     slot.HighLight(false);
@@ -38,5 +40,5 @@ public class DetectMouseEvent : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         inventoryItem = null;
         slot.HighLight(false);
-    }    
+    }   
 }

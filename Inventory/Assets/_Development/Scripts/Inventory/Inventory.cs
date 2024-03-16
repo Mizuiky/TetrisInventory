@@ -16,6 +16,7 @@ public class Inventory: MonoBehaviour
     public int Lines { get { return _lines; } }
     public int Columns { get { return _columns; } }
     public Transform ItemsParent { get { return _inventoryItemsParent; } }
+    public List<InventoryItem> InventoryItems { get { return _items; } }
 
     public void Init(Slot[,] slots, Transform itemParent)
     {
@@ -26,6 +27,7 @@ public class Inventory: MonoBehaviour
 
         _items = new List<InventoryItem>();
         _inventoryItemsParent = itemParent;
+        transform.localScale = new Vector3(0.8f, 0.8f, 0f);
     }
 
     public void Open()
