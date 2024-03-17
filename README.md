@@ -1,33 +1,42 @@
 README
 
-Link para o board do Projeto:
+Link to the Project Board:
 
 https://github.com/users/Mizuiky/projects/11/views/1
 
 Tags:
 - v1.0  https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.0
-  - Tool para adicionar os itens porem sem poder serem editados ainda.
-  - Criacao do inventario de forma dinamica.
-  - Rotacao do item criado(sem mudar o posicionamento do item).
-  - Adicionar apenas uma unica peca ao inventario.
-  - Adicao de um botao para abrir e fechar o inventario.
-  - Adicao de prefabs pela tool de criacao de itens
+  - Tool to add items, but without being able to edit them yet.
+  - Creation of the inventory dynamically.
+  - Rotation of the created item (without changing the item's position).
+  - Adding only a single piece to the inventory.
+  - Addition of a button to open and close the inventory.
+  - Addition of prefabs through the item creation tool.
 
-  - Há um bug aqui: ao adicionar a peça ao inventário, a lógica para incrementar a quantidade na Tag v1.0 não foi ajustada.
+  - There is a bug here: when adding the piece to the inventory, the logic to increment the quantity in Tag v1.0 was not adjusted.
 
 ## 
 
 - v1.1 https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.1
 
 - Bug fix
-  - Increase item quantity in inventory when add one insted need to be increased in item manager.
-- Area limite do inventario criada.
-- Mais de uma peca pode ser encaixada no inventario.
-- O item do inventario pode se mover para qualquer um dos slots desde que siga os limites do inventario.
-- Os itens do inventario podem ser selecionados e somente se selecionados podem mover-se.
-- Os itens do inventario nao sao acendidos com a mesma selecao do slot do inventario quando sao selecionados.
-- Os itens do inventarioa quando selecionados mudam para a cor amarela e mudam um pouco sua posicao para dar efeito em 3D de que a peca subiu.
-- Atualizacao do json com novos campos
+  - Increase item quantity in inventory when adding one instead of increasing it in the item manager.
+  - Inventory boundary area created.
+  - More than one piece can be fitted into the inventory.
+  - The inventory item can move to any of the slots as long as it follows the inventory boundaries.
+  - Inventory items can be selected and can only move when selected.
+  - Inventory items are not highlighted with the same selection of the inventory slot when they are selected.
+  - When inventory items are selected, they change to yellow color and slightly change their position to give a 3D effect that the piece has risen.
+  - Update the JSON with new fields.
+
+  #### Note: When adding an item to the inventory, updating the item quantity in the JSON is missing.
+
+## 
+
+ - v1.2
+
+
+ ##
 
 #### Obs: Ao adicionar um item no inventario, falta fazer a atualizacao da quantidade do item no json.
 
@@ -37,39 +46,29 @@ Tags:
 
 (Disclaimer: Essa 'documentação' só está em portugues porque é mais simples de explicar. Normalmente, faria em ingles.)
 
-### Ideia básica:
+### Basic Idea:
 
-Um inventário que possa conter itens com diversos tamanhos diferentes, e poder organizar entre eles.
-No fim, o proprio inventário se torna um mini quebra-cabeça para o jogador, deixando o jogo mais estratégico do que apenas
-uma bolsa da hermione.
+An inventory that can contain items of various different sizes, and can be organized among them. In the end, the inventory itself becomes a mini puzzle for the player, making the game more strategic than just Hermione's bag.
 
-### Observacoes:
-- Dentro da pasta Resources em Assets/Resources/SaveData deixei o json limpo do inventario e da configuracao dos items adicionados
-- estava usando o persistent data path do meu pc mas como no de voces sera diferente entao seria so atualizar os jsons criados em parsistentData path + SaveData/ utilizando os jsons do Resources folder
-
-persistent data path aqui no meu : C:\Users\gabri\AppData\LocalLow\DefaultCompany\Inventory\SaveData
+### Observations:
+Inside the Resources folder in Assets/Resources/SaveData, I left the clean inventory JSON and the configuration of the added items.
+I was using the persistent data path on my PC, but since it will be different on yours, you just need to update the JSONs created in persistentData path + SaveData/ using the JSONs from the Resources folder.
+My persistent data path here is: C:\Users\gabri\AppData\LocalLow\DefaultCompany\Inventory\SaveData
 
 ---
 
-## Descoberta:
-Isso obviamente é mais dificil do que parece, justamente porque os itens precisam manter uma forma de 'encaixar' no inventário,
-de tal forma que ele saiba qual peça está em cada lugar, para possibilitar com que as outras também possam ser encaixadas.
+## Discovery:
+This is obviously more difficult than it seems, precisely because the items need to maintain a way to 'fit' into the inventory, so that it knows which piece is in each place, enabling other pieces to also fit.
 
-A primeira abordagem, foi tentar utilizar collider para as peças, para umas não poderem tocar umas nas outras, mas isso não funcionou
-tão bem porque por exemplo usando imagem estilo L o collider iria cobrir a imagem por inteiro que 'e um retangulo e nao somente o formato em L em si, entao descartei esta possibilidade
+The first approach was to try using colliders for the pieces, so that they couldn't touch each other, but this didn't work so well because, for example, using an L-shaped image, the collider would cover the entire image, which is a rectangle, and not just the L shape itself, so I discarded this possibility.
 
-Uma segunda abordagem, foi em usar matrizes para o inventário e para a configuracao do item.
-Dessa forma, cada peça teria sua propria "configuração" que assume no inventário (eliminando o problema com o transparente).
-E o inventário, por sua vez, consegue sempre determinar qual peça consegue encaixar em cada lugar.
+A second approach was to use matrices for the inventory and for the item configuration. This way, each piece would have its own "configuration" that it assumes in the inventory (eliminating the problem with transparency). And the inventory, in turn, can always determine which piece can fit into each place.
 
-Computacionalmente isso não é performático (fazer vários loops em matriz), mas como o tamanho geral do inventário não é grande apesar de ser configuravel
-não creio que será um problema.
-Unico ponto negativo (até o momento) é que o código acaba ficando bem mais complexo.
+Computationally, this is not performative (doing several loops in a matrix), but since the overall size of the inventory is not large despite being configurable, I don't think it will be a problem. The only downside (so far) is that the code ends up being much more complex.
 
-## Adicionando primeira peca ao inventario
+## Adding the first piece to the inventory:
 
-A ideia foi para cada novo item adicionado, criar uma configuracao formada por 0 e 1 onde 1 representa na matriz de configuracao o local onde existe um quadrado 64x64 que compoe a peca
-entao seguindo o exemplo do L ficaria:
+The idea was for each new item added, to create a configuration formed by 0s and 1s where 1 represents in the configuration matrix the location where there is a 64x64 square that makes up the piece, so following the example of the L-shaped piece, it would be:
 
 |   A   |   B   |   C   |
 |-------|-------|-------|      
@@ -84,91 +83,109 @@ entao seguindo o exemplo do L ficaria:
 |   1   |   0   |   0   |       
 |   1   |   1   |   1   |  
 
-### 1 - Verificação de Disponibilidade do Slot:
-- Percorremos cada slot no inventário para verificar se está disponível, ou seja, se não possui itens adicionados.
+### 1 - Slot Availability Check:
+- We iterate through each slot in the inventory to check if it's available, meaning it doesn't have any items added to it.
 
-### 2 - Verificação da Configuração do Item:
-- Se o slot estiver disponível, verificamos se a configuração do item pode se encaixar a partir desse slot.
-- Calculamos a quantidade de colunas e linhas disponíveis a partir do slot verificado.
+### 2 - Configuration Check of the Item:
+- If the slot is available, we check if the item's configuration can fit starting from that slot. We calculate the number of available columns and rows from the checked slot.
 
-### 3 - Determinação de Colunas e Linhas Disponíveis:
-- Calculamos as colunas disponíveis a partir do slot atual subtraindo a coluna atual da quantidade total de colunas no inventário.
-- Calculamos as linhas disponíveis a partir do slot atual subtraindo a linha atual da quantidade total de linhas no inventário.
+### 3 - Determination of Available Columns and Rows:
+- We calculate the available columns from the current slot by subtracting the current column from the total number of columns in the inventory. We calculate the available rows from the current slot by subtracting the current row from the total number of rows in the inventory.
 
-### 4 - Restrições de Configuração do Item:
-- Se o número de colunas da matriz de configuração do item for maior que as colunas disponíveis, não é possível adicionar o item.
-- Se a quantidade de linhas da matriz de configuração do item for maior que as linhas disponíveis, não é possível adicionar o item.
+### 4 - Item Configuration Constraints:
+- If the number of columns in the item's configuration matrix is greater than the available columns, it's not possible to add the item. 
+- If the number of rows in the item's configuration matrix is greater than the available rows, it's not possible to add the item.
 
-### 5 - Lógica de Encaixe do Item:
-a. Se o valor na configuração do item for zero (indicando posição vazia para o item, como no exemplo do "L"):
-- Adicionamos a posição atual à lista de posições.
-- Se estiver na última coluna da configuração do item:
-  - Ajustamos a coluna do auxiliar do inventário para a coluna inicial.
-  - Continuamos a verificação nas próximas colunas quando a linha muda.
+### 5 - Item Fitting Logic
+a. If the value in the item's configuration is zero (indicating an empty position for the item, as in the "L" example):
+- We add the current position to the list of positions.
+- If it's in the last column of the item's configuration:
+  - We adjust the inventory's column auxiliar to the initial column.
+  - We continue the check in the next columns when the row changes.
 
-#### Caso contrário:
-- Incrementamos a coluna atual e passamos para a próxima iteração na configuração do item.
+#### Otherwise:
+- We increment the current column and move to the next iteration in the item's configuration
 
-b. Se encontrar o numero um na configuração e a posição do inventário na linha e coluna atual tiver um item diferente do item atual na configuração:
-- Significa que o slot do inventário está ocupado.
-- Passamos para a próxima posição do inventário para verificar se a configuração encaixa.
+b. If we find the number one in the configuration and the position of the inventory in the current row and column has a different item than the current item in the configuration and my current item I want to add is different from the attached item in the slot:
 
-c. Se o slot estiver disponível:
-- Adicionamos esta nova posição à lista de posições.
-- Incrementamos a coluna indo para a próxima.
-- Se estivermos na última coluna da matriz de configuração do item:
-  - Na próxima iteração, mudaremos de linha, ajustamos a coluna atual para a coluna inicial.
-  - Incrementamos o auxiliar da linha para o inventário.
-  - Slot atual é armazenado para uso posterior.
+- It means the inventory slot is occupied.
 
-### 6 - Instanciação e Adição do Item:
-- Instanciamos o item, atualizando dados e propriedades e subscrevendo a eventos para verificar a próxima posição disponível.
-- A posição do item é definida com base no slot atual e nas dimensões do slot do inventário.
-- Adicionamos o item a cada posição da lista de posições encontradas anteriormente, caso a configuração atual da posição não seja vazia.
-- Incrementamos a quantidade do item para 1.
+  b.1 If there isn't a conflict detected on this slot being checked:
+  - it continues to the next iteration. 
+  
+  #### Otherwise:
 
-### 7 - Atualização e Salvamento:
+ - The position is added to the list of positions.
+ - A boolean indicating that there is a conflict is activated.
+ - it moves to the next iteration
+
+- We move to the next inventory position to check if the configuration fits.
+
+c. If the slot is available:
+- We add this new position to the list of positions.
+- We increment the column by moving to the next one.
+- If we're in the last column of the item's configuration matrix:
+  - In the next iteration, we switch rows, adjust the current column to the initial column.
+  - We increment the row auxiliar for the inventory.
+  - Current slot is stored for later use.
+
+### 6 - Instantiation and Addition of the Item:
+
+- We instantiate the item, updating data and properties.
+- A new random color is added.
+- The item's position is set based on the current slot and the dimensions of the inventory slot.
+- We add the item to each position in the list of previously found positions: 
+  - If the current position's configuration is empty we set it empty flag to true and go to the next position fo the list.
+
+  #### Otherwise:
+
+  - If the current position's configuration isnt empty, we set it empty flag to false.
+  - However, while iterating through all the slot positions, if there are conflicts with another item, we cannot change its slot position, so we simply continue to iterate.
+
 -  O item é adicionado à lista de itens no inventário.
-- Atualizamos os dados do item e do inventário, sendo passados para o Item Manager, que chamará o Save Manager para atualizar esses dados no JSON posteriormente.
+
+### 7 - Update and Save:
+
+- The item is added to the list of items in the inventory. We update the data of both the item and the inventory, which are then passed to the Item Manager.
+- The Item Manager will call the Save Manager to update this data in the JSON later on.
 
 ---
 
-## Tool para Adicionar novos items
+## Tool for Adding New Items:
 
-Campos:
+Fields:
 
-- Nome do item
+- Item Name
 - ID
-- Type(None, Material, Weapon, Ammo, Consumable)
-- Sprite(sprite referente ao item)
-- Descricao do item
-- Imagem do inventario(selecionar uma das pecas dentro da pasta Assets/UI/InventoryItems
-- ImageConfig(configuracao em formato de matriz da peca do inventario)
-   - Linhas
-   - Colunas
+- Type (None, Material, Weapon, Ammo, Consumable)
+- Sprite (item sprite)
+- Item Description
+- Inventory Image (select one of the pieces within the folder Assets/UI/InventoryItems)
+- Image Configuration (configuration in matrix format of the inventory piece)
+- Rows
+- Columns
 
-Ao preencher todos os campos aparecerá um botao para criar o item
+Once all fields are filled, a button will appear to create the item.
 
-- O item builder cria prefabs com as configuracoes setadas para um item normal e um item de inventario
-armazena esses prefabs na Pasta Resources/Prefabs/InventoryItems  e  Resources/Prefabs/Items
+- The item builder creates prefabs with the settings set for a normal item and an inventory item, storing these prefabs in the folder Resources/Prefabs/InventoryItems and Resources/Prefabs/Items.
 
-- Os dados dos items criados sao salvos em json dentro do caminho C:\Users\[Seu usuario]\AppData\LocalLow\DefaultCompany\Inventory\GameData
-- O arquivo referente aos items se chama ItemData, e para os de inventario, InventoryData
+- The data of the created items is saved in JSON files within the path C:\Users[Your User]\AppData\LocalLow\DefaultCompany\Inventory\SaveData.
 
-- Quando o jogo é iniciado, é feito o load dos dados desses arquivos, alem disso é feito o load de cada um dos prefabs de items e inventory items
-o dados correspondendte de cada um é encaixado e o item manager adiciona esses itens e dados em listas para que sejam de facil acesso.
+- The file referring to the items is called ItemData, and for the inventory ones, InventoryItemData.
+
+- When the game is started, the data from these files is loaded, and each of the item and inventory item prefabs is also loaded. The corresponding data of each is then matched, and the item manager adds these items and data to lists for easy access.
 
 <p align="center">
 
-### Botao na barra de ferramentas para abrir a tool
+### Button on the toolbar to open the tool
 
 <img src="Inventory\Assets\ReadMe\Images\item creator path.jpg" alt="Tool">
 
-### Tool para criar os itens
+### Tool to create items
 
 <img src="Inventory/Assets/ReadMe/Images/tool.png" alt="Tool">
 
-### Exemplo da configuracao do item criado dentro do JSON
+### Example of the configuration of the created item within the JSON
 
 <img src="Inventory/Assets/ReadMe/Images/JsonConfig.png" alt="Tool">
 
@@ -176,63 +193,66 @@ o dados correspondendte de cada um é encaixado e o item manager adiciona esses 
 
 ---
 
-## Tool para criar o inventario
+## Tool to Create the Inventory
 
-Aqui temos um Inventory Builder, que a partir de campos cria um novo inventario
+Here we have an Inventory Builder, which creates a new inventory based on fields.
 
-Campos:
-- Prefab do slot que compoem o inventario
-- Parent para encaixar o inventario na UI
-- O parent para poder ser um container para os itens do inventario
-- Sprite com o slot normal
-- Sprite com slot iluminado
-- Posicao x inicial 
-- Posicao y inicial
-- Quantidade de linhas
-- Quantidade de colunas
+Fields:
 
-Para cada indice da matriz linha e coluna é instanciado um novo slot na posicao x,y, alem disso o slot é inicializado com seu indice posicao e dados salvos
-Apos o termino da matriz o inventario é inicializado com seus slots, parent, e setado no UIController
+- Slot prefab that makes up the inventory
+- Parent to attach the inventory to the UI
+- Sprite for the normal slot
+- Sprite for the highlighted slot
+- Initial x position
+- Initial y position
+- Number of rows
+- Number of columns
 
----
-
-## Rotacionar items
-
-- Espace key rotaciona em 90 graus a peca para a direita
-### Obs: Nao esta feito ainda a mudanca do posicionamento da matriz de configuracao quando o item 'e rotacionado para poder ser encaixado depois.
-- talvez se necessario utilizar matriz transposta
+For each index of the row and column matrix, a new slot is instantiated at the x, y position. Additionally, the slot is initialized with its index position and saved data. After the matrix is complete, the inventory is initialized with its slots, parent, and set in the UIController, which will then pass it to the InventoryController.
 
 ---
 
-## Como spawnar o primeiro item
+## Rotating Items
 
-- Na hierarchy preencher os campos do inventory builder para criar um novo inventario, depois iniciar o jogo
-- No prefab Spawner, digitar um numero de 0 a 17 que sao a quantidade de items cadastrados  no campo Item Id To Spawn
-- Na game Scene clicar no botao rosa Spawn item.
-- Deixei o inventario comecando na posicao 0,0 e com 5 linhas e 5 colunas.
+- Pressing the Space key rotates the piece 90 degrees to the right.(but is commented because it sets a wrong position for each item we try to rotate)
+
+### Note: The change in the configuration matrix position when the item is rotated to enable fitting is not yet implemented. 
+- Perhaps, if necessary, the transpose matrix should be used.
+
+---
+
+## To spawn the first item:
+
+- In the Hierarchy, fill in the fields of the Inventory Builder to create a new inventory.
+- Start the game.
+- In the Spawner prefab, enter a number from 0 to 17, which represents the quantity of items registered.
+- In the game scene, click on the pink Spawn item button.
+- The inventory starts at position x: -240 ,y: 200 with 6 rows and 10 columns.
 
 
-## Adicao e movimentacao das pecas no inventario
+## To add and move pieces in the inventory:
 
-Para adicionar precisamos usar a constante:
+For adding, we need to use the constant:
 
-### Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) que encaixa a peca.
-### a nova posicao e a posicao atual do slot + a constante tanto no eixo x como no y ficando:
+### Vector3(wImg/2 - wSlot/2, -hImg/2 + hSlot/2) which fits the piece.
+### The new position is the current slot position plus the constant on both the x and y axes, as follows:
 
 var newPosition = new Vector3(slot.Position.x + _constant.x, slot.Position.y + _constant.y, _rect.localPosition.z);
 
-onde:
+where:
 
 - wSlot = Width do Slot.
 - hSlot = Height do Slot.
 
-e para movimentar usamos:
+For movement, we use:
 
-- Direita: posicao local + wSlot NO EIXO x
-- Esquerda: posicao local - wSlot NO EIXO x
+- Right: local position + wSlot on the x-axis
 
-- Emcima: posicao local + hSlot NO EIXO y
-- Embaixo: posicao local - hSlot NO EIXO y
+- Left: local position - wSlot on the x-axis
+
+- Up: local position + hSlot on the y-axis
+
+- Down: local position - hSlot on the y-axis
 
 Para verificar os casos de borda temos que achar a quantidade de colunas disponiveis(nao possuem item)a partir do slot atual.
 isso se da subtraindo a quantidade total de colunas do inventario menos a coluna atual do meu slot que estou verificando se posso encaixar o item nele.
@@ -242,7 +262,7 @@ com isso:
 - Se a quantidade de colunas do meu item for maior que o numero de colunas disponiveis do meu inventario , eu nao posso adicionar o item, caso contario ele tem a chance de ser adicionado.
 - Se a quantidade de linhas do meu item for maior que o numero de linhas disponiveis do meu inventario, eu tambem nao posso adicionar o item.
 
-<img src="Inventory\Assets\ReadMe\VideoGif\AddAndMoveItem.gif" alt="Add and Move Item">
+<img src="Inventory\Assets\ReadMe\VideoGif\MoveAddInventoryPieces.gif" alt="Add and Move Item">
 
 #### Exemplo adicionando e movimentando as pecas:
 - id 4 (3x2c) - Treasure chest key
