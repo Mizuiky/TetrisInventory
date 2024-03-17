@@ -65,6 +65,7 @@ My persistent data path here is:
 ---
 
 ## Discovery:
+
 This is obviously more difficult than it seems, precisely because the items need to maintain a way to 'fit' into the inventory, so that it knows which piece is in each place, enabling other pieces to also fit.
 
 The first approach was to try using colliders for the pieces, so that they couldn't touch each other, but this didn't work so well because, for example, using an L-shaped image, the collider would cover the entire image, which is a rectangle, and not just the L shape itself, so I discarded this possibility.
@@ -274,10 +275,10 @@ For movement, we use:
 <img src="Inventory\Assets\ReadMe\VideoGif\MoveAddInventoryPieces.gif" alt="Add and Move Item">
 
 #### Example of adding and moving pieces:
-- id 4 (3x2c) - Treasure chest key
-- id 6 (3x5) - Blue diamond chest
-- id 9 (1x1) - HP Potion
-- id 10 (1x1) - MP Potion
+- id 0 (3x2c) - Long Rope (red)
+- id 3 (3x3) - Treasure Chest (orange)
+- id 6 (3x5) - Blue Diamoind Chest (purple)
+- id 10 (1x1) - MP Potion (light blue)
 ---
 
 ## Tasks to be done  
