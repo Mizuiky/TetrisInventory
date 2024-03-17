@@ -33,7 +33,7 @@ Tags:
 
 ## 
 
- - v1.2
+ - v1.2  https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.2
 
 - Implemented a Movement Controller for each inventory item to manage movement more efficiently.
 - Added functionality to check the next available slot for movement. If no slots are available, then item is highlighted in red to indicate this condition.
@@ -51,8 +51,6 @@ Tags:
 
 ## Supreme Tile Inventory
 
-(Disclaimer: Essa 'documentação' só está em portugues porque é mais simples de explicar. Normalmente, faria em ingles.)
-
 ### Basic Idea:
 
 An inventory that can contain items of various different sizes, and can be organized among them. In the end, the inventory itself becomes a mini puzzle for the player, making the game more strategic than just Hermione's bag.
@@ -60,7 +58,9 @@ An inventory that can contain items of various different sizes, and can be organ
 ### Observations:
 Inside the Resources folder in Assets/Resources/SaveData, I left the clean inventory JSON and the configuration of the added items.
 I was using the persistent data path on my PC, but since it will be different on yours, you just need to update the JSONs created in persistentData path + SaveData/ using the JSONs from the Resources folder.
-My persistent data path here is: C:\Users\gabri\AppData\LocalLow\DefaultCompany\Inventory\SaveData
+
+My persistent data path here is: 
+- C:\Users\gabri\AppData\LocalLow\DefaultCompany\Inventory\SaveData
 
 ---
 
