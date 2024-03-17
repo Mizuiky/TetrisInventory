@@ -33,8 +33,7 @@ Tags:
 
 ## 
 
- - v1.2
-
+ - v1.2 https://github.com/Mizuiky/TetrisInventory/releases/tag/v1.2
 
  ##
 
