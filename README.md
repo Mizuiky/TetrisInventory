@@ -35,10 +35,17 @@ Tags:
 
  - v1.2
 
+- Implemented a Movement Controller for each inventory item to manage movement more efficiently.
+- Added functionality to check the next available slot for movement. If no slots are available, then item is highlighted in red to indicate this condition.
+- Refactored code in various modules, including Item Builder, Save Manager, Spawner, and InventoryBuilder, to enhance code organization and readability.
+- Introduced a new script for painting items, providing a more flexible and customizable way to change the visual appearance of items.
+- The item description is now visibly displayed when selecting the item, providing additional information about the item during inventory interaction.
 
- ##
 
-#### Obs: Ao adicionar um item no inventario, falta fazer a atualizacao da quantidade do item no json.
+#### Note: Things to be added in the future 
+- When adding an item to the inventory, updating the item quantity in the JSON is currently missing.
+- Implementation needed to allow items to rotate and correctly follow slot positions in the inventory.
+- Development of another part of the item tool to enable editing of items.
 
 ---
 
