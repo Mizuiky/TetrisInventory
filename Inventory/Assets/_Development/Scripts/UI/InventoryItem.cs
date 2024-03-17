@@ -70,6 +70,7 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
         {
             _qtd = GetComponentInChildren<TextMeshProUGUI>();
             _qtd.text = "";
+            _data.qtd = 0;
         }
                       
         if (_image == null)
@@ -133,5 +134,10 @@ public class InventoryItem : MonoBehaviour, IInventoryItem
     public void OnUse()
     {
 
+    }
+
+    private void OnDestroy()
+    {
+        _data.qtd = 0;
     }
 }
