@@ -254,55 +254,53 @@ For movement, we use:
 
 - Down: local position - hSlot on the y-axis
 
-Para verificar os casos de borda temos que achar a quantidade de colunas disponiveis(nao possuem item)a partir do slot atual.
-isso se da subtraindo a quantidade total de colunas do inventario menos a coluna atual do meu slot que estou verificando se posso encaixar o item nele.
+- We handle border cases by blocking movement when encountered. 
+- If movement to the next position is possible, we assign it to a new variable. 
+- Then, we check for conflicts where the UI controller listens to call the inventory controller for verification.
 
-com isso:
-
-- Se a quantidade de colunas do meu item for maior que o numero de colunas disponiveis do meu inventario , eu nao posso adicionar o item, caso contario ele tem a chance de ser adicionado.
-- Se a quantidade de linhas do meu item for maior que o numero de linhas disponiveis do meu inventario, eu tambem nao posso adicionar o item.
+- To add an item to the next position, we employ the same method as used for initial item addition, checking each item configuration. 
+- Old positions from current inventory slots are removed if they are empty and have a different item from the one currently being checked.
+- We update the new positions for each slot in the item. If a conflict is detected, we refrain from removing the current item from the slot being checked to maintain consistency.
+- Item manager is updated with the inventory item list. 
+- If a conflict occurs while checking the next slots, a flag is set to change the color of the current item to red.
 
 <img src="Inventory\Assets\ReadMe\VideoGif\MoveAddInventoryPieces.gif" alt="Add and Move Item">
 
-#### Exemplo adicionando e movimentando as pecas:
+#### Example of adding and moving pieces:
 - id 4 (3x2c) - Treasure chest key
 - id 6 (3x5) - Blue diamond chest
 - id 9 (1x1) - HP Potion
 - id 10 (1x1) - MP Potion
 ---
 
-## Itens para fazer  
+## Tasks to be done  
 
-## Continuacao da tool de adicionar itens mas agora para edita-los
+### Continuation of the item creation tool but now for editing
 
-Adicionar continuacao da tool de criacao de itens mas agora para poder edita-los
-é possivel editar via json mas nao é pratico para game designers, entao uma nova tool
-que pudesse pegar a lista de items disponiveis e setar em um campo, para ser possivel escolher o item pelo id
-, todos os itens aparecessem para edtar, e no final, um botao de update que alem de atualizar no item manager atualizar tambem no
-json atraves do save manager, seria o ideal.
+Add continuation of the item creation tool, but now to enable editing. It's possible to edit via JSON, but it's not practical for game designers. So, a new tool that could fetch the list of available items and set them in a field to choose the item by its ID would be helpful. 
 
-poderia ter usado scritable objects mas acredito que uma tool fica mais intuitivo para um game designer.
+All items should appear for editing, and in the end, an update button that not only updates in the item manager but also updates in the JSON through the save manager would be ideal.
+
+I could have used Scriptable Objects, but I believe a tool is more intuitive for a game designer.
 
 ---
 
-## Melhorar de forma visual a matriz de mapeamento da peca  
+### Improving the visual representation of the piece mapping matrix  
 
-- A matriz de 1 e 0 mapeia os campos da peca que nao sao transparentes
-- Seria legal ser possivel adicionar a linha e coluna e elas formassem o formato da matriz visualmente na tool para o game designer,
-assim ele so encaixaria cada bloco formando a peca, no exemplo do L ele adicionaria blocos 64x64 da imagem somente onde existe 
-blocos na peca em L, seria uma forma mais visual de mapeamento
+- The matrix of 1s and 0s maps the fields of the piece that are not transparent.
+- It would be nice to be able to add rows and columns, and they would form the shape of the matrix visually in the tool for the game designer. This way, they would only fit each block to form the piece. 
+- In the example of the L shape, they would add 64x64 blocks of the image only where there are blocks in the L piece. It would be a more visual way of mapping.
+---
+
+### Saving the data of each inventory slot to load them at the beginning of the game:
 
 ---
 
-## Salvar os dados de cada slot do inventario para poder fazer o load deles no inicio do jogo
+### Ideally, saving the JSON with the data of the items and inventory items on a server and loading them from there. Once the data is loaded, it should be saved in the persistent data path, which will be the path to the user's computer.
 
 ---
 
-## O ideal seria salvar o json com os dados dos itens e dos itens do inventario em um servidor e dar load deles a partir disso, com os dados carregados salvar eles no persistent data path que sera o caminho para o computador do usuario
-
----
-
-## Completar a documentacao, deixa-la mais bonita e salvar em PDF
+### Make item Rotate, and dont change it position, following the inventory slots.
 
 ---
 
